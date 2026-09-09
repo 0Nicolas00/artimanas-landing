@@ -12,8 +12,8 @@ if (hero) {
     let currentX = 0;
     let currentY = 0;
 
-    // Cantidad máxima de desplazamiento del fondo en píxeles.
-    const intensity = 34;
+    // Menor recorrido para evitar que el fondo necesite tanto zoom.
+    const intensity = 18;
     const smoothing = 0.075;
 
     hero.addEventListener('pointermove', (event) => {
