@@ -83,18 +83,55 @@ a {
 }
 
 /* ==============================
-   Hero
+   Hero interactivo
    ============================== */
 .hero {
+  position: relative;
   min-height: calc(100vh - 72px);
   display: grid;
   align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #ffffff;
+  border-bottom: 0;
+}
+
+.hero-background {
+  position: absolute;
+  inset: -6%;
+  z-index: -2;
+  background-image: url('../assets/images/fondo-hero.webp');
+  background-size: cover;
+  background-position: center;
+  transform: translate3d(var(--bg-x, 0px), var(--bg-y, 0px), 0) scale(1.08);
+  will-change: transform;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(5, 0, 30, 0.08);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
 }
 
 .hero h1 {
   margin: 0;
+  max-width: 900px;
   font-size: clamp(3rem, 10vw, 8rem);
   line-height: 0.95;
+}
+
+.hero p {
+  max-width: 620px;
+  font-size: clamp(1rem, 1.7vw, 1.35rem);
+  line-height: 1.5;
 }
 
 .eyebrow {
@@ -130,5 +167,16 @@ a {
 
   .section {
     padding: 72px 0;
+  }
+
+  .hero-background {
+    inset: -3%;
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-background {
+    transform: scale(1.04);
   }
 }
