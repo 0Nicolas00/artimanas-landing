@@ -98,12 +98,13 @@ a {
 
 .hero-background {
   position: absolute;
-  inset: -6%;
+  inset: -20px;
   z-index: -2;
-  background-image: url('../assets/images/fondo-hero.webp');
-  background-size: cover;
+  background-image: url('../assets/images/fondo-hero.png');
+  background-size: 100% auto;
   background-position: center;
-  transform: translate3d(var(--bg-x, 0px), var(--bg-y, 0px), 0) scale(1.08);
+  background-repeat: no-repeat;
+  transform: translate3d(var(--bg-x, 0px), var(--bg-y, 0px), 0) scale(1.02);
   will-change: transform;
 }
 
@@ -170,13 +171,14 @@ a {
   }
 
   .hero-background {
-    inset: -3%;
-    transform: scale(1.04);
+    inset: -12px;
+    background-size: auto 100%;
+    transform: scale(1.02);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-background {
-    transform: scale(1.04);
+    transform: scale(1.02);
   }
 }
