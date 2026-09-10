@@ -142,10 +142,6 @@ a {
   background: #3415ae;
 }
 
-/*
-  El fondo sobresale unos píxeles del Hero para poder desplazarse con el mouse
-  sin revelar bordes. No usamos scale extra para evitar acercar de más la imagen.
-*/
 .hero-background {
   position: absolute;
   inset: -36px;
@@ -173,6 +169,7 @@ a {
   align-items: center;
   justify-content: center;
   padding-inline: var(--space-page);
+  transform: translateY(-6vh);
 }
 
 .hero-title-image {
@@ -189,7 +186,7 @@ a {
 .hero-marquee {
   position: absolute;
   left: -2%;
-  bottom: 9vh;
+  bottom: 7vh;
   z-index: 2;
   width: 104%;
   overflow: hidden;
@@ -203,25 +200,25 @@ a {
 .hero-marquee-track {
   display: flex;
   width: max-content;
-  padding-block: 18px;
+  padding-block: 20px;
   will-change: transform;
-  animation: hero-marquee-scroll 18s linear infinite;
+  animation: hero-marquee-scroll 38s linear infinite;
 }
 
 .hero-marquee-group {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: clamp(24px, 2.4vw, 42px);
-  padding-right: clamp(24px, 2.4vw, 42px);
+  gap: clamp(26px, 2.5vw, 46px);
+  padding-right: clamp(26px, 2.5vw, 46px);
   white-space: nowrap;
-  font-size: clamp(0.9rem, 1.35vw, 1.2rem);
+  font-size: clamp(1.05rem, 1.6vw, 1.45rem);
   font-weight: 400;
   line-height: 1;
 }
 
 .hero-marquee-separator {
-  font-size: 1.25em;
+  font-size: 1.2em;
   line-height: 0;
 }
 
@@ -269,23 +266,29 @@ a {
     transform: none;
   }
 
+  .hero-content {
+    transform: translateY(-4vh);
+  }
+
   .hero-title-image {
     width: min(88vw, 1160px);
   }
 
   .hero-marquee {
-    bottom: 10vh;
+    bottom: 8vh;
     left: -4%;
     width: 108%;
   }
 
   .hero-marquee-track {
-    padding-block: 14px;
-    animation-duration: 15s;
+    padding-block: 16px;
+    animation-duration: 30s;
   }
 
   .hero-marquee-group {
-    font-size: 0.85rem;
+    gap: 22px;
+    padding-right: 22px;
+    font-size: 1rem;
   }
 }
 
