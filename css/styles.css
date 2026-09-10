@@ -134,7 +134,7 @@ a {
   position: relative;
   min-height: 100vh;
   display: grid;
-  align-items: center;
+  place-items: center;
   overflow: hidden;
   isolation: isolate;
   color: #ffffff;
@@ -168,25 +168,19 @@ a {
 .hero-content {
   position: relative;
   z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-page);
 }
 
-.hero h1 {
-  margin: 0;
-  max-width: 900px;
-  font-size: clamp(3rem, 10vw, 8rem);
-  line-height: 0.95;
-}
-
-.hero p {
-  max-width: 620px;
-  font-size: clamp(1rem, 1.7vw, 1.35rem);
-  line-height: 1.5;
-}
-
-.eyebrow {
-  margin-bottom: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+.hero-title-image {
+  width: min(72vw, 1160px);
+  height: auto;
+  max-width: 100%;
+  user-select: none;
+  pointer-events: none;
 }
 
 /* ==============================
@@ -221,6 +215,10 @@ a {
   .hero-background {
     inset: 0;
     transform: none;
+  }
+
+  .hero-title-image {
+    width: min(88vw, 1160px);
   }
 }
 
