@@ -13,7 +13,7 @@ if (hero) {
     let currentY = 0;
 
     // Menor recorrido para evitar que el fondo necesite tanto zoom.
-    const intensity = 18;
+    const intensity = 50;
     const smoothing = 0.075;
 
     hero.addEventListener('pointermove', (event) => {
