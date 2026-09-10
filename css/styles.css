@@ -84,7 +84,7 @@ a {
 
 /* ==============================
    Hero interactivo
-   Fondo procedural basado en el Figma
+   Reconstrucción del fondo de Frame 55
    ============================== */
 .hero {
   position: relative;
@@ -98,194 +98,294 @@ a {
   background: #3415ae;
 }
 
+/*
+  El frame de referencia es 1440 x 900. La escena mantiene esa proporción
+  y se escala para cubrir el Hero. El parallax mueve la escena completa,
+  no las elipses de forma individual.
+*/
 .hero-background {
   position: absolute;
-  inset: -5%;
-  z-index: -3;
-  overflow: hidden;
-
-  /*
-    El fondo original de Figma está construido con muchas elipses
-    superpuestas. Estas capas reproducen esa lógica sin usar una
-    imagen raster, por lo que no pierden definición al escalar.
-  */
-  background:
-    /* núcleo claro del volumen izquierdo */
-    radial-gradient(
-      ellipse 18% 49% at 35% 51%,
-      rgba(255, 245, 247, 0.98) 0%,
-      rgba(255, 230, 237, 0.96) 22%,
-      rgba(255, 195, 209, 0.82) 39%,
-      rgba(255, 133, 154, 0.42) 54%,
-      rgba(246, 82, 109, 0.08) 70%,
-      transparent 78%
-    ),
-
-    /* naranja interior izquierdo */
-    radial-gradient(
-      ellipse 42% 64% at 15% 52%,
-      #f16842 0%,
-      #f06443 28%,
-      #ef574f 42%,
-      rgba(232, 65, 112, 0.9) 56%,
-      rgba(200, 45, 176, 0.54) 72%,
-      transparent 88%
-    ),
-
-    /* halo rosa de la izquierda */
-    radial-gradient(
-      ellipse 63% 86% at 4% 50%,
-      rgba(229, 59, 116, 0.9) 0%,
-      rgba(214, 48, 157, 0.78) 43%,
-      rgba(151, 36, 220, 0.52) 67%,
-      transparent 88%
-    ),
-
-    /* naranja interior derecho */
-    radial-gradient(
-      ellipse 23% 46% at 62% 51%,
-      #ef6541 0%,
-      #ed5b47 27%,
-      #e74768 44%,
-      rgba(216, 48, 146, 0.88) 62%,
-      rgba(162, 33, 216, 0.42) 77%,
-      transparent 88%
-    ),
-
-    /* masa magenta derecha */
-    radial-gradient(
-      ellipse 50% 66% at 83% 51%,
-      #ce2fc6 0%,
-      #c42ed1 29%,
-      #ad27df 48%,
-      rgba(117, 26, 232, 0.92) 67%,
-      rgba(70, 18, 196, 0.48) 82%,
-      transparent 96%
-    ),
-
-    /* halo violeta superior derecho */
-    radial-gradient(
-      ellipse 55% 50% at 82% 4%,
-      rgba(105, 20, 238, 0.96) 0%,
-      rgba(90, 17, 222, 0.72) 48%,
-      transparent 82%
-    ),
-
-    /* halo violeta inferior derecho */
-    radial-gradient(
-      ellipse 60% 54% at 84% 99%,
-      rgba(95, 22, 232, 0.94) 0%,
-      rgba(73, 19, 205, 0.64) 48%,
-      transparent 82%
-    ),
-
-    /* halo azul/violeta alrededor del centro */
-    radial-gradient(
-      ellipse 34% 93% at 50% 50%,
-      rgba(37, 15, 151, 0.98) 0%,
-      rgba(54, 14, 184, 0.9) 38%,
-      rgba(78, 13, 218, 0.5) 61%,
-      transparent 81%
-    ),
-
-    /* base violeta del archivo de diseño */
-    #3415ae;
-
-  transform: translate3d(var(--bg-x, 0px), var(--bg-y, 0px), 0) scale(1.035);
-  filter: saturate(1.04) contrast(1.015);
+  left: 50%;
+  top: 50%;
+  width: max(100%, 160vh);
+  aspect-ratio: 8 / 5;
+  z-index: -2;
+  overflow: visible;
+  background: #3415ae;
+  transform:
+    translate3d(
+      calc(-50% + var(--bg-x, 0px)),
+      calc(-50% + var(--bg-y, 0px)),
+      0
+    )
+    scale(1.025);
   will-change: transform;
 }
 
+.hero-ellipse {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
+/* ------------------------------
+   Grupo izquierdo
+   Posiciones y tamaños basados en Frame 55
+   ------------------------------ */
+.hero-ellipse--left-1 {
+  left: -33.224%;
+  top: -28.773%;
+  width: 79.237%;
+  height: 169.148%;
+  background: radial-gradient(
+    ellipse at 67% 50%,
+    rgba(243, 70, 79, 0.98) 0%,
+    rgba(241, 61, 89, 0.96) 38%,
+    rgba(217, 47, 139, 0.88) 62%,
+    rgba(143, 34, 204, 0.52) 78%,
+    rgba(52, 21, 174, 0) 94%
+  );
+  filter: blur(42px);
+}
+
+.hero-ellipse--left-2 {
+  left: -32.611%;
+  top: -4.921%;
+  width: 77.399%;
+  height: 117.086%;
+  background: radial-gradient(
+    ellipse at 68% 50%,
+    #f26b3d 0%,
+    #f1663e 42%,
+    rgba(241, 76, 72, 0.96) 66%,
+    rgba(224, 57, 123, 0.72) 82%,
+    rgba(164, 35, 198, 0) 100%
+  );
+  filter: blur(28px);
+}
+
+.hero-ellipse--left-3 {
+  left: -7.697%;
+  top: 9.348%;
+  width: 51.667%;
+  height: 88.441%;
+  background: radial-gradient(
+    ellipse at 64% 50%,
+    rgba(248, 111, 60, 0.98) 0%,
+    rgba(245, 98, 59, 0.98) 48%,
+    rgba(238, 76, 72, 0.82) 70%,
+    rgba(226, 76, 131, 0) 100%
+  );
+  filter: blur(22px);
+}
+
+.hero-ellipse--left-4 {
+  left: 5.578%;
+  top: 16.209%;
+  width: 38.393%;
+  height: 74.717%;
+  background: radial-gradient(
+    ellipse at 66% 50%,
+    rgba(255, 221, 207, 0.98) 0%,
+    rgba(254, 195, 184, 0.96) 34%,
+    rgba(250, 145, 133, 0.74) 62%,
+    rgba(243, 101, 91, 0) 100%
+  );
+  filter: blur(19px);
+}
+
+.hero-ellipse--left-5 {
+  left: 22.392%;
+  top: 21.982%;
+  width: 21.579%;
+  height: 61.429%;
+  background: radial-gradient(
+    ellipse at 72% 50%,
+    rgba(252, 240, 240, 0.98) 0%,
+    rgba(248, 225, 230, 0.96) 43%,
+    rgba(241, 190, 207, 0.72) 68%,
+    rgba(233, 134, 176, 0) 100%
+  );
+  filter: blur(17px);
+}
+
+.hero-ellipse--left-6 {
+  left: 18.376%;
+  top: 21.982%;
+  width: 25.595%;
+  height: 61.429%;
+  background: radial-gradient(
+    ellipse at 76% 50%,
+    rgba(255, 242, 235, 0.86) 0%,
+    rgba(255, 211, 196, 0.58) 46%,
+    rgba(246, 144, 139, 0.2) 72%,
+    transparent 100%
+  );
+  filter: blur(22px);
+}
+
+/* ------------------------------
+   Grupo derecho
+   ------------------------------ */
+.hero-ellipse--right-1 {
+  left: 41.928%;
+  top: -45.111%;
+  width: 83.934%;
+  height: 190.278%;
+  background: radial-gradient(
+    ellipse at 55% 50%,
+    rgba(118, 24, 223, 0.98) 0%,
+    rgba(127, 24, 230, 0.98) 46%,
+    rgba(100, 20, 218, 0.88) 65%,
+    rgba(52, 21, 174, 0) 92%
+  );
+  filter: blur(42px);
+}
+
+.hero-ellipse--right-2 {
+  left: 47.715%;
+  top: -19.080%;
+  width: 77.399%;
+  height: 143.661%;
+  background: radial-gradient(
+    ellipse at 42% 50%,
+    rgba(210, 45, 175, 0.98) 0%,
+    rgba(193, 38, 195, 0.98) 40%,
+    rgba(156, 29, 221, 0.86) 66%,
+    rgba(99, 20, 220, 0) 100%
+  );
+  filter: blur(30px);
+}
+
+.hero-ellipse--right-3 {
+  left: 48.611%;
+  top: 0;
+  width: 58.747%;
+  height: 103.798%;
+  background: radial-gradient(
+    ellipse at 36% 50%,
+    rgba(232, 61, 119, 0.98) 0%,
+    rgba(224, 51, 143, 0.96) 45%,
+    rgba(198, 40, 183, 0.82) 70%,
+    rgba(150, 28, 220, 0) 100%
+  );
+  filter: blur(24px);
+}
+
+.hero-ellipse--right-4 {
+  left: 48.600%;
+  top: 9.348%;
+  width: 50.646%;
+  height: 88.441%;
+  background: radial-gradient(
+    ellipse at 31% 50%,
+    rgba(244, 90, 60, 0.98) 0%,
+    rgba(239, 76, 68, 0.96) 42%,
+    rgba(231, 62, 94, 0.76) 68%,
+    rgba(208, 49, 149, 0) 100%
+  );
+  filter: blur(22px);
+}
+
+.hero-ellipse--right-5 {
+  left: 48.600%;
+  top: 16.209%;
+  width: 38.393%;
+  height: 74.717%;
+  background: radial-gradient(
+    ellipse at 25% 50%,
+    rgba(248, 105, 60, 0.98) 0%,
+    rgba(244, 84, 66, 0.95) 44%,
+    rgba(233, 61, 94, 0.72) 68%,
+    rgba(212, 44, 151, 0) 100%
+  );
+  filter: blur(18px);
+}
+
+.hero-ellipse--right-6 {
+  left: 48.600%;
+  top: 21.981%;
+  width: 20.218%;
+  height: 61.429%;
+  background: radial-gradient(
+    ellipse at 12% 50%,
+    rgba(247, 108, 62, 0.96) 0%,
+    rgba(243, 82, 69, 0.9) 48%,
+    rgba(223, 53, 111, 0.5) 75%,
+    transparent 100%
+  );
+  filter: blur(17px);
+}
+
+.hero-ellipse--right-7 {
+  left: 48.396%;
+  top: 21.982%;
+  width: 25.595%;
+  height: 61.429%;
+  background: radial-gradient(
+    ellipse at 8% 50%,
+    rgba(255, 118, 68, 0.88) 0%,
+    rgba(238, 71, 83, 0.64) 42%,
+    rgba(191, 44, 158, 0.24) 72%,
+    transparent 100%
+  );
+  filter: blur(21px);
+}
+
 /*
-  La zona central del Figma no es una franja recta: se estrecha en
-  el medio y se abre arriba y abajo. Esta forma genera ese efecto.
+  Hendidura oscura central. En Figma aparece por la superposición y el vacío
+  entre las elipses. Acá la reforzamos con una sola forma suavizada para
+  conservar la silueta de reloj de arena al escalar.
 */
 .hero-background::before {
   content: '';
   position: absolute;
-  top: -18%;
-  bottom: -18%;
-  left: 39%;
-  width: 22%;
+  left: 40.5%;
+  top: -12%;
+  width: 20%;
+  height: 124%;
+  z-index: 8;
   background: linear-gradient(
     180deg,
-    #0b0b12 0%,
-    #080912 27%,
-    #080817 51%,
-    #090910 74%,
-    #0c0c12 100%
+    rgba(8, 8, 11, 0.98) 0%,
+    rgba(9, 8, 15, 0.98) 36%,
+    rgba(12, 7, 29, 0.98) 53%,
+    rgba(8, 7, 17, 0.98) 72%,
+    rgba(7, 7, 10, 0.98) 100%
   );
   clip-path: polygon(
-    4% 0%,
-    96% 0%,
-    82% 14%,
-    66% 29%,
-    57% 42%,
-    53% 50%,
-    58% 59%,
-    68% 73%,
-    84% 88%,
-    97% 100%,
-    3% 100%,
-    17% 88%,
-    33% 73%,
+    17% 0%,
+    95% 0%,
+    67% 23%,
+    54% 42%,
+    48% 50%,
+    54% 59%,
+    71% 78%,
+    100% 100%,
+    8% 100%,
+    34% 77%,
     43% 59%,
-    47% 50%,
-    43% 42%,
-    34% 29%,
-    18% 14%
+    48% 50%,
+    42% 41%,
+    30% 22%
   );
-  filter: blur(24px);
+  filter: blur(34px);
   opacity: 0.98;
 }
 
-/* Refuerzo luminoso en el borde interior izquierdo. */
+/* Grano fino similar al que se ve en el render del fondo de Figma. */
 .hero-background::after {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      ellipse 11% 39% at 36% 51%,
-      rgba(255, 247, 247, 0.48) 0%,
-      rgba(255, 223, 232, 0.35) 34%,
-      rgba(255, 166, 189, 0.12) 58%,
-      transparent 78%
-    ),
-    radial-gradient(
-      ellipse 9% 36% at 60% 51%,
-      rgba(255, 106, 77, 0.28) 0%,
-      rgba(238, 70, 111, 0.16) 45%,
-      transparent 77%
-    );
-  mix-blend-mode: screen;
-}
-
-/*
-  Grano procedural: el Figma tiene una textura visible sobre los
-  degradados. Se genera con SVG feTurbulence embebido en CSS, no
-  con una imagen PNG/JPG.
-*/
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -2;
+  z-index: 20;
   pointer-events: none;
-  opacity: 0.22;
+  opacity: 0.16;
   mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.85'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 180px 180px;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: rgba(6, 0, 29, 0.015);
-  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.78'/%3E%3C/svg%3E");
+  background-size: 190px 190px;
 }
 
 .hero-content {
@@ -342,22 +442,13 @@ a {
   }
 
   .hero-background {
-    inset: -5%;
-    transform: scale(1.025);
-  }
-
-  .hero-background::before {
-    left: 34%;
-    width: 32%;
-  }
-
-  .hero::before {
-    opacity: 0.17;
+    width: max(220%, 160vh);
+    transform: translate3d(-50%, -50%, 0) scale(1.02);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-background {
-    transform: scale(1.025);
+    transform: translate3d(-50%, -50%, 0) scale(1.02);
   }
 }
