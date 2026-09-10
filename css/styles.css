@@ -84,7 +84,7 @@ a {
 
 /* ==============================
    Hero interactivo
-   Fondo vectorial basado en Frame 55
+   PNG de alta calidad + parallax suave
    ============================== */
 .hero {
   position: relative;
@@ -99,30 +99,26 @@ a {
 }
 
 /*
-  Dejamos margen extra alrededor del Hero para que el parallax pueda moverse
-  sin revelar bordes vacíos. El contenido interno es SVG, por lo que escala
-  sin pixelarse.
+  El fondo sobresale unos píxeles del Hero para poder desplazarse con el mouse
+  sin revelar bordes. No usamos scale extra para evitar acercar de más la imagen.
 */
 .hero-background {
   position: absolute;
-  inset: -32px;
+  inset: -36px;
   z-index: -2;
   pointer-events: none;
-  transform: translate3d(var(--bg-x, 0px), var(--bg-y, 0px), 0) scale(1.015);
+  transform: translate3d(var(--bg-x, 0px), var(--bg-y, 0px), 0);
   transform-origin: center;
   will-change: transform;
 }
 
-.hero-gradient-svg {
-  display: block;
+.hero-background-image {
   width: 100%;
   height: 100%;
-  overflow: visible;
-}
-
-/* El grano se mezcla suavemente con los colores, como en el render de Figma. */
-.hero-grain {
-  mix-blend-mode: soft-light;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
 }
 
 .hero-content {
@@ -179,13 +175,13 @@ a {
   }
 
   .hero-background {
-    inset: -24px;
-    transform: scale(1.02);
+    inset: 0;
+    transform: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-background {
-    transform: scale(1.015);
+    transform: none;
   }
 }
