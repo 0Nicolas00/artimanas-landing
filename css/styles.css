@@ -184,6 +184,58 @@ a {
 }
 
 /* ==============================
+   Cinta animada del Hero
+   ============================== */
+.hero-marquee {
+  position: absolute;
+  left: -2%;
+  bottom: 9vh;
+  z-index: 2;
+  width: 104%;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.95);
+  color: #ffffff;
+  transform: rotate(-1deg);
+  pointer-events: none;
+}
+
+.hero-marquee-track {
+  display: flex;
+  width: max-content;
+  padding-block: 18px;
+  will-change: transform;
+  animation: hero-marquee-scroll 18s linear infinite;
+}
+
+.hero-marquee-group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 2.4vw, 42px);
+  padding-right: clamp(24px, 2.4vw, 42px);
+  white-space: nowrap;
+  font-size: clamp(0.9rem, 1.35vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.hero-marquee-separator {
+  font-size: 1.25em;
+  line-height: 0;
+}
+
+@keyframes hero-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* ==============================
    Footer
    ============================== */
 .site-footer {
@@ -220,6 +272,21 @@ a {
   .hero-title-image {
     width: min(88vw, 1160px);
   }
+
+  .hero-marquee {
+    bottom: 10vh;
+    left: -4%;
+    width: 108%;
+  }
+
+  .hero-marquee-track {
+    padding-block: 14px;
+    animation-duration: 15s;
+  }
+
+  .hero-marquee-group {
+    font-size: 0.85rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -230,5 +297,9 @@ a {
   .site-nav a,
   .site-nav a::after {
     transition: none;
+  }
+
+  .hero-marquee-track {
+    animation: none;
   }
 }
