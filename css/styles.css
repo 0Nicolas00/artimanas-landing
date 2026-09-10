@@ -78,7 +78,8 @@ a {
   position: relative;
   width: fit-content;
   color: #ffffff;
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1;
   text-transform: uppercase;
@@ -193,7 +194,8 @@ a {
   gap: clamp(26px, 2.5vw, 46px);
   padding-right: clamp(26px, 2.5vw, 46px);
   white-space: nowrap;
-  font-size: clamp(1.05rem, 1.6vw, 1.45rem);
+  font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1;
 }
@@ -234,7 +236,6 @@ a {
   }
 
   .site-nav a {
-    font-size: clamp(0.66rem, 2.8vw, 0.8rem);
     white-space: nowrap;
   }
 
@@ -269,7 +270,6 @@ a {
   .hero-marquee-group {
     gap: 22px;
     padding-right: 22px;
-    font-size: 1rem;
   }
 }
 
