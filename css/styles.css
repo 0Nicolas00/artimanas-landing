@@ -200,7 +200,7 @@ a {
 .hero-marquee-track {
   display: flex;
   width: max-content;
-  padding-block: 20px;
+  padding-block: 30px;
   will-change: transform;
   animation: hero-marquee-scroll 38s linear infinite;
 }
@@ -218,8 +218,8 @@ a {
 }
 
 .hero-marquee-separator {
-  font-size: 1.2em;
-  line-height: 0;
+  font-size: 1.05em;
+  line-height: 1;
 }
 
 @keyframes hero-marquee-scroll {
@@ -281,7 +281,7 @@ a {
   }
 
   .hero-marquee-track {
-    padding-block: 16px;
+    padding-block: 22px;
     animation-duration: 30s;
   }
 
