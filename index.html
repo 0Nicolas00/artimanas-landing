@@ -6,45 +6,158 @@
   <meta name="description" content="Landing page de Artimañas" />
   <title>Artimañas</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/countdown.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="logo" href="#inicio">Artimañas</a>
-
-      <nav class="site-nav" aria-label="Navegación principal">
-        <a href="#inicio">Inicio</a>
-        <a href="#proyecto">Proyecto</a>
-        <a href="#contenido">Contenido</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </div>
-  </header>
-
   <main>
+    <!-- 28 de noviembre de 2026, 19:00 de Argentina (horario indicado en la cinta). -->
+    <section id="countdown" class="countdown" aria-labelledby="countdown-heading" data-countdown-date="2026-11-28T19:00:00-03:00">
+      <div class="countdown-background" aria-hidden="true">
+        <img src="assets/images/fondo-hero.png" alt="" draggable="false" fetchpriority="high" />
+      </div>
+
+      <!-- Marca horizontal provisoria: reemplazar por el logo vertical del diseño. -->
+      <a class="countdown-logo" href="#inicio" aria-label="Artimañas: ver la muestra">
+        <img src="assets/images/Tittle-hero.png" alt="Artimañas" draggable="false" />
+      </a>
+
+      <h1 id="countdown-heading" class="countdown-sr-only">Artimañas 2026: cuenta regresiva</h1>
+      <div class="countdown-timer" role="timer" aria-live="off" aria-label="Tiempo restante hasta la muestra Artimañas 2026">
+        <!-- El script calcula el tiempo real restante al cargar la página. -->
+        <dl class="countdown-units">
+          <div class="countdown-card">
+            <dt class="countdown-label">días</dt>
+            <dd class="countdown-value" data-countdown-unit="days">--</dd>
+          </div>
+          <div class="countdown-card">
+            <dt class="countdown-label">horas</dt>
+            <dd class="countdown-value" data-countdown-unit="hours">--</dd>
+          </div>
+          <div class="countdown-card">
+            <dt class="countdown-label">minutos</dt>
+            <dd class="countdown-value" data-countdown-unit="minutes">--</dd>
+          </div>
+          <div class="countdown-card">
+            <dt class="countdown-label">segundos</dt>
+            <dd class="countdown-value" data-countdown-unit="seconds">--</dd>
+          </div>
+        </dl>
+      </div>
+      <p class="countdown-sr-only" role="status" data-countdown-status>La muestra comienza el 28 de noviembre de 2026 a las 19:00, hora de Argentina.</p>
+
+      <a class="countdown-more" href="#inicio">Ver más</a>
+
+      <div class="countdown-marquee" role="img" aria-label="Muestra de Arte Interactivo. 19hrs. Facultad de Artes. 10 y 62. Diseño Multimedial. Universidad Nacional de La Plata. 2026.">
+        <div class="countdown-marquee-track" aria-hidden="true">
+          <div class="countdown-marquee-group">
+            <span>Muestra de Arte Interactivo</span><span>*</span>
+            <span>19hrs</span><span>*</span>
+            <span>Facultad de Artes</span><span>*</span>
+            <span>10 y 62</span><span>*</span>
+            <span>Diseño Multimedial</span><span>*</span>
+            <span>Universidad Nacional de La Plata</span><span>*</span>
+            <span>2026</span><span>*</span>
+            <span>Muestra de Arte Interactivo</span><span>*</span>
+            <span>19hrs</span><span>*</span>
+            <span>Facultad de Artes</span><span>*</span>
+            <span>10 y 62</span><span>*</span>
+            <span>Diseño Multimedial</span><span>*</span>
+            <span>Universidad Nacional de La Plata</span><span>*</span>
+            <span>2026</span><span>*</span>
+          </div>
+          <div class="countdown-marquee-group">
+            <span>Muestra de Arte Interactivo</span><span>*</span>
+            <span>19hrs</span><span>*</span>
+            <span>Facultad de Artes</span><span>*</span>
+            <span>10 y 62</span><span>*</span>
+            <span>Diseño Multimedial</span><span>*</span>
+            <span>Universidad Nacional de La Plata</span><span>*</span>
+            <span>2026</span><span>*</span>
+            <span>Muestra de Arte Interactivo</span><span>*</span>
+            <span>19hrs</span><span>*</span>
+            <span>Facultad de Artes</span><span>*</span>
+            <span>10 y 62</span><span>*</span>
+            <span>Diseño Multimedial</span><span>*</span>
+            <span>Universidad Nacional de La Plata</span><span>*</span>
+            <span>2026</span><span>*</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="inicio" class="section hero">
-      <div class="container">
-        <p class="eyebrow">Artimañas</p>
-        <h1>Landing page</h1>
-        <p>Base inicial del proyecto. Reemplazar estos contenidos según el diseño final del equipo.</p>
+      <header class="site-header">
+        <nav class="site-nav" aria-label="Navegación principal">
+          <a href="#obras">Obras</a>
+          <a href="#galeria">Galería</a>
+          <a href="#muestra-2026">Muestra 2026</a>
+        </nav>
+      </header>
+      <div class="hero-background" aria-hidden="true">
+        <img
+          class="hero-background-image"
+          src="assets/images/fondo-hero.png"
+          alt=""
+          draggable="false"
+        />
+      </div>
+
+      <div class="hero-content">
+        <img
+          class="hero-title-image"
+          src="assets/images/Tittle-hero.png"
+          alt="Artimañas"
+          draggable="false"
+        />
+      </div>
+
+      <div
+        class="hero-marquee"
+        aria-label="Taller de Diseño Multimedial V * Universidad Nacional de La Plata * 2026"
+      >
+        <div class="hero-marquee-track" aria-hidden="true">
+          <div class="hero-marquee-group">
+            <span>Taller de Diseño Multimedial V</span><span class="hero-marquee-separator">*</span>
+            <span>Universidad Nacional de La Plata</span><span class="hero-marquee-separator">*</span>
+            <span>2026</span><span class="hero-marquee-separator">*</span>
+            <span>Taller de Diseño Multimedial V</span><span class="hero-marquee-separator">*</span>
+            <span>Universidad Nacional de La Plata</span><span class="hero-marquee-separator">*</span>
+            <span>2026</span><span class="hero-marquee-separator">*</span>
+            <span>Taller de Diseño Multimedial V</span><span class="hero-marquee-separator">*</span>
+            <span>Universidad Nacional de La Plata</span><span class="hero-marquee-separator">*</span>
+            <span>2026</span><span class="hero-marquee-separator">*</span>
+          </div>
+
+          <div class="hero-marquee-group">
+            <span>Taller de Diseño Multimedial V</span><span class="hero-marquee-separator">*</span>
+            <span>Universidad Nacional de La Plata</span><span class="hero-marquee-separator">*</span>
+            <span>2026</span><span class="hero-marquee-separator">*</span>
+            <span>Taller de Diseño Multimedial V</span><span class="hero-marquee-separator">*</span>
+            <span>Universidad Nacional de La Plata</span><span class="hero-marquee-separator">*</span>
+            <span>2026</span><span class="hero-marquee-separator">*</span>
+            <span>Taller de Diseño Multimedial V</span><span class="hero-marquee-separator">*</span>
+            <span>Universidad Nacional de La Plata</span><span class="hero-marquee-separator">*</span>
+            <span>2026</span><span class="hero-marquee-separator">*</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="proyecto" class="section">
+    <section id="obras" class="section">
       <div class="container">
-        <h2>Proyecto</h2>
+        <h2>Obras</h2>
       </div>
     </section>
 
-    <section id="contenido" class="section">
+    <section id="galeria" class="section">
       <div class="container">
-        <h2>Contenido</h2>
+        <h2>Galería</h2>
       </div>
     </section>
 
-    <section id="contacto" class="section">
+    <section id="muestra-2026" class="section">
       <div class="container">
-        <h2>Contacto</h2>
+        <h2>Muestra 2026</h2>
       </div>
     </section>
   </main>
@@ -56,5 +169,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/countdown.js"></script>
 </body>
 </html>
