@@ -1,6 +1,14 @@
-/* Sección independiente. Doto es provisional hasta confirmar la fuente instalada. */
+@font-face {
+  font-family: "Bitcount Prop Single";
+  src: url("../assets/fonts/bitcount-prop-single-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* Sección Countdown. */
 .countdown {
-  --countdown-font: "Doto", "Courier New", monospace;
+  --countdown-font: "Bitcount Prop Single", "Courier New", monospace;
   --countdown-number-size: clamp(64px, 7.03vw, 144px);
   --countdown-ui-font: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   position: relative;
@@ -37,14 +45,13 @@
   left: 50%;
   display: grid;
   place-items: center;
-  width: clamp(100px, 8vw, 164px);
-  min-height: 72px;
+  width: clamp(64px, 4.7vw, 96px);
   transform: translateX(-50%);
 }
 
 .countdown-logo img {
   width: 100%;
-  max-height: 100px;
+  height: auto;
   object-fit: contain;
 }
 
@@ -190,7 +197,7 @@
   }
 
   .countdown-background { inset: 0; transform: none; }
-  .countdown-logo { top: 24px; width: 132px; }
+  .countdown-logo { top: 24px; width: 76px; }
   .countdown-timer { top: 46%; width: min(88vw, 420px); }
   .countdown-units { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .countdown-card { gap: 20px; aspect-ratio: 1.1; }
