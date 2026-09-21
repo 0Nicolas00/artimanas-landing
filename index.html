@@ -6,40 +6,29 @@
   <meta name="description" content="Landing page de Artimañas" />
   <title>Artimañas</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/countdown.css" />
+  <link rel="stylesheet" href="css/detalle-obra.css" />
 </head>
 <body>
   <header class="site-header">
     <nav class="site-nav" aria-label="Navegación principal">
       <a href="#obras">Obras</a>
-      <a href="#galeria">Galería</a>
-      <a href="#muestra-2026">Muestra 2026</a>
+      <a href="#obras">Galería</a>
+      <a href="#countdown">Muestra 2026</a>
     </nav>
   </header>
 
   <main>
     <section id="inicio" class="section hero">
       <div class="hero-background" aria-hidden="true">
-        <img
-          class="hero-background-image"
-          src="assets/images/fondo-hero.png"
-          alt=""
-          draggable="false"
-        />
+        <img class="hero-background-image" src="assets/images/fondo-hero.png" alt="" draggable="false" />
       </div>
 
       <div class="hero-content">
-        <img
-          class="hero-title-image"
-          src="assets/images/Tittle-hero.png"
-          alt="Artimañas"
-          draggable="false"
-        />
+        <img class="hero-title-image" src="assets/images/Tittle-hero.png" alt="Artimañas" draggable="false" />
       </div>
 
-      <div
-        class="hero-marquee"
-        aria-label="Taller de Diseño Multimedial V * Universidad Nacional de La Plata * 2026"
-      >
+      <div class="hero-marquee" aria-label="Taller de Diseño Multimedial V * Universidad Nacional de La Plata * 2026">
         <div class="hero-marquee-track" aria-hidden="true">
           <div class="hero-marquee-group">
             <span>Taller de Diseño Multimedial V</span><span class="hero-marquee-separator">*</span>
@@ -52,7 +41,6 @@
             <span>Universidad Nacional de La Plata</span><span class="hero-marquee-separator">*</span>
             <span>2026</span><span class="hero-marquee-separator">*</span>
           </div>
-
           <div class="hero-marquee-group">
             <span>Taller de Diseño Multimedial V</span><span class="hero-marquee-separator">*</span>
             <span>Universidad Nacional de La Plata</span><span class="hero-marquee-separator">*</span>
@@ -68,23 +56,223 @@
       </div>
     </section>
 
-    <section id="obras" class="section">
-      <div class="container">
-        <h2>Obras</h2>
+    <!-- 28 de noviembre de 2026, 19:00 de Argentina. -->
+    <section id="countdown" class="countdown" aria-labelledby="countdown-heading" data-countdown-date="2026-11-28T19:00:00-03:00">
+      <div class="countdown-background" aria-hidden="true">
+        <img src="assets/images/fondo-hero.png" alt="" draggable="false" />
+      </div>
+
+      <a class="countdown-logo" href="#inicio" aria-label="Artimañas: volver al inicio">
+        <img src="assets/images/logo-artimañas-vertical.png" width="264" height="280" alt="Artimañas" draggable="false" />
+      </a>
+
+      <h2 id="countdown-heading" class="countdown-sr-only">Artimañas 2026: cuenta regresiva</h2>
+      <div class="countdown-timer" role="timer" aria-live="off" aria-label="Tiempo restante hasta la muestra Artimañas 2026">
+        <dl class="countdown-units">
+          <div class="countdown-card"><dt class="countdown-label">días</dt><dd class="countdown-value" data-countdown-unit="days">--</dd></div>
+          <div class="countdown-card"><dt class="countdown-label">horas</dt><dd class="countdown-value" data-countdown-unit="hours">--</dd></div>
+          <div class="countdown-card"><dt class="countdown-label">minutos</dt><dd class="countdown-value" data-countdown-unit="minutes">--</dd></div>
+          <div class="countdown-card"><dt class="countdown-label">segundos</dt><dd class="countdown-value" data-countdown-unit="seconds">--</dd></div>
+        </dl>
+      </div>
+      <p class="countdown-sr-only" role="status" data-countdown-status>La muestra comienza el 28 de noviembre de 2026 a las 19:00, hora de Argentina.</p>
+      <a class="countdown-more" href="#obras">Ver más</a>
+
+      <div class="countdown-marquee" role="img" aria-label="Muestra de Arte Interactivo. 19hrs. Facultad de Artes. 10 y 62. Diseño Multimedial. Universidad Nacional de La Plata. 2026.">
+        <div class="countdown-marquee-track" aria-hidden="true">
+          <div class="countdown-marquee-group">
+            <span>Muestra de Arte Interactivo</span><span>*</span><span>19hrs</span><span>*</span>
+            <span>Facultad de Artes</span><span>*</span><span>10 y 62</span><span>*</span>
+            <span>Diseño Multimedial</span><span>*</span><span>Universidad Nacional de La Plata</span><span>*</span><span>2026</span><span>*</span>
+            <span>Muestra de Arte Interactivo</span><span>*</span><span>19hrs</span><span>*</span>
+            <span>Facultad de Artes</span><span>*</span><span>10 y 62</span><span>*</span>
+            <span>Diseño Multimedial</span><span>*</span><span>Universidad Nacional de La Plata</span><span>*</span><span>2026</span><span>*</span>
+          </div>
+          <div class="countdown-marquee-group">
+            <span>Muestra de Arte Interactivo</span><span>*</span><span>19hrs</span><span>*</span>
+            <span>Facultad de Artes</span><span>*</span><span>10 y 62</span><span>*</span>
+            <span>Diseño Multimedial</span><span>*</span><span>Universidad Nacional de La Plata</span><span>*</span><span>2026</span><span>*</span>
+            <span>Muestra de Arte Interactivo</span><span>*</span><span>19hrs</span><span>*</span>
+            <span>Facultad de Artes</span><span>*</span><span>10 y 62</span><span>*</span>
+            <span>Diseño Multimedial</span><span>*</span><span>Universidad Nacional de La Plata</span><span>*</span><span>2026</span><span>*</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="galeria" class="section">
-      <div class="container">
-        <h2>Galería</h2>
+    <section id="obras" class="works-section" aria-labelledby="works-heading">
+      <div class="works-sticky">
+        <nav class="works-authors" aria-label="Obras por alumno">
+          <h2 id="works-heading">Obras por alumno</h2>
+          <ol class="works-authors-list" data-works-authors></ol>
+        </nav>
+
+        <div class="works-stage" data-works-stage>
+          <div class="works-reel" data-works-reel></div>
+
+          <article class="works-detail" aria-live="polite">
+            <div class="works-detail-copy">
+              <p class="works-medium" data-work-medium>Sensorialidad</p>
+              <h3 data-work-title>Microbioespecularis</h3>
+            </div>
+
+            <div class="works-artist">
+              <img
+                class="works-avatar"
+                src="assets/images/detalle-obra/avatar-joselevich.webp"
+                alt=""
+                width="24"
+                height="24"
+              />
+              <p data-work-artist>Joselevich Puiggrós, Federico</p>
+            </div>
+          </article>
+
+          <div class="works-progress" data-works-progress aria-hidden="true"></div>
+
+          <div class="works-filter" data-works-filter>
+            <div class="works-filter-menu" id="works-filter-menu" data-filter-menu hidden>
+              <div class="works-filter-header">
+                <span>Filtrar obras</span>
+                <button type="button" data-filter-close aria-label="Cerrar filtros">
+                  <img src="assets/icons/detalle-obra/filtro-cerrar.png" alt="" width="16" height="16" />
+                </button>
+              </div>
+
+              <div class="works-filter-options" role="group" aria-label="Categorías de obra">
+                <button class="works-filter-option" type="button" data-filter-all aria-pressed="true">
+                  <span>Todas</span>
+                  <img src="assets/icons/detalle-obra/filtro-check.png" alt="" width="14" height="14" />
+                </button>
+                <button class="works-filter-option" type="button" data-filter-category="Corporalidad" aria-pressed="false">
+                  <span>Corporalidad (<span data-filter-count="Corporalidad">0</span>)</span>
+                  <img src="assets/icons/detalle-obra/filtro-check.png" alt="" width="14" height="14" hidden />
+                </button>
+                <button class="works-filter-option" type="button" data-filter-category="Entorno" aria-pressed="false">
+                  <span>Entorno (<span data-filter-count="Entorno">0</span>)</span>
+                  <img src="assets/icons/detalle-obra/filtro-check.png" alt="" width="14" height="14" hidden />
+                </button>
+                <button class="works-filter-option" type="button" data-filter-category="Sinergia" aria-pressed="false">
+                  <span>Sinergia (<span data-filter-count="Sinergia">0</span>)</span>
+                  <img src="assets/icons/detalle-obra/filtro-check.png" alt="" width="14" height="14" hidden />
+                </button>
+                <button class="works-filter-option" type="button" data-filter-category="Sensorialidad" aria-pressed="false">
+                  <span>Sensorialidad (<span data-filter-count="Sensorialidad">0</span>)</span>
+                  <img src="assets/icons/detalle-obra/filtro-check.png" alt="" width="14" height="14" hidden />
+                </button>
+              </div>
+
+              <button class="works-filter-clear" type="button" data-filter-clear hidden>
+                Limpiar <span data-filter-clear-count></span>
+              </button>
+            </div>
+
+            <button
+              class="works-filter-trigger"
+              type="button"
+              data-filter-trigger
+              aria-expanded="false"
+              aria-controls="works-filter-menu"
+            >
+              <img src="assets/icons/detalle-obra/filtro.png" alt="" width="24" height="24" />
+              <span>Filtrar<span data-filter-trigger-count></span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="work-modal"
+        data-work-modal
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="work-modal-title"
+        hidden
+      >
+        <nav class="work-modal-authors" aria-label="Obras por alumno">
+          <h2>Obras por alumno</h2>
+          <ol data-modal-authors></ol>
+        </nav>
+
+        <aside class="work-modal-info">
+          <h2 id="work-modal-title" data-modal-title>Microbioespecularis</h2>
+
+          <div class="work-modal-description">
+            <p data-modal-description>
+              Microbioespecularis es una instalación interactiva que simula un
+              experimento biotecnológico mediante inteligencia artificial y
+              algoritmos de vida artificial seca. La obra se presenta como una
+              proyección sobre un vaso reactor de vidrio, dentro del cual se
+              visualiza un ecosistema virtual habitado por organismos sintéticos
+              llamados Bichos Mimicus.
+            </p>
+
+            <button class="work-modal-video-pill" type="button">
+              Ver video presentación
+            </button>
+
+            <button class="work-modal-video-link" type="button">
+              <span>Ver video presentación</span>
+              <img src="assets/icons/detalle-obra/enlace-externo.png" alt="" width="16" height="16" />
+            </button>
+          </div>
+
+          <dl class="work-modal-metadata">
+            <div>
+              <dt>Alumno</dt>
+              <dd data-modal-artist>Joselevich Puiggrós, Federico</dd>
+            </div>
+            <div>
+              <dt>Categoría</dt>
+              <dd data-modal-category>Sensorialidad</dd>
+            </div>
+          </dl>
+
+          <button class="work-modal-research" type="button" aria-disabled="true">
+            <span>Descargar investigación</span>
+            <img src="assets/icons/detalle-obra/descargar.png" alt="" width="20" height="20" />
+          </button>
+        </aside>
+
+        <div class="work-modal-viewer">
+          <div class="work-modal-toolbar">
+            <button class="work-modal-icon" type="button" data-modal-close aria-label="Cerrar detalle">
+              <img src="assets/icons/detalle-obra/cerrar.png" alt="" width="44" height="44" />
+            </button>
+            <a
+              class="work-modal-icon"
+              data-modal-download
+              href="assets/images/detalle-obra/microbioespecularis-02.webp"
+              download
+              aria-label="Descargar imagen"
+            >
+              <img src="assets/icons/detalle-obra/descargar-circular.png" alt="" width="44" height="44" />
+            </a>
+          </div>
+
+          <div class="work-modal-gallery">
+            <button class="work-modal-icon work-modal-arrow" type="button" data-modal-previous aria-label="Imagen anterior">
+              <img src="assets/icons/detalle-obra/anterior.png" alt="" width="44" height="44" />
+            </button>
+
+            <div class="work-modal-image-frame">
+              <img
+                data-modal-image
+                src="assets/images/detalle-obra/microbioespecularis-02.webp"
+                alt="Microbioespecularis, instalación interactiva"
+              />
+            </div>
+
+            <button class="work-modal-icon work-modal-arrow" type="button" data-modal-next aria-label="Imagen siguiente">
+              <img src="assets/icons/detalle-obra/siguiente.png" alt="" width="44" height="44" />
+            </button>
+          </div>
+
+          <div class="work-modal-pagination" data-modal-pagination aria-hidden="true"></div>
+        </div>
       </div>
     </section>
 
-    <section id="muestra-2026" class="section">
-      <div class="container">
-        <h2>Muestra 2026</h2>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -94,5 +282,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/countdown.js"></script>
+  <script src="js/detalle-obra.js"></script>
 </body>
 </html>
