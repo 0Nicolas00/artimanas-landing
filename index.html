@@ -6,6 +6,7 @@
   <meta name="description" content="Landing page de Artimañas" />
   <title>Artimañas</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/detalle-obra.css" />
 </head>
 <body>
   <header class="site-header">
@@ -36,9 +37,36 @@
       </div>
     </section>
 
-    <section id="contenido" class="section">
-      <div class="container">
-        <h2>Contenido</h2>
+    <section id="contenido" class="works-section" aria-labelledby="works-heading">
+      <div class="works-sticky">
+        <nav class="works-authors" aria-label="Obras por alumno">
+          <h2 id="works-heading">Obras por alumno</h2>
+          <ol class="works-authors-list" data-works-authors></ol>
+        </nav>
+
+        <div class="works-stage" data-works-stage>
+          <div class="works-reel" data-works-reel aria-hidden="true"></div>
+
+          <article class="works-detail" aria-live="polite">
+            <div class="works-detail-copy">
+              <p class="works-medium" data-work-medium>Instalación interactiva</p>
+              <h3 data-work-title>Microbioespecularis</h3>
+            </div>
+
+            <div class="works-artist">
+              <img
+                class="works-avatar"
+                src="assets/images/detalle-obra/avatar-joselevich.webp"
+                alt=""
+                width="24"
+                height="24"
+              />
+              <p data-work-artist>Joselevich Puiggrós, Federico</p>
+            </div>
+          </article>
+
+          <div class="works-progress" data-works-progress aria-hidden="true"></div>
+        </div>
       </div>
     </section>
 
@@ -56,5 +84,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/detalle-obra.js"></script>
 </body>
 </html>
