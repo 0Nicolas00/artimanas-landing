@@ -50,9 +50,25 @@ if (worksSection) {
   const medium = worksSection.querySelector('[data-work-medium]');
   const title = worksSection.querySelector('[data-work-title]');
   const artist = worksSection.querySelector('[data-work-artist]');
+  const modal = worksSection.querySelector('[data-work-modal]');
+  const modalAuthors = modal.querySelector('[data-modal-authors]');
+  const worksSticky = worksSection.querySelector('.works-sticky');
+  const modalTitle = modal.querySelector('[data-modal-title]');
+  const modalDescription = modal.querySelector('[data-modal-description]');
+  const modalArtist = modal.querySelector('[data-modal-artist]');
+  const modalCategory = modal.querySelector('[data-modal-category]');
+  const modalImage = modal.querySelector('[data-modal-image]');
+  const modalDownload = modal.querySelector('[data-modal-download]');
+  const modalPagination = modal.querySelector('[data-modal-pagination]');
+  const modalClose = modal.querySelector('[data-modal-close]');
+  const modalPrevious = modal.querySelector('[data-modal-previous]');
+  const modalNext = modal.querySelector('[data-modal-next]');
   const mobileQuery = window.matchMedia('(max-width: 820px)');
   let activeIndex = 0;
+  let modalImageIndex = 1;
   let frameRequested = false;
+  let lastFocusedElement = null;
+  let imageSwapTimer = null;
 
   artists.forEach((artistName, index) => {
     const listItem = document.createElement('li');
@@ -65,10 +81,18 @@ if (worksSection) {
     listItem.append(button);
     authorsList.append(listItem);
 
-    const card = document.createElement('figure');
+    const modalListItem = document.createElement('li');
+    const modalAuthorButton = button.cloneNode(true);
+    modalAuthorButton.removeAttribute('aria-pressed');
+    modalListItem.append(modalAuthorButton);
+    modalAuthors.append(modalListItem);
+
+    const card = document.createElement('button');
     const image = document.createElement('img');
     card.className = 'works-card';
+    card.type = 'button';
     card.dataset.workIndex = index;
+    card.setAttribute('aria-label', `Abrir detalle de la obra de ${artistName}`);
     image.src = gallery[index % gallery.length];
     image.alt = index === 0 ? 'Microbioespecularis, instalación interactiva' : '';
     image.loading = index < 3 ? 'eager' : 'lazy';
@@ -84,6 +108,78 @@ if (worksSection) {
   const buttons = [...authorsList.querySelectorAll('.works-author-button')];
   const cards = [...reel.querySelectorAll('.works-card')];
   const marks = [...progress.querySelectorAll('.works-progress-mark')];
+  const modalAuthorButtons = [...modalAuthors.querySelectorAll('.works-author-button')];
+
+  gallery.forEach(() => {
+    const page = document.createElement('span');
+    page.className = 'work-modal-page';
+    modalPagination.append(page);
+  });
+
+  const modalPages = [...modalPagination.querySelectorAll('.work-modal-page')];
+
+  function getWorkData(index) {
+    if (index === 0) {
+      return {
+        title: 'Microbioespecularis',
+        artist: artists[index],
+        category: 'IA',
+        description: 'Microbioespecularis es una instalación interactiva que simula un experimento biotecnológico mediante inteligencia artificial y algoritmos de vida artificial seca. La obra se presenta como una proyección sobre un vaso reactor de vidrio, dentro del cual se visualiza un ecosistema virtual habitado por organismos sintéticos llamados Bichos Mimicus.'
+      };
+    }
+
+    return {
+      title: 'Detalle próximamente',
+      artist: artists[index],
+      category: '—',
+      description: 'La información completa de esta obra se incorporará cuando el equipo de diseño entregue sus textos, categoría y recursos visuales definitivos.'
+    };
+  }
+
+  function updateModalImage(nextIndex) {
+    modalImageIndex = (nextIndex + gallery.length) % gallery.length;
+    const source = gallery[modalImageIndex];
+    modalImage.classList.add('is-changing');
+
+    window.clearTimeout(imageSwapTimer);
+    imageSwapTimer = window.setTimeout(() => {
+      modalImage.src = source;
+      modalDownload.href = source;
+      modalImage.classList.remove('is-changing');
+    }, 160);
+
+    modalPages.forEach((page, pageIndex) => {
+      page.classList.toggle('is-active', pageIndex === modalImageIndex);
+    });
+  }
+
+  function openModal(index) {
+    const work = getWorkData(index);
+    const wasHidden = modal.hidden;
+    setActive(index);
+    modalTitle.textContent = work.title;
+    modalDescription.textContent = work.description;
+    modalArtist.textContent = work.artist;
+    modalCategory.textContent = work.category;
+    modalImage.alt = index === 0
+      ? 'Microbioespecularis, instalación interactiva'
+      : `Obra de ${work.artist}`;
+
+    if (wasHidden) lastFocusedElement = document.activeElement;
+    modal.hidden = false;
+    worksSticky.inert = true;
+    document.body.classList.add('has-work-modal');
+    positionModalAuthors();
+    updateModalImage(index === 0 ? 1 : index % gallery.length);
+    if (wasHidden) modalClose.focus();
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    worksSticky.inert = false;
+    document.body.classList.remove('has-work-modal');
+    if (lastFocusedElement) lastFocusedElement.focus();
+  }
 
   function positionReel() {
     if (mobileQuery.matches) return;
@@ -104,6 +200,14 @@ if (worksSection) {
     authorsList.style.transform = `translate3d(0, ${-target}px, 0)`;
   }
 
+  function positionModalAuthors() {
+    const activeButton = modalAuthorButtons[activeIndex];
+    const navHeight = modalAuthors.parentElement.clientHeight;
+    const preferredTop = Math.min(navHeight * 0.45, 360);
+    const target = Math.max(0, activeButton.offsetTop - preferredTop);
+    modalAuthors.style.transform = `translate3d(0, ${-target}px, 0)`;
+  }
+
   function updateDetails(index) {
     artist.textContent = artists[index];
 
@@ -122,6 +226,12 @@ if (worksSection) {
     activeIndex = nextIndex;
 
     buttons.forEach((button, buttonIndex) => {
+      const isActive = buttonIndex === nextIndex;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+
+    modalAuthorButtons.forEach((button, buttonIndex) => {
       const isActive = buttonIndex === nextIndex;
       button.classList.toggle('is-active', isActive);
       button.setAttribute('aria-pressed', String(isActive));
@@ -172,6 +282,7 @@ if (worksSection) {
     worksSection.style.height = `${window.innerHeight + ((artists.length - 1) * step)}px`;
     positionReel();
     positionAuthors();
+    if (!modal.hidden) positionModalAuthors();
   }
 
   buttons.forEach((button, index) => {
@@ -179,6 +290,26 @@ if (worksSection) {
     button.addEventListener('mouseenter', () => {
       if (!mobileQuery.matches) setActive(index, { followList: false });
     });
+  });
+
+  cards.forEach((card, index) => {
+    card.addEventListener('click', () => openModal(index));
+  });
+
+  modalAuthorButtons.forEach((button, index) => {
+    button.addEventListener('click', () => openModal(index));
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modalPrevious.addEventListener('click', () => updateModalImage(modalImageIndex - 1));
+  modalNext.addEventListener('click', () => updateModalImage(modalImageIndex + 1));
+
+  document.addEventListener('keydown', (event) => {
+    if (modal.hidden) return;
+
+    if (event.key === 'Escape') closeModal();
+    if (event.key === 'ArrowLeft') updateModalImage(modalImageIndex - 1);
+    if (event.key === 'ArrowRight') updateModalImage(modalImageIndex + 1);
   });
 
   window.addEventListener('scroll', requestScrollSync, { passive: true });

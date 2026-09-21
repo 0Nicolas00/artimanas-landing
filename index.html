@@ -68,6 +68,97 @@
           <div class="works-progress" data-works-progress aria-hidden="true"></div>
         </div>
       </div>
+
+      <div
+        class="work-modal"
+        data-work-modal
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="work-modal-title"
+        hidden
+      >
+        <nav class="work-modal-authors" aria-label="Obras por alumno">
+          <h2>Obras por alumno</h2>
+          <ol data-modal-authors></ol>
+        </nav>
+
+        <aside class="work-modal-info">
+          <h2 id="work-modal-title" data-modal-title>Microbioespecularis</h2>
+
+          <div class="work-modal-description">
+            <p data-modal-description>
+              Microbioespecularis es una instalación interactiva que simula un
+              experimento biotecnológico mediante inteligencia artificial y
+              algoritmos de vida artificial seca. La obra se presenta como una
+              proyección sobre un vaso reactor de vidrio, dentro del cual se
+              visualiza un ecosistema virtual habitado por organismos sintéticos
+              llamados Bichos Mimicus.
+            </p>
+
+            <button class="work-modal-video-pill" type="button">
+              Ver video presentación
+            </button>
+
+            <button class="work-modal-video-link" type="button">
+              <span>Ver video presentación</span>
+              <img src="assets/icons/detalle-obra/enlace-externo.png" alt="" width="16" height="16" />
+            </button>
+          </div>
+
+          <dl class="work-modal-metadata">
+            <div>
+              <dt>Alumno</dt>
+              <dd data-modal-artist>Joselevich Puiggrós, Federico</dd>
+            </div>
+            <div>
+              <dt>Categoría</dt>
+              <dd data-modal-category>IA</dd>
+            </div>
+          </dl>
+
+          <button class="work-modal-research" type="button" aria-disabled="true">
+            <span>Descargar investigación</span>
+            <img src="assets/icons/detalle-obra/descargar.png" alt="" width="20" height="20" />
+          </button>
+        </aside>
+
+        <div class="work-modal-viewer">
+          <div class="work-modal-toolbar">
+            <button class="work-modal-icon" type="button" data-modal-close aria-label="Cerrar detalle">
+              <img src="assets/icons/detalle-obra/cerrar.png" alt="" width="44" height="44" />
+            </button>
+            <a
+              class="work-modal-icon"
+              data-modal-download
+              href="assets/images/detalle-obra/microbioespecularis-02.webp"
+              download
+              aria-label="Descargar imagen"
+            >
+              <img src="assets/icons/detalle-obra/descargar-circular.png" alt="" width="44" height="44" />
+            </a>
+          </div>
+
+          <div class="work-modal-gallery">
+            <button class="work-modal-icon work-modal-arrow" type="button" data-modal-previous aria-label="Imagen anterior">
+              <img src="assets/icons/detalle-obra/anterior.png" alt="" width="44" height="44" />
+            </button>
+
+            <div class="work-modal-image-frame">
+              <img
+                data-modal-image
+                src="assets/images/detalle-obra/microbioespecularis-02.webp"
+                alt="Microbioespecularis, instalación interactiva"
+              />
+            </div>
+
+            <button class="work-modal-icon work-modal-arrow" type="button" data-modal-next aria-label="Imagen siguiente">
+              <img src="assets/icons/detalle-obra/siguiente.png" alt="" width="44" height="44" />
+            </button>
+          </div>
+
+          <div class="work-modal-pagination" data-modal-pagination aria-hidden="true"></div>
+        </div>
+      </div>
     </section>
 
     <section id="contacto" class="section">
