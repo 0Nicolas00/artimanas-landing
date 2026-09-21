@@ -86,7 +86,7 @@ if (worksSection) {
   const modalNext = modal.querySelector('[data-modal-next]');
 
   const mobileQuery = window.matchMedia('(max-width: 820px)');
-  const selectedCategories = new Set();
+  let selectedCategory = null;
   let visibleIndices = works.map((_, index) => index);
   let activeIndex = 0;
   let modalImageIndex = 1;
@@ -174,12 +174,12 @@ if (worksSection) {
   }
 
   function renderFilterControls() {
-    const count = selectedCategories.size;
-    const isAll = count === 0;
+    const count = selectedCategory ? 1 : 0;
+    const isAll = selectedCategory === null;
     filterAll.setAttribute('aria-pressed', String(isAll));
     filterAll.querySelector('img').hidden = !isAll;
     filterCategoryButtons.forEach((button) => {
-      const isSelected = selectedCategories.has(button.dataset.filterCategory);
+      const isSelected = selectedCategory === button.dataset.filterCategory;
       button.setAttribute('aria-pressed', String(isSelected));
       button.querySelector('img').hidden = !isSelected;
     });
@@ -190,8 +190,7 @@ if (worksSection) {
 
   function updateFilteredHeading() {
     let heading = 'Obras por alumno';
-    if (selectedCategories.size === 1) heading = `Obras de ${[...selectedCategories][0]}`;
-    else if (selectedCategories.size > 1) heading = 'Obras filtradas';
+    if (selectedCategory) heading = `Obras de ${selectedCategory}`;
     worksHeading.textContent = heading;
     modalAuthorsHeading.textContent = heading;
   }
@@ -199,7 +198,7 @@ if (worksSection) {
   function applyFilters({ reposition = true } = {}) {
     visibleIndices = works
       .map((work, index) => ({ work, index }))
-      .filter(({ work }) => selectedCategories.size === 0 || selectedCategories.has(work.category))
+      .filter(({ work }) => selectedCategory === null || work.category === selectedCategory)
       .map(({ index }) => index);
 
     works.forEach((_, index) => {
@@ -364,18 +363,17 @@ if (worksSection) {
   filterTrigger.addEventListener('click', () => toggleFilterMenu());
   filterClose.addEventListener('click', () => toggleFilterMenu(false));
   filterAll.addEventListener('click', () => {
-    selectedCategories.clear();
+    selectedCategory = null;
     applyFilters();
   });
   filterClear.addEventListener('click', () => {
-    selectedCategories.clear();
+    selectedCategory = null;
     applyFilters();
   });
   filterCategoryButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const category = button.dataset.filterCategory;
-      if (selectedCategories.has(category)) selectedCategories.delete(category);
-      else selectedCategories.add(category);
+      selectedCategory = category;
       applyFilters();
     });
   });
