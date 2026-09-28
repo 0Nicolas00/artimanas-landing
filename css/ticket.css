@@ -88,11 +88,15 @@ button { font: inherit; }
 
 .ticket-directions {
   position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   bottom: 9%;
   left: 50%;
   min-height: 64px;
   padding: 14px 35px;
   color: #2c252c;
+  text-decoration: none;
   font-size: clamp(18px, 1.2vw, 24px);
   font-weight: 500;
   white-space: nowrap;
