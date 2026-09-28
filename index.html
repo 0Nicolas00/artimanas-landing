@@ -3,58 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Landing page de Artimañas" />
-  <title>Artimañas</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Información para visitar la muestra Artimañas 2026 en La Plata." />
+  <title>Cómo llegar | Artimañas 2026</title>
+  <link rel="stylesheet" href="css/ticket.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="logo" href="#inicio">Artimañas</a>
+  <main class="ticket-scene">
+    <button class="ticket-close" type="button" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19" /></svg>
+    </button>
 
-      <nav class="site-nav" aria-label="Navegación principal">
-        <a href="#inicio">Inicio</a>
-        <a href="#proyecto">Proyecto</a>
-        <a href="#contenido">Contenido</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </div>
-  </header>
+    <section class="ticket-section" aria-labelledby="ticket-title">
+      <h1 id="ticket-title" class="visually-hidden">Artimañas 2026: información de la muestra</h1>
 
-  <main>
-    <section id="inicio" class="section hero">
-      <div class="container">
-        <p class="eyebrow">Artimañas</p>
-        <h1>Landing page</h1>
-        <p>Base inicial del proyecto. Reemplazar estos contenidos según el diseño final del equipo.</p>
+      <img
+        class="ticket-landscape"
+        src="assets/images/ticket-muestra.png"
+        alt="Artimañas. Muestra de trabajos finales de Taller de Diseño Multimedial V. 28 de noviembre, 19:00 horas. Sede Fonseca de la Facultad de Artes, Diagonal 78 N.º 680, La Plata, Buenos Aires, Argentina."
+        width="2048"
+        height="853"
+      />
+
+      <div class="ticket-portrait" aria-hidden="true">
+        <div class="ticket-main">
+          <div>
+            <h2>Artimañas</h2>
+            <p class="ticket-description">Muestra de trabajos finales de Taller de Diseño Multimedial V</p>
+          </div>
+          <div class="ticket-details">
+            <p class="ticket-emphasis">28 de Noviembre * 19:00 hrs</p>
+            <p class="ticket-emphasis">Sede Fonseca de la Facultad de artes</p>
+            <p>Diagonal 78 N.º 680</p>
+            <p>La Plata, Buenos Aires, Argentina</p>
+          </div>
+        </div>
+        <div class="ticket-stub">
+          <p>EDICIÓN 2026</p>
+          <div class="ticket-barcode"></div>
+          <span>0 13456 00000 0</span>
+        </div>
       </div>
-    </section>
 
-    <section id="proyecto" class="section">
-      <div class="container">
-        <h2>Proyecto</h2>
-      </div>
-    </section>
-
-    <section id="contenido" class="section">
-      <div class="container">
-        <h2>Contenido</h2>
-      </div>
-    </section>
-
-    <section id="contacto" class="section">
-      <div class="container">
-        <h2>Contacto</h2>
-      </div>
+      <button class="ticket-directions" type="button">Ver cómo llegar</button>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>Artimañas</p>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
 </body>
 </html>
