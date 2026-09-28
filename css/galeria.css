@@ -1,0 +1,189 @@
+/* Galería de la muestra */
+.photo-gallery {
+  min-height: 60vh;
+  padding: clamp(36px, 5vw, 64px) clamp(20px, 5.55vw, 80px) 100px;
+  color: #f6eff5;
+  background: #110910;
+  font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+.photo-gallery-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.photo-gallery-grid {
+  columns: 4 200px;
+  column-gap: 18px;
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.photo-gallery-item {
+  display: block;
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 0;
+  overflow: hidden;
+  break-inside: avoid;
+  background: #211620;
+  border: 0;
+  border-radius: 0;
+  cursor: zoom-in;
+}
+
+.photo-gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 240ms ease, filter 240ms ease;
+}
+
+.photo-gallery-item:hover img,
+.photo-gallery-item:focus-visible img {
+  transform: scale(1.035);
+  filter: brightness(1.1);
+}
+
+.photo-gallery-item:focus-visible,
+.photo-gallery-button:focus-visible,
+.photo-gallery-download:focus-visible {
+  outline: 2px solid #f6eff5;
+  outline-offset: 4px;
+}
+
+.photo-gallery-empty {
+  max-width: 680px;
+  margin: 12vh auto;
+  color: #b8adb7;
+  font-size: clamp(20px, 3vw, 32px);
+  line-height: 1.3;
+  text-align: center;
+}
+
+.photo-gallery-lightbox[hidden] {
+  display: none;
+}
+
+.photo-gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: clamp(20px, 3vw, 48px);
+  color: #f6eff5;
+  background: rgba(17, 9, 16, 0.84);
+  backdrop-filter: blur(42px);
+  -webkit-backdrop-filter: blur(42px);
+}
+
+.photo-gallery-viewer {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: 64px minmax(0, 1fr) 64px;
+  align-items: center;
+  gap: clamp(12px, 3vw, 56px);
+  max-width: 1400px;
+  width: 100%;
+  margin: auto;
+}
+
+.photo-gallery-full {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: min(70vh, 850px);
+  margin: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.photo-gallery-button {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  place-items: center;
+  color: #f6eff5;
+  background: #2a1b2b;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 180ms ease;
+}
+
+.photo-gallery-button:hover {
+  background: #443046;
+}
+
+.photo-gallery-button svg,
+.photo-gallery-download svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.photo-gallery-close {
+  position: absolute;
+  top: clamp(20px, 3vw, 48px);
+  right: clamp(20px, 5vw, 80px);
+  z-index: 1;
+}
+
+.photo-gallery-actions {
+  display: flex;
+  min-height: 72px;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-gallery-download {
+  display: inline-flex;
+  min-height: 54px;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 24px;
+  color: #2c252c;
+  font-size: 18px;
+  background: #f6eff5;
+  border-radius: 999px;
+}
+
+.photo-gallery-download:hover {
+  background: #fff;
+}
+
+body.has-photo-gallery-lightbox {
+  overflow: hidden;
+}
+
+@media (max-width: 700px) {
+  .photo-gallery-grid { columns: 2 130px; column-gap: 12px; }
+  .photo-gallery-item { margin-bottom: 12px; }
+  .photo-gallery-lightbox { padding: 20px 12px; }
+  .photo-gallery-close { top: 16px; right: 16px; width: 48px; height: 48px; }
+  .photo-gallery-viewer {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    gap: 4px;
+  }
+  .photo-gallery-button:not(.photo-gallery-close) { width: 44px; height: 44px; }
+  .photo-gallery-button svg { width: 22px; height: 22px; }
+  .photo-gallery-full { max-height: 70dvh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-gallery-item img,
+  .photo-gallery-button { transition: none; }
+}
