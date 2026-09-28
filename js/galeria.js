@@ -2,10 +2,27 @@
   const section = document.querySelector('#galeria');
   if (!section) return;
 
-  // Agregar las fotos de la muestra aquí, en el orden deseado.
+  // Agregar las fotos reales después de la muestra. Al cargar una, se oculta la vista previa.
   // Ejemplo: { src: 'assets/images/galeria/entrada.webp', alt: 'Visitantes en la entrada de la muestra' }
-  // Cada src apunta al archivo original: sirve tanto para la vista ampliada como para Descargar.
-  const photos = [];
+  const eventPhotos = [];
+
+  // Vista previa temporal con imágenes de obras que ya están en el repositorio.
+  // Los recortes y el blanco y negro sirven únicamente para evaluar la composición.
+  const previewSources = [
+    'assets/images/detalle-obra/microbioespecularis-01.webp',
+    'assets/images/detalle-obra/microbioespecularis-02.webp',
+    'assets/images/detalle-obra/microbioespecularis-03.webp'
+  ];
+  const ratios = ['3 / 4', '4 / 3', '2 / 3', '1 / 1', '3 / 5', '5 / 4', '4 / 5',
+    '3 / 4', '2 / 3', '4 / 3', '1 / 1', '3 / 5', '5 / 4', '4 / 5', '3 / 4', '2 / 3'];
+  const previewPhotos = ratios.map((ratio, index) => ({
+    src: previewSources[(index * 2 + Math.floor(index / 3)) % previewSources.length],
+    alt: `Imagen de obra usada para la vista previa ${index + 1}`,
+    ratio
+  }));
+  const photos = eventPhotos.length ? eventPhotos : previewPhotos;
+  section.classList.toggle('is-preview', eventPhotos.length === 0);
+  section.querySelector('[data-gallery-preview]').hidden = eventPhotos.length > 0;
 
   const grid = section.querySelector('[data-gallery-grid]');
   const empty = section.querySelector('[data-gallery-empty]');
@@ -61,6 +78,7 @@
     image.alt = photo.alt;
     image.loading = 'lazy';
     image.decoding = 'async';
+    if (photo.ratio) button.style.setProperty('--photo-ratio', photo.ratio);
     button.append(image);
     button.addEventListener('click', () => open(index));
     grid.append(button);
