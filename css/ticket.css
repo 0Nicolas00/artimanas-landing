@@ -80,8 +80,16 @@ button { font: inherit; }
   max-height: 65svh;
   height: auto;
   object-fit: contain;
-  transform: translate(-50%, -50%);
+  transform:
+    translate(
+      calc(-50% + var(--ticket-x, 0px)),
+      calc(-50% + var(--ticket-y, 0px))
+    )
+    perspective(1400px)
+    rotateX(var(--ticket-rotate-x, 0deg))
+    rotateY(var(--ticket-rotate-y, 0deg));
   filter: drop-shadow(0 26px 26px rgba(9, 5, 12, .2));
+  will-change: transform;
 }
 
 .ticket-portrait { display: none; }
@@ -237,4 +245,11 @@ button { font: inherit; }
   .ticket-close { top: 3%; right: 4%; width: 44px; height: 44px; }
   .ticket-main { padding-top: 45px; }
   .ticket-directions { bottom: 5%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket-landscape {
+    transform: translate(-50%, -50%);
+    will-change: auto;
+  }
 }
