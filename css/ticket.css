@@ -222,7 +222,7 @@ button { font: inherit; }
 @media (max-width: 800px) and (max-height: 730px) {
   .ticket-portrait {
     top: 8%;
-    width: min(62vw, 280px, 70svh * 320 / 630);
+    width: min(62vw, 280px, 35svh);
   }
   .ticket-main { padding-top: 35px; }
   .ticket-directions { bottom: 4%; }
