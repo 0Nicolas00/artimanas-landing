@@ -2,7 +2,7 @@ const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path'),http=require('http'),assert=require('assert'),os=require('os');
 const root=path.resolve(__dirname,'..');
 const server=http.createServer((req,res)=>{
- let p=path.join(root,decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(p.endsWith('/'))p+='index.html';
+ let p=path.join(root,decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(p.endsWith(path.sep))p+='index.html';
  if(!p.startsWith(root)){res.writeHead(403);return res.end();}
  try {const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.webp':'image/webp','.svg':'image/svg+xml','.jpg':'image/jpeg'};res.setHeader('Content-Type',mime[path.extname(p)]||'application/octet-stream');res.end(fs.readFileSync(p));}catch(e){res.writeHead(404);res.end();}
 });
@@ -14,17 +14,6 @@ const server=http.createServer((req,res)=>{
  const page=await make({viewport:{width:1440,height:900}});
  await page.evaluate(()=>scrollTo({top:1300,behavior:'instant'}));await page.waitForTimeout(900);
  // A name first scrolls its card to the center, then begins the detail slide.
- await page.evaluate(()=>{
-   const show=HTMLDialogElement.prototype.showModal;
-   HTMLDialogElement.prototype.showModal=function(){
-     if(this.id==='work-dialog'){
-       const sidebar=document.querySelector('.student-sidebar');
-       window.namesBeforeOpen={rect:sidebar.getBoundingClientRect().toJSON(),scroll:sidebar.scrollTop,
-         rows:[...sidebar.querySelectorAll('li')].map(e=>e.getBoundingClientRect().toJSON())};
-     }
-     return show.call(this);
-   };
- });
  const name=page.locator('#student-list a').nth(7);
  const slug=await name.getAttribute('data-open-work');
  const before=await page.evaluate(()=>scrollY);
@@ -37,20 +26,14 @@ const server=http.createServer((req,res)=>{
  assert(centerError<2,`Selected artwork centered before opening: ${centerError}`);
  assert.equal(new URL(page.url()).searchParams.get('obra'),slug);
  const namesStable=()=>{
-   const before=window.namesBeforeOpen,list=document.querySelector('.detail-students');
-   const after=list.getBoundingClientRect();
-   const sameRect=['left','top','width','height'].every(key=>Math.abs(after[key]-before.rect[key])<1);
-   // Compare layout rows, independent of the selected label's decorative pulse.
-   const rows=[...list.querySelectorAll('li')];
-   return sameRect&&Math.abs(list.scrollTop-before.scroll)<1&&rows.every((e,i)=>{
-     const r=e.getBoundingClientRect(),old=before.rows[i];
-     return old&&Math.abs(r.left-old.left)<1&&Math.abs(r.top-old.top)<1&&Math.abs(r.height-old.height)<1;
-   });
+   const list=document.querySelector('.detail-students');
+   const rect=list.querySelector('h3').getBoundingClientRect();
+   return rect.left===16&&rect.top===16&&list.getBoundingClientRect().bottom===innerHeight-10&&list.scrollTop===0;
  };
- assert(await page.evaluate(namesStable),'Name rows retain position, spacing and scroll during opening');
+ assert(await page.evaluate(namesStable),'Detail list starts at the top left during opening');
 
  await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='settled');
- assert(await page.evaluate(namesStable),'Name rows remain fixed after opening');
+ assert(await page.evaluate(namesStable),'Detail list stays in its column after opening');
  await page.keyboard.press('Escape');await page.waitForTimeout(550);
  // User interruption cancels the pending opening, not just its scroll frames.
  await page.locator('#student-list a').first().click();
@@ -87,7 +70,7 @@ const server=http.createServer((req,res)=>{
  assert.equal(await page.locator('.detail-moving-image').count(),0);
  assert.equal(await page.locator('#contenido').evaluate(e=>getComputedStyle(e).opacity),'0');
  assert.equal(await page.locator('.detail-neighbor').first().evaluate(e=>getComputedStyle(e).filter),'blur(20px)');
- assert.equal(await page.locator('.detail-students').evaluate(e=>getComputedStyle(e).paddingLeft),'0px');
+ assert.equal(await page.locator('.detail-students').evaluate(e=>getComputedStyle(e).paddingLeft),'6px');
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-settled.png')});
  await page.keyboard.press('Escape');await page.waitForTimeout(550);
  assert(!await page.locator('#work-dialog').isVisible());

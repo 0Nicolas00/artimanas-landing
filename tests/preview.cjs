@@ -2,7 +2,7 @@ const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path'),http=require('http'),assert=require('assert'),os=require('os');
 const root=path.resolve(__dirname,'..');
 const server=http.createServer((req,res)=>{
- let p=path.join(root,decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(p.endsWith('/'))p+='index.html';
+ let p=path.join(root,decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(p.endsWith(path.sep))p+='index.html';
  if(!p.startsWith(root)){res.writeHead(403);return res.end();}
  try {const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.webp':'image/webp','.svg':'image/svg+xml','.jpg':'image/jpeg'};res.setHeader('Content-Type',mime[path.extname(p)]||'application/octet-stream');res.end(fs.readFileSync(p));}catch(e){res.writeHead(404);res.end();}
 });
@@ -16,19 +16,23 @@ const server=http.createServer((req,res)=>{
  const hero=await page.locator('.hero').boundingBox();
  const eyebrow=await page.locator('.hero .eyebrow').boundingBox();
  const logo=await page.locator('.hero .logo-desktop').boundingBox();
+ const band=await page.locator('.hero .marquee').boundingBox();
+ const cueY=band.y+band.height/2;
  assert(eyebrow.y>hero.height*.22,'Eyebrow belongs to logo group, not the topbar');
  assert(logo.y-eyebrow.y-eyebrow.height<35,'Eyebrow sits directly above logo');
- assert(await page.locator('#student-list').evaluate(e=>parseFloat(getComputedStyle(e).filter.match(/[\d.]+/)[0])>2));
+ assert.equal(await page.locator('#student-list').evaluate(e=>getComputedStyle(e).filter),'none');
+ assert.equal(await page.locator('#student-list').evaluate(e=>getComputedStyle(e).opacity),'1');
  for(let i=0;i<3;i++){
-   await page.mouse.move(700,hero.height+45);await page.waitForTimeout(750);
+   await page.mouse.move(700,cueY);await page.waitForTimeout(750);
    assert.equal(await page.locator('.cursor-label').textContent(),'Bajá para\nver más');
    assert(await page.locator('#custom-cursor').evaluate(e=>e.classList.contains('is-scroll')));
    assert.equal(await page.locator('.cursor-scroll').evaluate(e=>getComputedStyle(e).opacity),'1');
-   assert(await page.locator('#obras').evaluate(e=>Number(e.style.getPropertyValue('--catalog-opacity'))>.9));
+   assert.equal(await page.locator('.hero-shade').count(),0);
+   assert.equal(await page.locator('.hero').getAttribute('data-pointer-follow'),'false');
    await page.mouse.move(700,180);await page.waitForTimeout(750);
    assert(await page.locator('#obras').evaluate(e=>Number(e.style.getPropertyValue('--catalog-opacity'))<.5));
  }
- await page.mouse.move(700,hero.height+45);await page.waitForTimeout(650);
+ await page.mouse.move(700,cueY);await page.waitForTimeout(650);
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-preview-v24.png')});
  // Mouse focus on a name must not latch the hover effect after returning to the hero.
  await page.locator('#student-list a').first().evaluate(e=>e.focus({preventScroll:true}));
@@ -36,7 +40,7 @@ const server=http.createServer((req,res)=>{
  assert(await page.locator('#obras').evaluate(e=>Number(e.style.getPropertyValue('--catalog-opacity'))<.5));
  await page.evaluate(()=>scrollTo({top:1300,behavior:'instant'}));await page.waitForTimeout(900);
  assert(!await page.locator('#obras').evaluate(e=>e.classList.contains('is-preview')));
- assert.equal(await page.locator('#student-list').evaluate(e=>getComputedStyle(e).filter),'blur(0px)');
+ assert.equal(await page.locator('#student-list').evaluate(e=>getComputedStyle(e).filter),'none');
  // A partially visible name is focused without moving the page or the list.
  const name=page.locator('#student-list a').nth(5);
  await name.evaluate(e=>{const list=e.closest('.student-sidebar');list.scrollTop=e.offsetTop-3;});

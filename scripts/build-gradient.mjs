@@ -1,5 +1,5 @@
 import { build } from 'esbuild';
-import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 // Extract only the palette literal from Hero.jsx; do not ship React in the head.
 const paletteSource = (await readFile('Hero.jsx', 'utf8')).match(/export const PALETTES = \[[\s\S]*?\n\];/)?.[0];
 if (!paletteSource) throw new Error('No se encontró PALETTES en Hero.jsx.');
@@ -25,6 +25,7 @@ await build({
   legalComments: 'linked', logLevel: 'info',
 });
 // The deploy directory contains only static files; no node_modules or React source.
+await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
 for (const name of ['index.html', 'css', 'js', 'assets']) {
   await cp(name, `dist/${name}`, { recursive: true });

@@ -1,12 +1,23 @@
 
 /* Los nombres del catálogo abren el detalle lateral y responden también al teclado. */
-.student-list a {width:fit-content;max-width:100%;padding-right:6px;border-radius:5px}
+.student-list {list-style:none;padding:0;font:var(--body-lg);margin:0 0 0 -4px}
+.student-list li {margin:0 0 8px}
+.student-list a {
+ display:flex;align-items:center;gap:8px;width:fit-content;max-width:100%;
+ padding:4px;color:var(--text-base);overflow-wrap:anywhere;
+}
+.student-list a::before {content:none;position:static;flex:0 0 8px;width:8px;height:8px;border-radius:50%;background:#fff}
+.student-list a:hover::before,.student-list a[aria-current='true']::before {content:''}
+.student-list a[aria-current='true'] {font-weight:590;animation:none}
+.student-sidebar h2,.detail-students h3 {font:var(--body-lg);color:var(--text-muted);margin:0 0 16px}
+.catalog .student-list {opacity:1;filter:none}
 .student-list a:focus:not(:focus-visible),
 .student-list a[data-pointer-focus]:focus {outline:none}
-.student-list a:focus-visible:not([data-pointer-focus]) {outline:2px solid var(--focus);outline-offset:5px}
-#student-list a,#detail-student-list a {color:#fff;text-shadow:none;filter:none}
-#student-list a:hover,#detail-student-list a:hover,
-#student-list a[aria-current='true'],#detail-student-list a[aria-current='true'] {
- text-shadow:0 0 3px rgba(200,155,255,.95),0 0 8px rgba(175,95,255,.95),0 0 16px rgba(155,65,255,.8),0 0 26px rgba(145,55,245,.5);
+.student-list a:focus-visible:not([data-pointer-focus]) {outline:2px solid #fff;outline-offset:0;border-radius:4px}
+.student-list a:hover,.student-list a[aria-current='true'] {
+ color:var(--text-base);text-shadow:0 0 4px rgba(200,155,255,.8),0 0 10px rgba(175,95,255,.65),0 0 20px rgba(145,55,245,.4);
 }
-.student-list a[aria-current='true']::before {color:#fff;text-shadow:none}
+@media(min-width:1101px) {
+ .catalog-layout {width:calc(100% - 160px);grid-template-columns:302px minmax(0,1fr) minmax(200px,22%)}
+ .student-sidebar {width:314px;margin-left:-6px;padding-inline:6px}
+}

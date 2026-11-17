@@ -5,6 +5,8 @@
   "description": "Sitio estático de Artimañas 2026 con bundle aislado para el fondo ShaderGradient.",
   "scripts": {
     "test": "node tests/smoke.cjs && node tests/interactions.cjs && node tests/transitions.cjs && node tests/preview.cjs && node tests/entry.cjs",
+    "test:qa": "node tests/qa.cjs",
+    "test:cover": "node tests/cover.cjs",
     "test:hero-palettes": "node tests/hero-palettes.cjs",
     "build": "node scripts/build-gradient.mjs",
     "dev": "node scripts/serve.mjs",

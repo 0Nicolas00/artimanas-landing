@@ -12,7 +12,7 @@ const server=http.createServer((req,res)=>{
  const errors=[],badResources=[];
  async function make(options){const p=await browser.newPage(options);p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.url().startsWith('http://localhost')&&r.status()>=400)badResources.push(r.url())});await p.goto('http://localhost:8766');await p.waitForTimeout(700);return p;}
  const page=await make({viewport:{width:1440,height:900}});
- assert.equal(await page.locator('.hero').evaluate(e=>e.clientHeight),810);
+ assert.equal(await page.locator('.hero').evaluate(e=>e.clientHeight),900);
  assert.equal(await page.locator('#filter-trigger').isVisible(),false);
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-desktop.png')});
  await page.evaluate(()=>scrollTo({top:1100,behavior:'instant'}));await page.waitForTimeout(800);
@@ -39,7 +39,7 @@ const server=http.createServer((req,res)=>{
  // A marquee group must cover the viewport, both copies must be identical.
  const marquee=await page.locator('.hero .marquee-track').evaluate(e=>({a:e.children[0].offsetWidth,b:e.children[1].offsetWidth,view:e.parentElement.clientWidth,text:e.children[0].innerHTML===e.children[1].innerHTML}));assert(marquee.a>=marquee.view&&marquee.a===marquee.b&&marquee.text);
  const mobile=await make({viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:1});
- assert(Math.abs(await mobile.locator('.hero').evaluate(e=>e.clientHeight)-844*.9)<1);
+ assert.equal(await mobile.locator('.hero').evaluate(e=>e.clientHeight),900);
  assert.equal(await mobile.locator('#sensor-permission').count(),0);
  assert(await mobile.evaluate(()=>document.documentElement.scrollWidth===innerWidth));
  await mobile.screenshot({path:path.join(os.tmpdir(),'artimanas-mobile.png')});

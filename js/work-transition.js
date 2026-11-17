@@ -33,9 +33,6 @@
     ghost?.remove();ghost=null;closing=false;
   }
   function reset(){
-    if(dialog.open&&desktop.matches){
-      document.querySelector('.student-sidebar').scrollTop=dialog.querySelector('.detail-students').scrollTop;
-    }
     cancel();restoreSources();background.replaceChildren();
     document.body.classList.remove('work-detail-open');
     dialog.removeAttribute('data-phase');
@@ -49,8 +46,7 @@
       if(!img)return null;
       return {element:img,src:img.currentSrc||img.src,rect:img.getBoundingClientRect(),opacity:getComputedStyle(img).opacity,naturalWidth:img.naturalWidth,naturalHeight:img.naturalHeight};
     };
-    const sidebar=document.querySelector('.student-sidebar');
-    return {selected:snapshot(card),neighbors:[snapshot(visible[index-1]),snapshot(visible[index+1])],sidebar:sidebar.getBoundingClientRect(),sidebarScrollTop:sidebar.scrollTop};
+    return {selected:snapshot(card),neighbors:[snapshot(visible[index-1]),snapshot(visible[index+1])]};
   }
   function addNeighbors(snapshot){
     background.replaceChildren();
@@ -77,8 +73,8 @@
         {filter:'blur(20px)',opacity:.13}
       ],options))
     ] : [animate(veil,[
-      {backdropFilter:'blur(0px)',backgroundColor:'rgba(16,8,15,0)'},
-      {backdropFilter:'blur(12px)',backgroundColor:'rgba(16,8,15,.72)'}
+      {backdropFilter:'blur(0px)',backgroundColor:'rgba(17,9,16,0)'},
+      {backdropFilter:'blur(12px)',backgroundColor:'rgba(17,9,16,.72)'}
     ],options)];
     await Promise.all(tasks);
     if(token!==revision||!dialog.open)return;
@@ -116,13 +112,6 @@
       {transform:'translateX(-100%)',opacity:0},
       {transform:'translateX(0)',opacity:1}
     ],{...motion,delay:80}));
-    if(desktop.matches&&snapshot){
-      const list=dialog.querySelector('.detail-students'),rect=snapshot.sidebar;
-      // The names stay in the exact same viewport rectangle while the sheet opens.
-      for(const key of ['left','top','width','height'])list.style.setProperty(`--list-${key}`,`${rect[key]}px`);
-      list.scrollTop=snapshot.sidebarScrollTop;
-      document.querySelector('.student-sidebar').scrollTop=snapshot.sidebarScrollTop;
-    }
     for(const {img,source} of neighbors){
       hideSource(source);
       const end=img.getBoundingClientRect(),start=source.rect;

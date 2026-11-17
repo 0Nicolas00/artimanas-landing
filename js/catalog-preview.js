@@ -21,7 +21,6 @@
     catalog.style.setProperty('--catalog-opacity',(.42+.58*attention).toFixed(3));
     catalog.style.setProperty('--preview-image-opacity',(.42*(1-progress)).toFixed(3));
     catalog.style.setProperty('--preview-name-blur',`${(2.4*(1-progress)).toFixed(2)}px`);
-    hero.style.setProperty('--hero-dim',(.38*attention).toFixed(3));
     const cover=window.scrollY<=8&&catalog.dataset.entering!=='true';
     if(catalog.classList.contains('is-cover')!==cover){
       catalog.classList.toggle('is-cover',cover);

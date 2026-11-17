@@ -2,7 +2,7 @@ const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path'),http=require('http'),assert=require('assert'),os=require('os');
 const root=path.resolve(__dirname,'..');
 const server=http.createServer((req,res)=>{
- let p=path.join(root,decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(p.endsWith('/'))p+='index.html';
+ let p=path.join(root,decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(p.endsWith(path.sep))p+='index.html';
  if(!p.startsWith(root)){res.writeHead(403);return res.end();}
  try {const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.webp':'image/webp','.svg':'image/svg+xml','.jpg':'image/jpeg'};res.setHeader('Content-Type',mime[path.extname(p)]||'application/octet-stream');res.end(fs.readFileSync(p));}catch(e){res.writeHead(404);res.end();}
 });
@@ -12,12 +12,13 @@ const server=http.createServer((req,res)=>{
  const errors=[],badResources=[];
  async function make(options){const p=await browser.newPage(options);p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.url().startsWith('http://localhost')&&r.status()>=400)badResources.push(r.url())});await p.goto('http://localhost:8766');await p.waitForTimeout(700);return p;}
  const page=await make({viewport:{width:1440,height:900}});
- // The cover contains a readable heading and an inactive artwork preview.
+ // Artwork access waits for the transition from the full-height cover.
  assert.equal(await page.locator('#student-heading').evaluate(e=>getComputedStyle(e).filter),'none');
  assert(await page.locator('#works').evaluate(e=>e.inert));
  await page.locator('.work-link').first().evaluate(e=>e.click());
  assert(!await page.locator('#work-dialog').isVisible(),'Cover artwork cannot open');
- await page.mouse.move(700,855);await page.waitForTimeout(750);
+ const band=await page.locator('.hero .marquee').boundingBox();
+ await page.mouse.move(700,band.y+band.height/2);await page.waitForTimeout(750);
  assert.equal(await page.locator('.cursor-label').textContent(),'Bajá para\nver más');
  await page.mouse.wheel(0,40);
  await page.waitForFunction(()=>scrollY>10);
