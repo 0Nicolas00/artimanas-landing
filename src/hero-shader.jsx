@@ -8,6 +8,12 @@ const hero = document.querySelector('.hero');
 const host = document.querySelector('#hero-shader');
 // Enable in index.html and reload the page.
 const pointerFollowEnabled = hero?.dataset.pointerFollow === 'true';
+const comparison = window.ArtimanasHeroTest;
+const staticBackground = comparison?.mode === 'static';
+if (hero && staticBackground) {
+  hero.dataset.shader = 'static';
+  hero.dataset.shaderMotion = 'paused';
+}
 let root;
 let failed = false;
 let ready = false;
@@ -159,7 +165,7 @@ function RendererLifecycle() {
   return null;
 }
 
-if (hero && host) {
+if (hero && host && !staticBackground) {
   // The inline head bootstrap owns the only random choice for this page load.
   const index = window.ArtimanasHeroPalette?.index ?? 0;
   hero.dataset.shaderPalette = String(index);
@@ -182,7 +188,7 @@ if (hero && host) {
       root = createRoot(host);
       root.render(
         <BackgroundBoundary>
-          <HeroBackground palette={PALETTES[index]}>
+          <HeroBackground palette={PALETTES[index]} pixelDensity={comparison?.pixelDensity} grain={comparison?.grain}>
             <RendererLifecycle />
             {pointerFollowEnabled && <ShaderPointerMotion />}
           </HeroBackground>

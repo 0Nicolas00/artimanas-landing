@@ -10,7 +10,8 @@
     "dev": "node scripts/serve.mjs",
     "test:hero-shader": "node tests/hero-shader.cjs",
     "test:hero-startup": "node tests/hero-startup.cjs",
-    "test:hero-pointer": "node tests/hero-pointer.cjs"
+    "test:hero-pointer": "node tests/hero-pointer.cjs",
+    "test:hero-comparison": "node tests/hero-comparison.cjs"
   },
   "devDependencies": {
     "esbuild": "0.28.2",

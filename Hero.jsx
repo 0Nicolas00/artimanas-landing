@@ -9,13 +9,14 @@ export const PALETTES = [
   { colors: ["#EAF158", "#E1B5E1", "#2F04BC"], text: "#ffffff" }, // amarillo / lila / azul
 ];
 
-// Parametros del efecto original, sin cambios.
+// @shadergradient/react 2.4.20 ignores frameRate for the on-canvas render loop.
+// Lower the render resolution and omit the grain postprocessing pass.
 export const SHADER_SETTINGS = {
   animate: "on", axesHelper: "off", brightness: 0.8,
   cAzimuthAngle: 270, cDistance: 0.5, cPolarAngle: 180, cameraZoom: 15.1,
   destination: "onCanvas", embedMode: "off", envPreset: "city", format: "gif",
-  fov: 45, frameRate: 10, gizmoHelper: "hide", grain: "on", lightType: "env",
-  pixelDensity: 1, positionX: -0.1, positionY: 0, positionZ: 0,
+  fov: 45, frameRate: 10, gizmoHelper: "hide", grain: "off", lightType: "env",
+  pixelDensity: 0.75, positionX: -0.1, positionY: 0, positionZ: 0,
   range: "disabled", rangeEnd: 40, rangeStart: 0, reflection: 0.4,
   rotationX: 0, rotationY: 130, rotationZ: 70, shader: "defaults", type: "sphere",
   uAmplitude: 3.2, uDensity: 0.8, uFrequency: 5.5, uSpeed: 0.3,
@@ -23,18 +24,19 @@ export const SHADER_SETTINGS = {
 };
 
 // React dibuja solo el fondo. El contenido y el fundido pertenecen al HTML/CSS.
-export default function HeroBackground({ palette, children }) {
+export default function HeroBackground({ palette, children, pixelDensity = SHADER_SETTINGS.pixelDensity, grain = SHADER_SETTINGS.grain }) {
   return (
     <ShaderGradientCanvas
       style={{ position: "absolute", inset: 0 }}
       pointerEvents="none"
-      pixelDensity={SHADER_SETTINGS.pixelDensity}
+      pixelDensity={pixelDensity}
       fov={SHADER_SETTINGS.fov}
       envBasePath="assets/shader-environments/"
       lazyLoad={false}
     >
       <ShaderGradient
         {...SHADER_SETTINGS}
+        grain={grain}
         color1={palette.colors[0]}
         color2={palette.colors[1]}
         color3={palette.colors[2]}

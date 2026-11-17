@@ -20,7 +20,17 @@ Para publicar desde un repositorio, `netlify.toml` configura el comando `npm run
 
 ## Fondo ShaderGradient de la portada
 
-`Hero.jsx` contiene únicamente `ShaderGradientCanvas`, `ShaderGradient`, las cinco paletas exactas de la referencia en `PALETTES` y los parámetros originales en `SHADER_SETTINGS`. Después de cambiarlo, ejecutar `npm run build` para actualizar el bundle y `dist/`.
+`Hero.jsx` contiene `ShaderGradientCanvas`, `ShaderGradient`, las cinco paletas de `PALETTES` y los ajustes de `SHADER_SETTINGS`. La resolución interna usa `pixelDensity: 0.75` y el grano está apagado (`grain: "off"`). Esta combinación se comprobó con el usuario en Brave y conserva la animación automática. Después de cambiarlo, ejecutar `npm run build` para actualizar el bundle y `dist/`.
+
+La comparación local funciona con Live Server en `localhost`, `127.0.0.1` y `[::1]`. Las dos variantes fijan la misma paleta y conservan la portada y el recorrido al catálogo.
+
+- Shader ajustado: `http://127.0.0.1:5500/index.html?heroTest=shader&palette=0&heroDpr=0.75&heroGrain=off`.
+- Degradado estático: `http://127.0.0.1:5500/index.html?heroTest=static&palette=0`.
+- Shader original para comparar: `http://127.0.0.1:5500/index.html?heroTest=shader&palette=0`.
+
+`heroDpr=0.75` y `heroGrain=off` permiten probar cada ajuste por separado. `palette` admite índices de 0 a 4. Estos parámetros de prueba se habilitan únicamente en los hosts locales indicados. Con Live Server abierto, `npm run test:hero-comparison` verifica las variantes, mide la cadencia de la página y las actualizaciones del shader, y comprueba la pausa fuera de pantalla.
+
+En `@shadergradient/react` 2.4.20, el valor heredado `frameRate: 10` no limita el render del canvas. La medición en Brave registró unas 60 actualizaciones del shader por segundo. Bajar la resolución de 1 a 0.75 reduce el número de píxeles aproximadamente un 44 %, y quitar el grano elimina un paso de render por cuadro.
 
 `src/hero-bootstrap.js` elige una sola paleta por carga antes del primer pintado. El build extrae `PALETTES` de `Hero.jsx` e inserta un script mínimo en el `<head>` de `index.html`, sin React ni otra descarga. Ese script comparte la elección entre el fondo estático CSS y el shader.
 
@@ -30,11 +40,11 @@ Prueba específica del primer fotograma, recarga normal, caché desactivada y fa
 
 El seguimiento del mouse está en `ShaderPointerMotion`, dentro de `src/hero-shader.jsx`. Desplaza únicamente la geometría del shader en los ejes de pantalla: respuesta de 0,28 s, estela de 1,1 s y un arrastre de 3,5 % más una pequeña inercia. `POINTER_MOTION` permite ajustar esa intensidad sin tocar las paletas ni la cámara original. Al salir de la portada vuelve al centro; con entrada táctil queda centrado y conserva la animación automática. El logo y la cinta no se transforman. Prueba: `npm run test:hero-pointer`.
 
-Hay un único fundido inferior, `.hero::before` en `css/base.css`, que termina en `--surface-0` (`#10080f`), el fondo del catálogo. El grano CSS de respaldo se oculta al activarse el shader, que ya tiene su propio grano. Una sombra discreta en las imágenes del logo y el texto de la portada sostiene el contraste sobre las zonas claras sin modificar los colores ni los parámetros del efecto.
+Hay un único fundido inferior, `.hero::before` en `css/base.css`, que termina en `--surface-0` (`#10080f`), el fondo del catálogo. Una sombra discreta en las imágenes del logo y el texto de la portada sostiene el contraste sobre las zonas claras.
 
 Los mapas HDR se sirven desde `assets/shader-environments/`: son los archivos oficiales de ShaderGradient (`city.hdr`, `dawn.hdr`, `lobby.hdr`). La versión 2.4.20 precarga los tres aunque el efecto use `city`. No depende de una CDN en ejecución. Fuente: https://github.com/ruucm/shadergradient.
 
-Pruebas del shader: `npm run test:hero-shader`. Las pruebas del respaldo Canvas 2D están en `npm run test:hero-palettes`. Si se usa un navegador Chromium ya instalado, definir `CHROMIUM_PATH` con la ruta a su ejecutable; en caso contrario, instalar el navegador de Playwright con `npx playwright install chromium`.
+Pruebas del shader: `npm run test:hero-shader`. Las pruebas del degradado estático con WebGL desactivado están en `npm run test:hero-palettes`. Si se usa un navegador Chromium ya instalado, definir `CHROMIUM_PATH` con la ruta a su ejecutable; en caso contrario, instalar el navegador de Playwright con `npx playwright install chromium`.
 
 ## Datos de las obras — revisión 26
 
