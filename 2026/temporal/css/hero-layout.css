@@ -1,0 +1,28 @@
+/* The hero occupies exactly 90% of the visible viewport at every breakpoint. */
+.hero {height:90svh;height:90dvh;min-height:0;max-height:none}
+.hero-center {position:absolute;inset:calc(var(--nav-height) + 16px) 0 100px;width:100%;max-width:none;margin:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px}
+.hero .eyebrow {margin:0;align-self:center}
+.hero h1 {display:grid;place-items:center;width:100%;min-height:0;flex:0 0 auto}
+.hero .logo-desktop {width:min(82vw,1100px)}
+.hero .marquee {bottom:24px;padding:16px 0}
+.hero .marquee-track span {padding-right:0}
+/* Floating action is hidden on the cover and changes to back-to-top in the footer. */
+.filter-trigger {background:#fff;color:#211921;opacity:0;visibility:hidden;pointer-events:none;translate:0 12px;transition:opacity .4s ease,translate .4s ease,visibility 0s .4s}
+.filter-trigger.is-visible {opacity:1;visibility:visible;pointer-events:auto;translate:0 0;transition-delay:0s}
+@media(max-width:1100px) {
+ .hero-center {inset:calc(var(--nav-height) + 16px) 0 88px;gap:12px}
+ .hero .eyebrow {font-size:13px;padding:9px 24px}
+ .hero .logo-desktop {display:none}
+ .hero .logo-stacked {--logo-width:min(300px,65vw,32dvh);width:var(--logo-width);margin:0 auto}
+ .hero .logo-stacked .ma {margin-top:calc(var(--logo-width)*-.117);transform:translateX(calc(var(--logo-width)*.09))}
+ .hero .logo-stacked .nas {margin-top:calc(var(--logo-width)*-.157);transform:translateX(calc(var(--logo-width)*-.04))}
+ .hero .marquee {font-size:12px;padding:10px 0;bottom:24px}
+ .hero .marquee-track i {margin-inline:16px}
+}
+@media(max-height:500px) {
+ .hero-center {inset:calc(var(--nav-height) + 2px) 0 62px;gap:6px}
+ .hero .eyebrow {font-size:12px;padding:4px 18px}
+ .hero .logo-stacked {display:none}
+ .hero .logo-desktop {display:block;width:min(60vw,480px);max-height:30dvh;object-fit:contain}
+ .hero .marquee {font-size:12px;padding:7px 0;bottom:12px}
+}
