@@ -15,6 +15,10 @@
 }
 .hero h1 {display:grid;place-items:center;width:100%;min-height:0;margin:-24px 0 0}
 .hero .logo-desktop {width:min(1008px,calc(100vw - 160px));height:auto}
+@media(min-width:1101px) {
+ .hero .eyebrow {position:absolute;visibility:hidden}
+ .hero h1 {margin:0}
+}
 .hero .marquee {
  top:var(--band-top);bottom:auto;height:var(--band-height);
  display:flex;align-items:center;padding:24px 0;font:var(--body-lg);transform-origin:top right;
@@ -54,7 +58,7 @@
 @media(max-height:500px) {
  .hero {--band-top:calc(100% - var(--band-height) - 104vw * sin(1.3deg) - 16px);--band-height:58px;height:100svh;height:100dvh;min-height:360px}
  .hero-center {top:88px;left:0;width:100%;height:auto;transform:none}
- .hero .eyebrow {width:294px;height:56px}
+ .hero .eyebrow {position:absolute;visibility:hidden;width:294px;height:56px}
  .hero h1 {position:static;height:auto;margin:0}
  .hero .logo-stacked {display:none}
  .hero .logo-desktop {display:block;width:min(65vw,650px);max-height:140px;object-fit:contain}
