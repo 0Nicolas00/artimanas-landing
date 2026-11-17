@@ -12,10 +12,10 @@
   <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Artimañas sobre un fondo violeta y naranja">
   <title>Artimañas 2026 · Muestra de arte interactivo</title>
-  <link rel="stylesheet" href="css/base.css?v=34"><link rel="stylesheet" href="css/catalog.css?v=29"><link rel="stylesheet" href="css/overlays.css?v=29">
+  <link rel="stylesheet" href="css/base.css?v=34"><link rel="stylesheet" href="css/catalog.css?v=32"><link rel="stylesheet" href="css/overlays.css?v=33">
   
-<link rel="stylesheet" href="css/hero-layout.css?v=29">
-<link rel="stylesheet" href="css/student-links.css?v=31">
+<link rel="stylesheet" href="css/hero-layout.css?v=30">
+<link rel="stylesheet" href="css/student-links.css?v=32">
 </head>
 <body data-start-page="inicio">
 <svg class="svg-filters" aria-hidden="true" width="0" height="0"><defs>
@@ -388,7 +388,8 @@ Gracias a la Universidad Nacional de La Plata, la Facultad de Artes y el Laborat
 </article></div>
         <div class="empty-state" id="empty-state" hidden><h2>Ninguna obra coincide con estos filtros</h2><button class="pill" data-clear-all>Borrar filtros</button></div>
       </div>
-      <button class="pill filter-trigger" id="filter-trigger" aria-haspopup="dialog" aria-controls="filter-dialog" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg><span>Filtrar</span></button>
+      <div class="catalog-progress" id="catalog-progress" aria-hidden="true"></div>
+      <button class="pill filter-trigger" id="filter-trigger" aria-haspopup="dialog" aria-controls="filter-dialog" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 1v6M8 9v6M16 17v6"/></svg><span>Filtrar</span></button>
       <p class="sr-only" aria-live="polite" id="results-status"></p>
     </section>
   </div>
@@ -412,54 +413,54 @@ Gracias a la Universidad Nacional de La Plata, la Facultad de Artes y el Laborat
   <div class="container"><div class="footer-info"><div><strong>Muestra de trabajos finales de Taller de Diseño Multimedial V</strong><p>Desde 2011 se realiza el festival “Artimañas” en donde el conjunto del alumnado de Taller de Diseño Multimedial presenta sus trabajos finales de carrera. Es una muestra para la Licenciatura en Diseño Multimedial.</p></div><div class="footer-credits"><a href="#inicio" data-back-top>Volver arriba ↑</a><p>Hecho con <span aria-label="amor">💜</span> por alumnes</p><p>© 2026 Artimañas</p></div></div><div class="institutions"><img src="assets/logo-unlp.webp" width="446" height="190" alt="Universidad Nacional de La Plata" loading="lazy"><img src="assets/logo-facultad-artes.webp" width="670" height="160" alt="Facultad de Artes" loading="lazy"><img src="assets/logo-multimedia.webp" width="560" height="160" alt="Diseño Multimedial" loading="lazy"></div></div>
 </footer>
 <dialog id="menu-dialog" class="menu-dialog" aria-label="Menú principal"><div class="menu-top"><span>Artimañas</span><button data-close-dialog aria-label="Cerrar menú">Cerrar ×</button></div><nav class="menu-links" aria-label="Navegación móvil"><a href="?pagina=inicio" data-page-link="inicio">Inicio <small>01</small></a><a href="?pagina=galeria" data-page-link="galeria">Galería <small>02</small></a><a href="?muestra" data-open-event>Muestra 2026 <small>03</small></a></nav></dialog>
-<dialog id="filter-dialog" class="filter-dialog" aria-labelledby="filter-title"><button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar filtros"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button><h2 id="filter-title">Filtrar obras</h2><div class="filter-tabs" role="tablist" aria-label="Tipo de filtro"><button role="tab" id="tab-categorias" aria-controls="panel-categorias" aria-selected="true" data-filter-tab="categorias">Categorías</button><button role="tab" id="tab-alumnos" aria-controls="panel-alumnos" aria-selected="false" tabindex="-1" data-filter-tab="alumnos">Alumnos</button></div><div id="panel-categorias" class="filter-options" role="tabpanel" aria-labelledby="tab-categorias"><label class="filter-option"><input type="checkbox" name="categoria" value="alienacion"><span>Alienación</span><small data-category-count="alienacion"></small></label>
+<dialog id="filter-dialog" class="filter-dialog" aria-labelledby="filter-title"><button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar filtros"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button><h2 id="filter-title">Filtrar obras</h2><div id="panel-categorias" class="filter-options" role="group" aria-label="Categorías"><label class="filter-option"><input type="checkbox" name="categoria" value="alienacion"><span>Alienación</span><small data-category-count="alienacion"></small></label>
 <label class="filter-option"><input type="checkbox" name="categoria" value="entorno"><span>Entorno</span><small data-category-count="entorno"></small></label>
 <label class="filter-option"><input type="checkbox" name="categoria" value="identidad"><span>Identidad</span><small data-category-count="identidad"></small></label>
 <label class="filter-option"><input type="checkbox" name="categoria" value="sensorialidad"><span>Sensorialidad</span><small data-category-count="sensorialidad"></small></label>
-<label class="filter-option"><input type="checkbox" name="categoria" value="sinergia"><span>Sinergia</span><small data-category-count="sinergia"></small></label></div><div id="panel-alumnos" class="filter-options" role="tabpanel" aria-labelledby="tab-alumnos" hidden><label class="filter-option"><input type="checkbox" name="alumno" value="adam-florencia-araceli"><span>Adam, Florencia Araceli</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="andres-guadalupe"><span>Andrés, Guadalupe</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="aroza-matias"><span>Aroza, Matias</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="besnati-saldise-victoria"><span>Besnati Saldise, Victoria</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="bigot-juan-martin"><span>Bigot, Juan Martín</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="di-bella-martina"><span>Di Bella, Martina</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="errecarte-juan-ignacio"><span>Errecarte, Juan Ignacio</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="ferrer-evelyn"><span>Ferrer, Evelyn</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="galdeano-sofia"><span>Galdeano, Sofia</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="galindez-catalina"><span>Galindez, Catalina</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="gamon-martina"><span>Gamón, Martina</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="giambruni-adelina"><span>Giambruni, Adelina</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="gimenez-julia"><span>Gimenez, Julia</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="grassi-maria"><span>Grassi, Maria</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="griguoli-nicolas"><span>Griguoli, Nicolás</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="ignoffo-lara-belen"><span>Ignoffo, Lara Belén</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="iriarte-jeremias-daniel"><span>Iriarte, Jeremías Daniel</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="isasmendi-rodrigo"><span>Isasmendi, Rodrigo</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="la-pioggia-franco"><span>La Pioggia, Franco</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="lajoinie-maria-delfina"><span>Lajoinie, María Delfina</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="magallanes-diaz-lara-jazmin"><span>Magallanes Diaz, Lara Jazmín</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="mansilla-torres-nicolas"><span>Mansilla Torres, Nicolas</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="migone-maria-candela"><span>Migone, Maria Candela</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="orbaiceta-catalina"><span>Orbaiceta, Catalina</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="panelli-dolores"><span>Panelli, Dolores</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="riol-fernandez-juan-cruz"><span>Riol Fernández, Juan Cruz</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="rojas-rabassio-juliana"><span>Rojas Rabassio, Juliana</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="rossetti-matias"><span>Rossetti, Matías</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="sago-suyay"><span>Sago, Suyay</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="segundo-tatiana"><span>Segundo, Tatiana</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="triolo-valentina"><span>Triolo, Valentina</span></label>
-<label class="filter-option"><input type="checkbox" name="alumno" value="ubaldi-guadalupe"><span>Ubaldi, Guadalupe</span></label></div><div class="filter-actions"><button class="pill apply-filters" id="apply-filters">Mostrar obras</button><button class="clear-filters" id="clear-filters">Borrar filtros</button></div></dialog>
-<dialog id="work-dialog" class="work-dialog" aria-labelledby="detail-title"><button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar detalle de obra"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button><div class="work-detail"><aside class="detail-students"><h3>Obras por alumno</h3><ul class="student-list" id="detail-student-list"></ul></aside><section class="detail-copy"><h2 id="detail-title"></h2><p class="detail-description" id="detail-description"></p><dl class="detail-data"><div><dt>Alumno</dt><dd id="detail-author"></dd></div><div><dt>Categoría</dt><dd id="detail-category"></dd></div></dl><a class="research-link" id="research-link" hidden>Descargar investigación <span aria-hidden="true">↗</span></a><p class="research-link" id="research-pending">Investigación próximamente</p></section><section class="media-panel" aria-label="Imágenes y video de la obra"><span class="media-counter" id="media-counter"></span><div class="media-stage" id="media-stage"></div><button class="icon-button media-arrow prev" id="media-prev" aria-label="Anterior"><svg style="transform:rotate(180deg)" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button><button class="icon-button media-arrow next" id="media-next" aria-label="Siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button><div class="media-dots" id="media-dots" aria-label="Diapositivas"></div></section></div></dialog>
-<dialog id="event-dialog" class="event-dialog" aria-labelledby="event-title"><button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar detalles del festival"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button><div class="ticket"><div class="ticket-art" aria-hidden="true"></div><div class="ticket-copy"><h2 id="event-title">Artimañas</h2><p class="ticket-subtitle">Muestra de trabajos finales de Taller de Diseño Multimedial V</p><address><strong>28 de Noviembre * 19:00 hrs<br>Sede Fonseca de la Facultad de Artes</strong><br>Diagonal 78 esquina 62<br>La Plata, Buenos Aires, Argentina</address></div><div class="ticket-stub"><span>EDICIÓN 2026</span><div class="barcode" aria-hidden="true"></div><span aria-hidden="true">0 13456 00000 0</span></div></div><a class="pill" href="https://www.google.com/maps/dir/?api=1&amp;destination=Sede+Fonseca%2C+Diagonal+78+y+Calle+62%2C+La+Plata%2C+Argentina" target="_blank" rel="noopener noreferrer">Ver cómo llegar</a></dialog>
+<label class="filter-option"><input type="checkbox" name="categoria" value="sinergia"><span>Sinergia</span><small data-category-count="sinergia"></small></label></div><div class="filter-actions"><button class="pill apply-filters" id="apply-filters">Mostrar obras</button><button class="clear-filters" id="clear-filters">Borrar filtros</button></div></dialog>
+<dialog id="work-dialog" class="work-dialog" aria-labelledby="detail-title">
+  <button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar detalle de obra"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+  <div class="work-detail">
+    <aside class="detail-students"><h3>Obras por alumno</h3><ul class="student-list" id="detail-student-list"></ul></aside>
+    <section class="detail-copy">
+      <h2 id="detail-title"></h2>
+      <div class="description-block" id="description-block">
+        <div class="detail-description" id="detail-description"></div>
+        <button class="description-toggle" id="description-toggle" type="button" aria-expanded="false" aria-controls="detail-description" hidden><span>Leer más</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+      </div>
+      <dl class="detail-data"><div><dt>Alumno</dt><dd id="detail-author"></dd></div><div><dt>Categoría</dt><dd id="detail-category"></dd></div></dl>
+      <a class="research-link" id="research-link" hidden>Descargar investigación<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg></a>
+      <button class="research-link" id="research-pending" type="button" disabled aria-disabled="true" title="Investigación próximamente">Descargar investigación<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg></button>
+    </section>
+    <section class="media-panel" aria-label="Imágenes y video de la obra">
+      <img class="media-backdrop" id="media-backdrop" alt="" aria-hidden="true">
+      <span class="media-counter" id="media-counter" aria-live="polite"></span>
+      <div class="media-stage" id="media-stage"></div>
+      <a class="icon-button media-download" id="media-download" download aria-label="Descargar imagen" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg></a>
+      <button class="icon-button media-arrow prev" id="media-prev" aria-label="Anterior"><svg style="transform:rotate(180deg)" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+      <button class="icon-button media-arrow next" id="media-next" aria-label="Siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+      <div class="media-dots" id="media-dots" role="group" aria-label="Diapositivas"></div>
+    </section>
+  </div>
+</dialog>
+<dialog id="event-dialog" class="event-dialog" aria-labelledby="event-title">
+  <button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar detalles del festival"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+  <div class="ticket-frame"><div class="ticket ticket-export">
+    <picture aria-hidden="true"><source media="(max-width:1100px)" srcset="assets/TicketMobile.png"><img src="assets/Ticket.png" alt="" decoding="async"></picture>
+    <div class="ticket-copy sr-only"><h2 id="event-title">Artimañas</h2><p>Muestra de trabajos finales de Taller de Diseño Multimedial V</p><address><strong>28 de Noviembre * 19:00 hrs<br>Sede Fonseca de la Facultad de Artes</strong><br>Diagonal 78 Nº 680 esquina 62<br>La Plata, Buenos Aires, Argentina</address><p>EDICIÓN 2026</p></div>
+  </div></div>
+  <a class="pill event-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina" target="_blank" rel="noopener noreferrer">Ver cómo llegar</a>
+</dialog>
 <dialog id="photo-dialog" class="photo-dialog" aria-label="Detalle de imagen"><button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar imagen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button><img id="photo-image" alt=""><p class="photo-caption" id="photo-caption"></p></dialog>
 <div class="custom-cursor" data-revision="layout-v25" id="custom-cursor" aria-hidden="true"><span class="cursor-label"></span><span class="cursor-scroll" aria-hidden="true"><svg viewBox="0 0 24 28"><rect x="7" y="2" width="10" height="16" rx="5"/><path class="cursor-scroll-wheel" d="M12 5v4"/><path d="m9 23 3 3 3-3"/></svg></span></div>
 <noscript><p style="padding:20px">Podés recorrer las obras. Para abrir los detalles y usar los filtros, activá JavaScript.</p></noscript>
 <script defer data-hero-shader src="js/hero-shader.bundle.js?v=35"></script>
 <script src="js/core.js?v=26"></script>
 <script src="js/work-transition.js?v=27"></script>
-<script src="js/app.js?v=29"></script>
+<script src="js/app.js?v=34"></script>
 <script src="js/cursor.js?v=27"></script>
 
-<script src="js/catalog-preview.js?v=27"></script>
+<script src="js/catalog-preview.js?v=28"></script>
 
 
 

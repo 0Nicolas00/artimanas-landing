@@ -34,7 +34,7 @@
 }
 
 /* Acción flotante del catálogo. */
-.filter-trigger {background:var(--surface-inverted);color:var(--text-inverted);opacity:0;visibility:hidden;pointer-events:none;translate:0 12px;transition:opacity .4s ease,translate .4s ease,visibility 0s .4s}
+.filter-trigger {background:#fff;color:var(--text-inverted);opacity:0;visibility:hidden;pointer-events:none;translate:0 12px;transition:opacity .4s ease,translate .4s ease,visibility 0s .4s}
 .filter-trigger.is-visible {opacity:1;visibility:visible;pointer-events:auto;translate:0 0;transition-delay:0s}
 
 @media(max-width:1100px) {
