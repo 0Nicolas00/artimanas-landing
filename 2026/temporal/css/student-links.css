@@ -1,4 +1,7 @@
 
 /* Los nombres del catálogo abren el detalle lateral y responden también al teclado. */
 .student-list a {width:fit-content;max-width:100%;padding-right:6px;border-radius:5px}
+.student-list a:focus:not(:focus-visible),
+.student-list a[data-pointer-focus]:focus {outline:none}
+.student-list a:focus-visible:not([data-pointer-focus]) {outline:2px solid var(--focus);outline-offset:5px}
 #student-list a,#detail-student-list a {color:#fff;text-shadow:none;filter:none}
