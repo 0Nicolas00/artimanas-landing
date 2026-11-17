@@ -5,3 +5,7 @@
 .student-list a[data-pointer-focus]:focus {outline:none}
 .student-list a:focus-visible:not([data-pointer-focus]) {outline:2px solid var(--focus);outline-offset:5px}
 #student-list a,#detail-student-list a {color:#fff;text-shadow:none;filter:none}
+#student-list a:hover,#detail-student-list a:hover,
+#student-list a[aria-current='true'],#detail-student-list a[aria-current='true'] {
+ text-shadow:0 0 6px rgba(180,120,255,.65),0 0 14px rgba(160,90,245,.4);
+}
