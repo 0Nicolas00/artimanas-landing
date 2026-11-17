@@ -55,7 +55,7 @@ dialog::backdrop {background:#09040c99;backdrop-filter:blur(12px)}
 .event-dialog {width:100%;height:100dvh;margin:0;background:radial-gradient(ellipse at 15% 70%,#402519,transparent 70%),linear-gradient(120deg,#341a2d,#1a1232);display:none;align-items:center;justify-content:center;flex-direction:column;gap:85px;overflow:auto;padding:95px 30px 60px}
 .event-dialog[open] {display:flex}
 .ticket {display:grid;grid-template-columns:250px minmax(280px,350px) 190px;background:#f5f0f5;color:#27202a;border-radius:12px;min-height:280px;transform:rotate(-3deg);box-shadow:0 20px 50px #0002;max-width:90vw}
-.ticket-art {background:url('../assets/d25ec74cb107.webp') center/cover;border-radius:12px 0 0 12px}
+.ticket-art {background:url('../assets/Favicon.webp') center/cover;border-radius:12px 0 0 12px}
 .ticket-copy {padding:28px 25px;display:flex;flex-direction:column}
 .ticket-copy h2 {font-size:20px;font-weight:600;margin:0 0 4px}
 .ticket-subtitle {font-size:13px;line-height:1.4;color:#6c626e;margin:0 0 45px}
