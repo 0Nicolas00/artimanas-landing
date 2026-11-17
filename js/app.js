@@ -431,7 +431,15 @@
     const name=event.target.closest('#student-list a,#detail-student-list a');
     if(!name||event.button!==0||event.pointerType==='touch')return;
     // Native focus can scroll a partially visible row before its click is delivered.
-    event.preventDefault();name.focus({preventScroll:true});
+    event.preventDefault();
+    name.setAttribute('data-pointer-focus','');
+    name.focus({preventScroll:true});
+  });
+  document.addEventListener('keydown',()=>{
+    $$('.student-list a[data-pointer-focus]').forEach(name=>name.removeAttribute('data-pointer-focus'));
+  });
+  document.addEventListener('focusout',event=>{
+    if(event.target.matches('.student-list a'))event.target.removeAttribute('data-pointer-focus');
   });
   document.addEventListener('click',event=>{
     const target=event.target.closest('a,button');if(!target)return;

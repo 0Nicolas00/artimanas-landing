@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useFrame, useStore, useThree } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import HeroBackground, { PALETTES, SHADER_SETTINGS } from '../Hero.jsx';
 
@@ -111,6 +111,7 @@ function ShaderPointerMotion() {
 
 function RendererLifecycle() {
   const { gl, scene, setFrameloop, invalidate } = useThree();
+  const store = useStore();
   const renderedFrames = useRef(0);
   useFrame(() => {
     if (ready || failed || !scene.environment) return;
@@ -128,10 +129,18 @@ function RendererLifecycle() {
     let visible = hero.getBoundingClientRect().bottom > 0;
     const sync = () => {
       const running = visible && !document.hidden && !document.body.classList.contains('modal-open');
-      setFrameloop(running ? 'always' : 'never');
-      if (running) invalidate();
+      const frameloop = running ? 'always' : 'never';
+      if (store.getState().frameloop !== frameloop) {
+        setFrameloop(frameloop);
+        if (running) invalidate();
+      }
       hero.dataset.shaderMotion = running ? 'running' : 'paused';
     };
+    // Canvas reconfigures on scroll/resize and can restore its default "always".
+    // Keep the visibility policy authoritative even after that reconfiguration.
+    const unsubscribe = store.subscribe((state, previous) => {
+      if (state.frameloop !== previous.frameloop) sync();
+    });
     const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); });
     observer.observe(hero);
     const mutations = new MutationObserver(sync);
@@ -141,11 +150,12 @@ function RendererLifecycle() {
     document.addEventListener('visibilitychange', sync);
     sync();
     return () => {
+      unsubscribe();
       observer.disconnect(); mutations.disconnect();
       gl.domElement.removeEventListener('webglcontextlost', lost);
       document.removeEventListener('visibilitychange', sync);
     };
-  }, [gl, setFrameloop, invalidate]);
+  }, [gl, store, setFrameloop, invalidate]);
   return null;
 }
 
