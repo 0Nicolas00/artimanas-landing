@@ -30,7 +30,7 @@ const server=http.createServer((req,res)=>{
  assert.equal(await page.locator('#filter-trigger span').textContent(),'Ir arriba');
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-footer.png')});
  await page.locator('#filter-trigger').click();await page.waitForTimeout(1800);assert(await page.evaluate(()=>scrollY<2));
- await page.locator('[data-open-event]').first().click();assert((await page.locator('#event-dialog a').getAttribute('href')).includes('Calle+62'));
+ await page.locator('[data-open-event]').first().click();assert(new URL(await page.locator('#event-dialog a').getAttribute('href')).searchParams.get('destination').includes('Diagonal 78 Nº 680'));
  await page.locator('#event-dialog [data-close-dialog]').click();await page.waitForTimeout(300);
  // Cursor: point on blank space, large white circle above artwork.
  await page.mouse.move(100,100);assert.equal(await page.locator('.custom-cursor').evaluate(e=>getComputedStyle(e).width),'12px');
@@ -44,15 +44,17 @@ const server=http.createServer((req,res)=>{
  assert(await mobile.evaluate(()=>document.documentElement.scrollWidth===innerWidth));
  await mobile.screenshot({path:path.join(os.tmpdir(),'artimanas-mobile.png')});
  await mobile.evaluate(()=>scrollTo({top:800,behavior:'instant'}));await mobile.waitForTimeout(400);await mobile.locator('#filter-trigger').click();
- await mobile.locator('#tab-alumnos').click();await mobile.locator('input[value="aroza-matias"]').check();
+ assert.equal(await mobile.locator('#filter-dialog input[name="alumno"]').count(),0);
+ await mobile.locator('input[name="categoria"][value="sensorialidad"]').check();
  await mobile.waitForTimeout(450);
  assert(await mobile.evaluate(()=>innerWidth===visualViewport.width&&innerHeight===visualViewport.height));
  assert(await mobile.locator('#filter-dialog').evaluate(e=>e.getBoundingClientRect().bottom<=visualViewport.height+1));
  assert(await mobile.locator('#clear-filters').evaluate(e=>e.getBoundingClientRect().bottom<innerHeight-10));
  await mobile.screenshot({path:path.join(os.tmpdir(),'artimanas-filter.png')});
- assert.equal(await mobile.locator('#apply-filters').textContent(),'Mostrar 1 obra');
+ const filteredCount=await mobile.locator('.work-card[data-category="sensorialidad"]').count();
+ assert.equal(await mobile.locator('#apply-filters').textContent(),`Mostrar ${filteredCount} obras`);
  await mobile.locator('#apply-filters').click();await mobile.waitForTimeout(500);
- assert.equal(await mobile.locator('.work-card:visible').count(),1);
+ assert.equal(await mobile.locator('.work-card:visible').count(),filteredCount);
  // Reset via URL, then test opening the image detail on touch viewport.
  await mobile.goto('http://localhost:8766');await mobile.locator('.work-link').first().click();await mobile.waitForTimeout(1350);
  assert(await mobile.locator('#media-stage img').isVisible());

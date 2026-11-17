@@ -1,0 +1,252 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "ticket": {
+      "top": 308.9879150390625,
+      "left": 318.21429443359375,
+      "width": 803.5713500976562,
+      "height": 320.961669921875
+    },
+    "maps": {
+      "top": 775.96875,
+      "width": 169,
+      "href": "https://www.google.com/maps/dir/?api=1&destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina"
+    },
+    "close": {
+      "top": 64,
+      "right": 64,
+      "width": 44
+    },
+    "address": "28 de Noviembre * 19:00 hrs\nSede Fonseca de la Facultad de Artes\nDiagonal 78 Nº 680 esquina 62\nLa Plata, Buenos Aires, Argentina",
+    "overflow": false,
+    "dialogOverflow": false,
+    "interactions": true,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "height": 900,
+    "ticket": {
+      "top": 107.98665618896484,
+      "left": 239.50987243652344,
+      "width": 288.980224609375,
+      "height": 521.8079833984375
+    },
+    "maps": {
+      "top": 764.96875,
+      "width": 169,
+      "href": "https://www.google.com/maps/dir/?api=1&destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina"
+    },
+    "close": {
+      "top": 64,
+      "right": 32,
+      "width": 44
+    },
+    "address": "28 de Noviembre * 19:00 hrs\nSede Fonseca de la Facultad de Artes\nDiagonal 78 Nº 680 esquina 62\nLa Plata, Buenos Aires, Argentina",
+    "overflow": false,
+    "dialogOverflow": false,
+    "interactions": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 900,
+    "ticket": {
+      "top": 135.98666381835938,
+      "left": 50.5098762512207,
+      "width": 288.980224609375,
+      "height": 521.8079833984375
+    },
+    "maps": {
+      "top": 739.96875,
+      "width": 169,
+      "href": "https://www.google.com/maps/dir/?api=1&destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina"
+    },
+    "close": {
+      "top": 66,
+      "right": 16,
+      "width": 44
+    },
+    "address": "28 de Noviembre * 19:00 hrs\nSede Fonseca de la Facultad de Artes\nDiagonal 78 Nº 680 esquina 62\nLa Plata, Buenos Aires, Argentina",
+    "overflow": false,
+    "dialogOverflow": false,
+    "interactions": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 600,
+    "ticket": {
+      "top": 158.9879150390625,
+      "left": 318.21429443359375,
+      "width": 803.5713500976562,
+      "height": 320.961669921875
+    },
+    "maps": {
+      "top": 511.9375,
+      "width": 169,
+      "href": "https://www.google.com/maps/dir/?api=1&destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina"
+    },
+    "close": {
+      "top": 64,
+      "right": 64,
+      "width": 44
+    },
+    "address": "28 de Noviembre * 19:00 hrs\nSede Fonseca de la Facultad de Artes\nDiagonal 78 Nº 680 esquina 62\nLa Plata, Buenos Aires, Argentina",
+    "overflow": false,
+    "dialogOverflow": false,
+    "interactions": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 1100,
+    "ticket": {
+      "top": 408.9879150390625,
+      "left": 318.21429443359375,
+      "width": 803.5713500976562,
+      "height": 320.961669921875
+    },
+    "maps": {
+      "top": 975.96875,
+      "width": 169,
+      "href": "https://www.google.com/maps/dir/?api=1&destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina"
+    },
+    "close": {
+      "top": 64,
+      "right": 64,
+      "width": 44
+    },
+    "address": "28 de Noviembre * 19:00 hrs\nSede Fonseca de la Facultad de Artes\nDiagonal 78 Nº 680 esquina 62\nLa Plata, Buenos Aires, Argentina",
+    "overflow": false,
+    "dialogOverflow": false,
+    "interactions": true,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "height": 640,
+    "ticket": {
+      "top": 107.98665618896484,
+      "left": 239.50987243652344,
+      "width": 288.980224609375,
+      "height": 521.8079833984375
+    },
+    "maps": {
+      "top": 661.78125,
+      "width": 169,
+      "href": "https://www.google.com/maps/dir/?api=1&destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina"
+    },
+    "close": {
+      "top": 64,
+      "right": 32,
+      "width": 44
+    },
+    "address": "28 de Noviembre * 19:00 hrs\nSede Fonseca de la Facultad de Artes\nDiagonal 78 Nº 680 esquina 62\nLa Plata, Buenos Aires, Argentina",
+    "overflow": false,
+    "dialogOverflow": false,
+    "interactions": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "ticket": {
+      "top": 135.98666381835938,
+      "left": 50.5098762512207,
+      "width": 288.980224609375,
+      "height": 521.8079833984375
+    },
+    "maps": {
+      "top": 689.78125,
+      "width": 169,
+      "href": "https://www.google.com/maps/dir/?api=1&destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina"
+    },
+    "close": {
+      "top": 66,
+      "right": 16,
+      "width": 44
+    },
+    "address": "28 de Noviembre * 19:00 hrs\nSede Fonseca de la Facultad de Artes\nDiagonal 78 Nº 680 esquina 62\nLa Plata, Buenos Aires, Argentina",
+    "overflow": false,
+    "dialogOverflow": false,
+    "interactions": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 500,
+    "ticket": {
+      "top": 135.98666381835938,
+      "left": 50.5098762512207,
+      "width": 288.980224609375,
+      "height": 521.8079833984375
+    },
+    "maps": {
+      "top": 689.78125,
+      "width": 169,
+      "href": "https://www.google.com/maps/dir/?api=1&destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina"
+    },
+    "close": {
+      "top": 66,
+      "right": 16,
+      "width": 44
+    },
+    "address": "28 de Noviembre * 19:00 hrs\nSede Fonseca de la Facultad de Artes\nDiagonal 78 Nº 680 esquina 62\nLa Plata, Buenos Aires, Argentina",
+    "overflow": false,
+    "dialogOverflow": false,
+    "interactions": true,
+    "errors": []
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "ticket": {
+      "top": 135.98666381835938,
+      "left": 15.509876251220703,
+      "width": 288.980224609375,
+      "height": 521.8079833984375
+    },
+    "maps": {
+      "top": 689.78125,
+      "width": 169,
+      "href": "https://www.google.com/maps/dir/?api=1&destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina"
+    },
+    "close": {
+      "top": 66,
+      "right": 16,
+      "width": 44
+    },
+    "address": "28 de Noviembre * 19:00 hrs\nSede Fonseca de la Facultad de Artes\nDiagonal 78 Nº 680 esquina 62\nLa Plata, Buenos Aires, Argentina",
+    "overflow": false,
+    "dialogOverflow": false,
+    "interactions": true,
+    "errors": []
+  },
+  {
+    "width": 1101,
+    "height": 700,
+    "ticket": {
+      "top": 208.9879150390625,
+      "left": 148.71429443359375,
+      "width": 803.5714111328125,
+      "height": 320.961669921875
+    },
+    "maps": {
+      "top": 575.96875,
+      "width": 169,
+      "href": "https://www.google.com/maps/dir/?api=1&destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina"
+    },
+    "close": {
+      "top": 64,
+      "right": 64,
+      "width": 44
+    },
+    "address": "28 de Noviembre * 19:00 hrs\nSede Fonseca de la Facultad de Artes\nDiagonal 78 Nº 680 esquina 62\nLa Plata, Buenos Aires, Argentina",
+    "overflow": false,
+    "dialogOverflow": false,
+    "interactions": true,
+    "errors": []
+  }
+]

@@ -18,7 +18,8 @@
     images:el.dataset.images ? el.dataset.images.split(',').map(v=>v.trim()).filter(Boolean) : [$('img',el).getAttribute('src')],
     research:el.dataset.research
   }));
-  const people = works.map(work=>work.student);
+  const progress=$('#catalog-progress');
+  const filterIconPath=$('#filter-trigger path').getAttribute('d');
   const dialogs = $$('dialog');
   const filterDialog = $('#filter-dialog');
   const workDialog = $('#work-dialog');
@@ -30,7 +31,6 @@
   let effectivePage = 'inicio';
   let previousCountMode = null;
   let countEnded = false;
-  let filterTab = 'categorias';
   let allVisible = works;
   let synchronizing = false;
   let layoutPending = false;
@@ -68,6 +68,10 @@
       if(dialog===filterDialog&&desktop.matches)dialog.show();else dialog.showModal();
     }
     document.body.classList.toggle('modal-open',!(dialog===filterDialog&&desktop.matches));
+    if(dialog.id==='event-dialog'){
+      dialog.scrollTop=0;
+      layoutEventTicket();
+    }
     $('#custom-cursor').style.opacity = '0';
   }
   function restoreFocus() {
@@ -117,6 +121,14 @@
     writeState(p,{overlay:'event',replace:history.state?.overlay==='menu'});
     renderRoute();
   }
+  function layoutEventTicket(){
+    const dialog=$('#event-dialog');
+    if(!dialog.open)return;
+    const ticket=$('.ticket',dialog),rect=ticket.getBoundingClientRect();
+    // Include the rotated edges in normal flow, without shrinking the ticket or its text.
+    dialog.style.setProperty('--ticket-bleed',`${Math.max(0,(rect.height-ticket.offsetHeight)/2)}px`);
+    dialog.style.setProperty('--ticket-outer-height',`${rect.height}px`);
+  }
   function openPhoto(id) {
     const p = clearOverlayParams(params()); p.set('pagina','galeria');p.set('foto',id);
     writeState(p,{overlay:'photo'});renderRoute();
@@ -124,13 +136,20 @@
   function applyFiltersToPage() {
     allVisible = works.filter(work=>core.matches(work,applied,desktop.matches));
     const visibleSlugs = new Set(allVisible.map(work=>work.slug));
+    progress.style.setProperty('--progress-count',allVisible.length);
+    progress.replaceChildren(...allVisible.map(work=>{
+      const mark=document.createElement('span');
+      mark.dataset.progressFor=work.slug;
+      mark.classList.toggle('is-active',work.slug===activeSlug);
+      return mark;
+    }));
     works.forEach(work => { work.el.hidden = !visibleSlugs.has(work.slug); });
     $$('[data-student-for]', $('#student-list')).forEach(link => {
       link.closest('li').hidden = !visibleSlugs.has(link.dataset.studentFor);
     });
     $('#empty-state').hidden = allVisible.length > 0;
     $('#works').hidden = allVisible.length === 0;
-    const count = applied.categories.length + (desktop.matches ? 0 : applied.students.length);
+    const count = applied.categories.length;
     $('#filter-trigger span').textContent = count ? `Filtrar (${count})` : 'Filtrar';
     $('#student-heading').textContent = applied.categories.length === 1 ? `Obras de ${labels[applied.categories[0]]}` : 'Obras por alumno';
     $('#results-status').textContent = `${allVisible.length} ${allVisible.length===1?'obra disponible':'obras disponibles'}`;
@@ -141,7 +160,7 @@
     layoutPending=true;
     requestAnimationFrame(()=>{
       workCards.forEach(card=>{
-        card.style.gridRowEnd=desktop.matches?'auto':`span ${Math.ceil($('.work-link',card).getBoundingClientRect().height+30)}`;
+        card.style.gridRowEnd=desktop.matches?'auto':`span ${Math.ceil($('.work-link',card).getBoundingClientRect().height+40)}`;
       });
       layoutPending=false;
       updateScrollFocus();
@@ -155,30 +174,13 @@
   }
   function renderFilterForm() {
     $$('input[name="categoria"]',filterDialog).forEach(input=>{input.checked=draft.categories.includes(input.value);});
-    $$('input[name="alumno"]',filterDialog).forEach(input=>{input.checked=draft.students.includes(input.value);});
-    $$('input[name="alumno"]',filterDialog).forEach(input=>{
-      input.disabled=!input.checked&&draft.categories.length>0&&!works.some(work=>work.student===input.value&&draft.categories.includes(work.category));
-    });
-    $$('input[name="categoria"]',filterDialog).forEach(input=>{
-      input.disabled=!desktop.matches&&!input.checked&&draft.students.length>0&&!works.some(work=>work.category===input.value&&draft.students.includes(work.student));
-    });
     const count = works.filter(work=>core.matches(work,draft,desktop.matches)).length;
     $('#apply-filters').textContent = `Mostrar ${count} ${count===1?'obra':'obras'}`;
-    const selected = draft.categories.length + (desktop.matches ? 0 : draft.students.length);
+    const selected = draft.categories.length;
     $('#clear-filters').textContent=selected?`Borrar filtros (${selected})`:'Borrar filtros';
     $$('[data-category-count]',filterDialog).forEach(el=>{
-      el.textContent=works.filter(work=>work.category===el.dataset.categoryCount && (desktop.matches || !draft.students.length || draft.students.includes(work.student))).length;
+      el.textContent=works.filter(work=>work.category===el.dataset.categoryCount).length;
     });
-    setFilterTab(desktop.matches ? 'categorias' : filterTab);
-  }
-  function setFilterTab(name) {
-    filterTab=name;
-    $$('.filter-tabs button').forEach(button=>{
-      const active=button.dataset.filterTab===name;
-      button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;
-    });
-    $('#panel-categorias').hidden=name!=='categorias';
-    $('#panel-alumnos').hidden=name!=='alumnos';
   }
   function openFilters() {
     draft={categories:[...applied.categories],students:[...applied.students]};
@@ -203,7 +205,20 @@
     activeSlug=work.slug;
     workCards.forEach(card=>card.classList.toggle('is-active',card===work.el));
     $$('[data-student-for]').forEach(link=>link.setAttribute('aria-current',String(link.dataset.studentFor===work.slug)));
+    $$('[data-progress-for]',progress).forEach(mark=>mark.classList.toggle('is-active',mark.dataset.progressFor===work.slug));
     // The names are an independent list: selection must never move rows under the pointer.
+  }
+  function setDescriptionExpanded(expanded){
+    $('#description-block').classList.toggle('is-expanded',expanded);
+    $('#description-toggle').setAttribute('aria-expanded',String(expanded));
+    $('#description-toggle span').textContent=expanded?'Leer menos':'Leer más';
+  }
+  function updateDescription(){
+    if(!workDialog.open)return;
+    const long=$('#detail-description').scrollHeight>(desktop.matches?304:216)+1;
+    $('#description-block').classList.toggle('is-long',long);
+    $('#description-toggle').hidden=!long;
+    if(!long)setDescriptionExpanded(false);
   }
   function renderWork(slug) {
     const work=works.find(item=>item.slug===slug);
@@ -214,7 +229,12 @@
     const listScroll=wasOpen?$('.detail-students').scrollTop:0;
     activateWork(work);
     $('#detail-title').textContent=work.title;
-    $('#detail-description').textContent=work.description;
+    $('#detail-description').replaceChildren(...work.description.trim().split(/\n\s*\n/).map(text=>{
+      const paragraph=document.createElement('p');paragraph.textContent=text;return paragraph;
+    }));
+    setDescriptionExpanded(false);
+    $('.detail-copy').scrollTop=0;
+    workDialog.scrollTop=0;
     $('#detail-author').textContent=work.author;
     $('#detail-category').textContent=labels[work.category];
     $('.detail-students h3').textContent=$('#student-heading').textContent;
@@ -230,14 +250,16 @@
     if (research) {$('#research-link').href=research;$('#research-link').setAttribute('download','');}
     showDialog(workDialog);
     $('.detail-students').scrollTop=listScroll;
+    updateDescription();
     renderSlide();
     if(wasOpen)detailTransition.change(snapshot);else detailTransition.open(snapshot);
     return true;
   }
   function renderSlide() {
+    const dotsFocused=$('#media-dots').contains(document.activeElement);
     const media=$('#media-stage');media.replaceChildren();
     const slides=currentWork.images.filter(path=>safeMedia(path)).map(src=>({type:'image',src}));
-    if(/^[a-zA-Z0-9_-]{11}$/.test(currentWork.youtube||''))slides.push({type:'video',src:currentWork.youtube});
+    if(/^[a-zA-Z0-9_-]{11}$/.test(currentWork.youtube||''))slides.unshift({type:'video',src:currentWork.youtube});
     const total=slides.length;
     $('#media-counter').hidden=currentWork.imagePending||total===0;
     $('#media-prev').hidden=$('#media-next').hidden=total<2;
@@ -246,6 +268,10 @@
     if(!total){media.textContent='Imagen pendiente';return;}
     slideIndex=(slideIndex+total)%total;
     const slide=slides[slideIndex];
+    $('#media-backdrop').src=safeMedia(slide.type==='image'?slide.src:currentWork.image);
+    const download=$('#media-download');
+    download.hidden=slide.type!=='image'||currentWork.imagePending;
+    if(!download.hidden)download.href=safeMedia(slide.src);else download.removeAttribute('href');
     if(slide.type==='video') {
       const iframe=document.createElement('iframe');
       iframe.src=`https://www.youtube-nocookie.com/embed/${slide.src}?rel=0`;
@@ -264,6 +290,7 @@
       button.setAttribute('aria-current',String(index===slideIndex));
       button.addEventListener('click',()=>{slideIndex=index;renderSlide();});return button;
     }));
+    if(dotsFocused)$('#media-dots [aria-current="true"]')?.focus({preventScroll:true});
   }
   function renderPhoto(id) {
     const button=$$('.gallery-item').find(item=>item.dataset.photo===id);
@@ -305,7 +332,7 @@
       if(link.dataset.pageLink===effectivePage) link.setAttribute('aria-current','page'); else link.removeAttribute('aria-current');
     });
     document.title=effectivePage==='galeria'?'Galería · Artimañas 2026':effectivePage==='404'?'Página no encontrada · Artimañas 2026':'Artimañas 2026 · Muestra de arte interactivo';
-    applied=core.readFilters(p,people);applyFiltersToPage();updateFilterVisibility();
+    applied=core.readFilters(p,[]);applyFiltersToPage();updateFilterVisibility();
     if(p.has('muestra')) showDialog($('#event-dialog'));
     else if(effectivePage==='inicio' && p.has('obra')) renderWork(p.get('obra'));
     else if(effectivePage==='galeria' && p.has('foto')) renderPhoto(p.get('foto'));
@@ -322,9 +349,12 @@
     const action=atFooter?'top':'filters';
     const changed=button.dataset.action!==action;
     button.dataset.action=action;
-    const count=applied.categories.length+(desktop.matches?0:applied.students.length);
+    const count=applied.categories.length;
     $('span',button).textContent=atFooter?'Ir arriba':count?`Filtrar (${count})`:'Filtrar';
-    $('path',button).setAttribute('d',atFooter?'M12 20V4m-7 7 7-7 7 7':'M4 7h16M7 12h10M10 17h4');
+    $('path',button).setAttribute('d',atFooter?'M12 20V4m-7 7 7-7 7 7':filterIconPath);
+    const imagesRect=$('#works').getBoundingClientRect();
+    document.documentElement.style.setProperty('--filter-center',`${imagesRect.width?imagesRect.left+imagesRect.width/2:innerWidth/2}px`);
+    progress.classList.toggle('is-visible',visible&&!atFooter&&allVisible.length>0);
     if(atFooter){button.removeAttribute('aria-haspopup');button.removeAttribute('aria-controls');}
     else {button.setAttribute('aria-haspopup','dialog');button.setAttribute('aria-controls','filter-dialog');}
     if(changed&&visible&&!matchMedia('(prefers-reduced-motion:reduce)').matches)button.animate([{opacity:0,translate:'0 8px'},{opacity:1,translate:'0 0'}],{duration:300,easing:'ease-out'});
@@ -473,7 +503,6 @@
   });
   filterDialog.addEventListener('change',()=>{
     draft.categories=$$('input[name="categoria"]:checked',filterDialog).map(input=>input.value);
-    draft.students=$$('input[name="alumno"]:checked',filterDialog).map(input=>input.value);
     renderFilterForm();if(desktop.matches)commitFilters(true);
   });
   $('#apply-filters').addEventListener('click',()=>{
@@ -482,16 +511,17 @@
   $('#clear-filters').addEventListener('click',()=>{
     draft={categories:[],students:[]};renderFilterForm();if(desktop.matches)commitFilters(true);
   });
-  $$('[data-filter-tab]').forEach(tab=>tab.addEventListener('click',()=>setFilterTab(tab.dataset.filterTab)));
-  $('.filter-tabs').addEventListener('keydown',event=>{
-    if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
-    event.preventDefault();setFilterTab(event.key==='Home'?'categorias':event.key==='End'?'alumnos':filterTab==='categorias'?'alumnos':'categorias');
-    $(`[data-filter-tab="${filterTab}"]`).focus();
-  });
   $('#media-prev').addEventListener('click',()=>{slideIndex--;renderSlide();});
   $('#media-next').addEventListener('click',()=>{slideIndex++;renderSlide();});
   workDialog.addEventListener('keydown',event=>{
     if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();slideIndex+=event.key==='ArrowLeft'?-1:1;renderSlide();}
+  });
+  $('#description-toggle').addEventListener('click',()=>setDescriptionExpanded($('#description-toggle').getAttribute('aria-expanded')!=='true'));
+  new ResizeObserver(updateDescription).observe($('.detail-copy'));
+  document.fonts?.ready.then(updateDescription);
+  window.addEventListener('resize',updateDescription,{passive:true});
+  workDialog.addEventListener('click',event=>{
+    if(event.target===workDialog||event.target.matches('.media-panel,.detail-veil,.work-detail'))dismissDialog(workDialog);
   });
   let swipeX=null;
   $('#media-stage').addEventListener('touchstart',event=>{swipeX=event.changedTouches[0].clientX;},{passive:true});
@@ -504,6 +534,7 @@
     const measures=allVisible.map(work=>{const r=work.el.getBoundingClientRect();return {work,distance:Math.abs(r.top+r.height/2-center)};});
     let nearest=measures[0];
     for(const item of measures){if(item.distance<nearest.distance)nearest=item;}
+    // Curva y tiempos recuperados de ce084de: énfasis continuo según distancia al centro.
     for(const {work,distance} of measures){
       const focus=Math.exp(-Math.pow(distance/(innerHeight*.32),2));
       work.el.style.setProperty('--work-opacity',(0.14+0.86*Math.pow(focus,4)).toFixed(3));
@@ -533,6 +564,9 @@
   window.addEventListener('resize',updateFilterVisibility,{passive:true});
   new MutationObserver(updateFilterVisibility).observe(document.body,{attributes:true,attributeFilter:['class']});
   new ResizeObserver(updateFilterVisibility).observe($('#obras'));
+  new ResizeObserver(layoutEventTicket).observe($('.ticket'));
+  document.fonts?.ready.then(layoutEventTicket);
+  window.addEventListener('resize',layoutEventTicket,{passive:true});
   $$('.work-card img').forEach(img=>img.addEventListener('load',layoutCards));
   document.fonts?.ready.then(layoutCards);
   window.addEventListener('popstate',()=>{renderRoute();if(!dialogs.some(d=>d.open))restoreFocus();});

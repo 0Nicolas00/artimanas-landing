@@ -1,0 +1,2250 @@
+{
+  "content": [
+    {
+      "slug": "microbioespecularis-adam",
+      "category": "alienacion",
+      "pending": true,
+      "title": "Frecuencia Interna",
+      "author": "Adam, Florencia Araceli",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "t-i-t-o-andres",
+      "category": "sensorialidad",
+      "pending": false,
+      "title": "Háptrikas",
+      "author": "Andrés, Guadalupe",
+      "image": "assets/Obras/andres-guadalupe-1.webp"
+    },
+    {
+      "slug": "charca-tecnica-aroza",
+      "category": "alienacion",
+      "pending": true,
+      "title": "Media-TEX",
+      "author": "Aroza, Matias",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "resonancia-besnati",
+      "category": "entorno",
+      "pending": false,
+      "title": "Mimetikami",
+      "author": "Besnati Saldise, Victoria",
+      "image": "assets/Obras/besnati-saldise-victoria-1.webp"
+    },
+    {
+      "slug": "umbral-bigot",
+      "category": "entorno",
+      "pending": true,
+      "title": "Pladi",
+      "author": "Bigot, Juan Martín",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "territorio-sensible-di",
+      "category": "identidad",
+      "pending": true,
+      "title": "Historias que se visten",
+      "author": "Di Bella, Martina",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "fragmentos-de-luz-y-sombra-errecarte",
+      "category": "alienacion",
+      "pending": true,
+      "title": "Detras de la Interfaz",
+      "author": "Errecarte, Juan Ignacio",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "deriva-ferrer",
+      "category": "alienacion",
+      "pending": false,
+      "title": "Prometeo contemporáneo",
+      "author": "Ferrer, Evelyn",
+      "image": "assets/Obras/Obra - Evelyn Ferrer.JPG"
+    },
+    {
+      "slug": "pulso-invisible-galdeano",
+      "category": "sinergia",
+      "pending": true,
+      "title": "Vértices del aparecer",
+      "author": "Galdeano, Sofia",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "ecosistema-fragil-galindez",
+      "category": "entorno",
+      "pending": true,
+      "title": "Eól",
+      "author": "Galindez, Catalina",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "nodo-gamon",
+      "category": "identidad",
+      "pending": true,
+      "title": "Sugerido",
+      "author": "Gamón, Martina",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "cartografia-del-cuerpo-giambruni",
+      "category": "identidad",
+      "pending": false,
+      "title": "Maleable",
+      "author": "Giambruni, Adelina",
+      "image": "assets/Obras/giambruni-adelina-1.webp"
+    },
+    {
+      "slug": "raiz-flotante-gimenez",
+      "category": "sinergia",
+      "pending": true,
+      "title": "Almaxia",
+      "author": "Gimenez, Julia",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "interferencia-grassi",
+      "category": "sensorialidad",
+      "pending": false,
+      "title": "Triedro material: Sonoro",
+      "author": "Grassi, Maria",
+      "image": "assets/Obras/grassi-maria-1.webp"
+    },
+    {
+      "slug": "materia-viva-griguoli",
+      "category": "identidad",
+      "pending": true,
+      "title": "Sinestesia",
+      "author": "Griguoli, Nicolás",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "el-jardin-interior-ignoffo",
+      "category": "identidad",
+      "pending": false,
+      "title": "Fragmentos",
+      "author": "Ignoffo, Lara Belén",
+      "image": "assets/Obras/ignoffo-lara-belen-1.webp"
+    },
+    {
+      "slug": "codigo-abierto-iriarte",
+      "category": "entorno",
+      "pending": true,
+      "title": "Rosty Zone",
+      "author": "Iriarte, Jeremías Daniel",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "sustrato-isasmendi",
+      "category": "alienacion",
+      "pending": false,
+      "title": "Experimental Cognitive Override Technology (E.C.O.T.)",
+      "author": "Isasmendi, Rodrigo",
+      "image": "assets/Obras/Obra_RodrigoIsasmendi1.jpg"
+    },
+    {
+      "slug": "memoria-liquida-la",
+      "category": "sinergia",
+      "pending": true,
+      "title": "Collapso",
+      "author": "La Pioggia, Franco",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "red-lajoinie",
+      "category": "identidad",
+      "pending": true,
+      "title": "La mirada que me define",
+      "author": "Lajoinie, María Delfina",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "horizonte-expandido-magallanes",
+      "category": "entorno",
+      "pending": false,
+      "title": "Tocando Fondo",
+      "author": "Magallanes Diaz, Lara Jazmín",
+      "image": "assets/Obras/LaraMagallanesDiaz.jpg"
+    },
+    {
+      "slug": "organismo-artificial-mansilla",
+      "category": "entorno",
+      "pending": true,
+      "title": "Sincronia",
+      "author": "Mansilla Torres, Nicolas",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "tejido-urbano-migone",
+      "category": "identidad",
+      "pending": true,
+      "title": "Melod.ia",
+      "author": "Migone, Maria Candela",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "simbiosis-orbaiceta",
+      "category": "identidad",
+      "pending": true,
+      "title": "Hasta agotar stock",
+      "author": "Orbaiceta, Catalina",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "capa-profunda-panelli",
+      "category": "alienacion",
+      "pending": true,
+      "title": "AIRE",
+      "author": "Panelli, Dolores",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "latencia-riol",
+      "category": "identidad",
+      "pending": true,
+      "title": "Twinema Paradincaa",
+      "author": "Riol Fernández, Juan Cruz",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "espectro-variable-rojas",
+      "category": "sensorialidad",
+      "pending": true,
+      "title": "tesis.wav",
+      "author": "Rojas Rabassio, Juliana",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "modulo-sensorial-rossetti",
+      "category": "sinergia",
+      "pending": true,
+      "title": "Super Slime Factory",
+      "author": "Rossetti, Matías",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "onda-sago",
+      "category": "sensorialidad",
+      "pending": false,
+      "title": "Galaxia",
+      "author": "Sago, Suyay",
+      "image": "assets/Obras/Obra - Suyay Sago-3.jpg"
+    },
+    {
+      "slug": "punto-de-fuga-segundo",
+      "category": "sensorialidad",
+      "pending": true,
+      "title": "engrai²S",
+      "author": "Segundo, Tatiana",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "transicion-triolo",
+      "category": "alienacion",
+      "pending": true,
+      "title": "Seraph.exe",
+      "author": "Triolo, Valentina",
+      "image": "assets/imagen-pendiente.svg"
+    },
+    {
+      "slug": "habitat-inmersivo-ubaldi",
+      "category": "sensorialidad",
+      "pending": false,
+      "title": "Nimbo",
+      "author": "Ubaldi, Guadalupe",
+      "image": "assets/Obras/ubaldi-guadalupe-1.webp"
+    }
+  ],
+  "results": [
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "column": {
+        "left": 440,
+        "width": 560
+      },
+      "filter": {
+        "background": "rgb(255, 255, 255)",
+        "height": 44,
+        "bottom": 48,
+        "center": 720
+      },
+      "images": [
+        {
+          "slug": "microbioespecularis-adam",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "t-i-t-o-andres",
+          "width": 559.96875,
+          "height": 315.6875,
+          "naturalRatio": 1.7738359201773837,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "charca-tecnica-aroza",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "resonancia-besnati",
+          "width": 560,
+          "height": 700,
+          "naturalRatio": 0.8,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "umbral-bigot",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "territorio-sensible-di",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "fragmentos-de-luz-y-sombra-errecarte",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "deriva-ferrer",
+          "width": 559.984375,
+          "height": 373.328125,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "pulso-invisible-galdeano",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "ecosistema-fragil-galindez",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "nodo-gamon",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "cartografia-del-cuerpo-giambruni",
+          "width": 416.859375,
+          "height": 740,
+          "naturalRatio": 0.5633333333333334,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "raiz-flotante-gimenez",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "interferencia-grassi",
+          "width": 555,
+          "height": 740,
+          "naturalRatio": 0.75,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "materia-viva-griguoli",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "el-jardin-interior-ignoffo",
+          "width": 559.984375,
+          "height": 373.328125,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "codigo-abierto-iriarte",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "sustrato-isasmendi",
+          "width": 552.53125,
+          "height": 740,
+          "naturalRatio": 0.7466666666666667,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "memoria-liquida-la",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "red-lajoinie",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "horizonte-expandido-magallanes",
+          "width": 503.078125,
+          "height": 740,
+          "naturalRatio": 0.67984934086629,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "organismo-artificial-mansilla",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "tejido-urbano-migone",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "simbiosis-orbaiceta",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "capa-profunda-panelli",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "latencia-riol",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "espectro-variable-rojas",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "modulo-sensorial-rossetti",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "onda-sago",
+          "width": 560,
+          "height": 420.4375,
+          "naturalRatio": 1.331945889698231,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "punto-de-fuga-segundo",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "transicion-triolo",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "habitat-inmersivo-ubaldi",
+          "width": 493.328125,
+          "height": 740,
+          "naturalRatio": 0.6666666666666666,
+          "opacity": "1",
+          "transform": "none"
+        }
+      ],
+      "progress": 32,
+      "filterInputs": [
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria"
+      ],
+      "progressFollowsScroll": true,
+      "detailRestored": true,
+      "errors": []
+    },
+    {
+      "width": 768,
+      "height": 900,
+      "overflow": false,
+      "column": {
+        "left": 32,
+        "width": 704
+      },
+      "filter": {
+        "background": "rgb(255, 255, 255)",
+        "height": 44,
+        "bottom": 40,
+        "center": 384
+      },
+      "images": [
+        {
+          "slug": "microbioespecularis-adam",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "t-i-t-o-andres",
+          "width": 340,
+          "height": 191.671875,
+          "naturalRatio": 1.7738359201773837,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "charca-tecnica-aroza",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "resonancia-besnati",
+          "width": 340,
+          "height": 425,
+          "naturalRatio": 0.8,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "umbral-bigot",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "territorio-sensible-di",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "fragmentos-de-luz-y-sombra-errecarte",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "deriva-ferrer",
+          "width": 340,
+          "height": 226.65625,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "pulso-invisible-galdeano",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "ecosistema-fragil-galindez",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "nodo-gamon",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "cartografia-del-cuerpo-giambruni",
+          "width": 340,
+          "height": 603.546875,
+          "naturalRatio": 0.5633333333333334,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "raiz-flotante-gimenez",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "interferencia-grassi",
+          "width": 340,
+          "height": 453.328125,
+          "naturalRatio": 0.75,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "materia-viva-griguoli",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "el-jardin-interior-ignoffo",
+          "width": 340,
+          "height": 226.65625,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "codigo-abierto-iriarte",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "sustrato-isasmendi",
+          "width": 340,
+          "height": 455.34375,
+          "naturalRatio": 0.7466666666666667,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "memoria-liquida-la",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "red-lajoinie",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "horizonte-expandido-magallanes",
+          "width": 340,
+          "height": 500.109375,
+          "naturalRatio": 0.67984934086629,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "organismo-artificial-mansilla",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "tejido-urbano-migone",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "simbiosis-orbaiceta",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "capa-profunda-panelli",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "latencia-riol",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "espectro-variable-rojas",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "modulo-sensorial-rossetti",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "onda-sago",
+          "width": 340,
+          "height": 255.265625,
+          "naturalRatio": 1.331945889698231,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "punto-de-fuga-segundo",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "transicion-triolo",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "habitat-inmersivo-ubaldi",
+          "width": 340,
+          "height": 510,
+          "naturalRatio": 0.6666666666666666,
+          "opacity": "1",
+          "transform": "none"
+        }
+      ],
+      "progress": 32,
+      "filterInputs": [
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria"
+      ],
+      "namesReadable": true,
+      "detailRestored": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "height": 900,
+      "overflow": false,
+      "column": {
+        "left": 16,
+        "width": 358
+      },
+      "filter": {
+        "background": "rgb(255, 255, 255)",
+        "height": 44,
+        "bottom": 40,
+        "center": 195
+      },
+      "images": [
+        {
+          "slug": "microbioespecularis-adam",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "t-i-t-o-andres",
+          "width": 167,
+          "height": 94.140625,
+          "naturalRatio": 1.7738359201773837,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "charca-tecnica-aroza",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "resonancia-besnati",
+          "width": 167,
+          "height": 208.75,
+          "naturalRatio": 0.8,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "umbral-bigot",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "territorio-sensible-di",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "fragmentos-de-luz-y-sombra-errecarte",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "deriva-ferrer",
+          "width": 167,
+          "height": 111.328125,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "pulso-invisible-galdeano",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "ecosistema-fragil-galindez",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "nodo-gamon",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "cartografia-del-cuerpo-giambruni",
+          "width": 167,
+          "height": 296.4375,
+          "naturalRatio": 0.5633333333333334,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "raiz-flotante-gimenez",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "interferencia-grassi",
+          "width": 167,
+          "height": 222.65625,
+          "naturalRatio": 0.75,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "materia-viva-griguoli",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "el-jardin-interior-ignoffo",
+          "width": 167,
+          "height": 111.328125,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "codigo-abierto-iriarte",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "sustrato-isasmendi",
+          "width": 167,
+          "height": 223.65625,
+          "naturalRatio": 0.7466666666666667,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "memoria-liquida-la",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "red-lajoinie",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "horizonte-expandido-magallanes",
+          "width": 167,
+          "height": 245.640625,
+          "naturalRatio": 0.67984934086629,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "organismo-artificial-mansilla",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "tejido-urbano-migone",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "simbiosis-orbaiceta",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "capa-profunda-panelli",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "latencia-riol",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "espectro-variable-rojas",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "modulo-sensorial-rossetti",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "onda-sago",
+          "width": 167,
+          "height": 125.375,
+          "naturalRatio": 1.331945889698231,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "punto-de-fuga-segundo",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "transicion-triolo",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "habitat-inmersivo-ubaldi",
+          "width": 167,
+          "height": 250.5,
+          "naturalRatio": 0.6666666666666666,
+          "opacity": "1",
+          "transform": "none"
+        }
+      ],
+      "progress": 32,
+      "filterInputs": [
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria"
+      ],
+      "namesReadable": true,
+      "detailRestored": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "height": 600,
+      "overflow": false,
+      "column": {
+        "left": 440,
+        "width": 560
+      },
+      "filter": {
+        "background": "rgb(255, 255, 255)",
+        "height": 44,
+        "bottom": 48,
+        "center": 720
+      },
+      "images": [
+        {
+          "slug": "microbioespecularis-adam",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "t-i-t-o-andres",
+          "width": 559.96875,
+          "height": 315.6875,
+          "naturalRatio": 1.7738359201773837,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "charca-tecnica-aroza",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "resonancia-besnati",
+          "width": 352,
+          "height": 440,
+          "naturalRatio": 0.8,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "umbral-bigot",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "territorio-sensible-di",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "fragmentos-de-luz-y-sombra-errecarte",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "deriva-ferrer",
+          "width": 559.984375,
+          "height": 373.328125,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "pulso-invisible-galdeano",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "ecosistema-fragil-galindez",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "nodo-gamon",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "cartografia-del-cuerpo-giambruni",
+          "width": 247.859375,
+          "height": 440,
+          "naturalRatio": 0.5633333333333334,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "raiz-flotante-gimenez",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "interferencia-grassi",
+          "width": 330,
+          "height": 440,
+          "naturalRatio": 0.75,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "materia-viva-griguoli",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "el-jardin-interior-ignoffo",
+          "width": 559.984375,
+          "height": 373.328125,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "codigo-abierto-iriarte",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "sustrato-isasmendi",
+          "width": 328.53125,
+          "height": 440,
+          "naturalRatio": 0.7466666666666667,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "memoria-liquida-la",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "red-lajoinie",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "horizonte-expandido-magallanes",
+          "width": 299.125,
+          "height": 440,
+          "naturalRatio": 0.67984934086629,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "organismo-artificial-mansilla",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "tejido-urbano-migone",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "simbiosis-orbaiceta",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "capa-profunda-panelli",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "latencia-riol",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "espectro-variable-rojas",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "modulo-sensorial-rossetti",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "onda-sago",
+          "width": 560,
+          "height": 420.4375,
+          "naturalRatio": 1.331945889698231,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "punto-de-fuga-segundo",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "transicion-triolo",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "habitat-inmersivo-ubaldi",
+          "width": 293.328125,
+          "height": 440,
+          "naturalRatio": 0.6666666666666666,
+          "opacity": "1",
+          "transform": "none"
+        }
+      ],
+      "progress": 32,
+      "filterInputs": [
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria"
+      ],
+      "progressFollowsScroll": true,
+      "detailRestored": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "height": 1100,
+      "overflow": false,
+      "column": {
+        "left": 440,
+        "width": 560
+      },
+      "filter": {
+        "background": "rgb(255, 255, 255)",
+        "height": 44,
+        "bottom": 48,
+        "center": 720
+      },
+      "images": [
+        {
+          "slug": "microbioespecularis-adam",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "t-i-t-o-andres",
+          "width": 559.96875,
+          "height": 315.6875,
+          "naturalRatio": 1.7738359201773837,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "charca-tecnica-aroza",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "resonancia-besnati",
+          "width": 560,
+          "height": 700,
+          "naturalRatio": 0.8,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "umbral-bigot",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "territorio-sensible-di",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "fragmentos-de-luz-y-sombra-errecarte",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "deriva-ferrer",
+          "width": 559.984375,
+          "height": 373.328125,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "pulso-invisible-galdeano",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "ecosistema-fragil-galindez",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "nodo-gamon",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "cartografia-del-cuerpo-giambruni",
+          "width": 529.53125,
+          "height": 940,
+          "naturalRatio": 0.5633333333333334,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "raiz-flotante-gimenez",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "interferencia-grassi",
+          "width": 559.984375,
+          "height": 746.65625,
+          "naturalRatio": 0.75,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "materia-viva-griguoli",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "el-jardin-interior-ignoffo",
+          "width": 559.984375,
+          "height": 373.328125,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "codigo-abierto-iriarte",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "sustrato-isasmendi",
+          "width": 560,
+          "height": 750,
+          "naturalRatio": 0.7466666666666667,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "memoria-liquida-la",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "red-lajoinie",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "horizonte-expandido-magallanes",
+          "width": 559.984375,
+          "height": 823.703125,
+          "naturalRatio": 0.67984934086629,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "organismo-artificial-mansilla",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "tejido-urbano-migone",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "simbiosis-orbaiceta",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "capa-profunda-panelli",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "latencia-riol",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "espectro-variable-rojas",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "modulo-sensorial-rossetti",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "onda-sago",
+          "width": 560,
+          "height": 420.4375,
+          "naturalRatio": 1.331945889698231,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "punto-de-fuga-segundo",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "transicion-triolo",
+          "width": 559.984375,
+          "height": 373.515625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "habitat-inmersivo-ubaldi",
+          "width": 560,
+          "height": 840,
+          "naturalRatio": 0.6666666666666666,
+          "opacity": "1",
+          "transform": "none"
+        }
+      ],
+      "progress": 32,
+      "filterInputs": [
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria"
+      ],
+      "progressFollowsScroll": true,
+      "detailRestored": true,
+      "errors": []
+    },
+    {
+      "width": 768,
+      "height": 640,
+      "overflow": false,
+      "column": {
+        "left": 32,
+        "width": 704
+      },
+      "filter": {
+        "background": "rgb(255, 255, 255)",
+        "height": 44,
+        "bottom": 40,
+        "center": 384
+      },
+      "images": [
+        {
+          "slug": "microbioespecularis-adam",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "t-i-t-o-andres",
+          "width": 340,
+          "height": 191.671875,
+          "naturalRatio": 1.7738359201773837,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "charca-tecnica-aroza",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "resonancia-besnati",
+          "width": 340,
+          "height": 425,
+          "naturalRatio": 0.8,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "umbral-bigot",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "territorio-sensible-di",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "fragmentos-de-luz-y-sombra-errecarte",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "deriva-ferrer",
+          "width": 340,
+          "height": 226.65625,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "pulso-invisible-galdeano",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "ecosistema-fragil-galindez",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "nodo-gamon",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "cartografia-del-cuerpo-giambruni",
+          "width": 340,
+          "height": 603.546875,
+          "naturalRatio": 0.5633333333333334,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "raiz-flotante-gimenez",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "interferencia-grassi",
+          "width": 340,
+          "height": 453.328125,
+          "naturalRatio": 0.75,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "materia-viva-griguoli",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "el-jardin-interior-ignoffo",
+          "width": 340,
+          "height": 226.65625,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "codigo-abierto-iriarte",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "sustrato-isasmendi",
+          "width": 340,
+          "height": 455.34375,
+          "naturalRatio": 0.7466666666666667,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "memoria-liquida-la",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "red-lajoinie",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "horizonte-expandido-magallanes",
+          "width": 340,
+          "height": 500.109375,
+          "naturalRatio": 0.67984934086629,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "organismo-artificial-mansilla",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "tejido-urbano-migone",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "simbiosis-orbaiceta",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "capa-profunda-panelli",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "latencia-riol",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "espectro-variable-rojas",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "modulo-sensorial-rossetti",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "onda-sago",
+          "width": 340,
+          "height": 255.265625,
+          "naturalRatio": 1.331945889698231,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "punto-de-fuga-segundo",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "transicion-triolo",
+          "width": 340,
+          "height": 226.765625,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "habitat-inmersivo-ubaldi",
+          "width": 340,
+          "height": 510,
+          "naturalRatio": 0.6666666666666666,
+          "opacity": "1",
+          "transform": "none"
+        }
+      ],
+      "progress": 32,
+      "filterInputs": [
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria"
+      ],
+      "namesReadable": true,
+      "detailRestored": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "height": 700,
+      "overflow": false,
+      "column": {
+        "left": 16,
+        "width": 358
+      },
+      "filter": {
+        "background": "rgb(255, 255, 255)",
+        "height": 44,
+        "bottom": 40,
+        "center": 195
+      },
+      "images": [
+        {
+          "slug": "microbioespecularis-adam",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "t-i-t-o-andres",
+          "width": 167,
+          "height": 94.140625,
+          "naturalRatio": 1.7738359201773837,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "charca-tecnica-aroza",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "resonancia-besnati",
+          "width": 167,
+          "height": 208.75,
+          "naturalRatio": 0.8,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "umbral-bigot",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "territorio-sensible-di",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "fragmentos-de-luz-y-sombra-errecarte",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "deriva-ferrer",
+          "width": 167,
+          "height": 111.328125,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "pulso-invisible-galdeano",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "ecosistema-fragil-galindez",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "nodo-gamon",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "cartografia-del-cuerpo-giambruni",
+          "width": 167,
+          "height": 296.4375,
+          "naturalRatio": 0.5633333333333334,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "raiz-flotante-gimenez",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "interferencia-grassi",
+          "width": 167,
+          "height": 222.65625,
+          "naturalRatio": 0.75,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "materia-viva-griguoli",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "el-jardin-interior-ignoffo",
+          "width": 167,
+          "height": 111.328125,
+          "naturalRatio": 1.5,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "codigo-abierto-iriarte",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "sustrato-isasmendi",
+          "width": 167,
+          "height": 223.65625,
+          "naturalRatio": 0.7466666666666667,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "memoria-liquida-la",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "red-lajoinie",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "horizonte-expandido-magallanes",
+          "width": 167,
+          "height": 245.640625,
+          "naturalRatio": 0.67984934086629,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "organismo-artificial-mansilla",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "tejido-urbano-migone",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "simbiosis-orbaiceta",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "capa-profunda-panelli",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "latencia-riol",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "espectro-variable-rojas",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "modulo-sensorial-rossetti",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "onda-sago",
+          "width": 167,
+          "height": 125.375,
+          "naturalRatio": 1.331945889698231,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "punto-de-fuga-segundo",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "transicion-triolo",
+          "width": 167,
+          "height": 111.375,
+          "naturalRatio": 1.4992503748125936,
+          "opacity": "1",
+          "transform": "none"
+        },
+        {
+          "slug": "habitat-inmersivo-ubaldi",
+          "width": 167,
+          "height": 250.5,
+          "naturalRatio": 0.6666666666666666,
+          "opacity": "1",
+          "transform": "none"
+        }
+      ],
+      "progress": 32,
+      "filterInputs": [
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria",
+        "categoria"
+      ],
+      "namesReadable": true,
+      "detailRestored": true,
+      "errors": []
+    }
+  ]
+}

@@ -65,6 +65,7 @@ async function main() {
           return [...document.querySelectorAll('body *')].filter(element => {
             if (element.matches('.sr-only,.star,.marquee-track i') || !element.getClientRects().length || ![...element.childNodes].some(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim())) return false;
             const style = getComputedStyle(element);
+            if (innerWidth<=1100 && element.matches('.work-author') && style.fontSize==='12px' && style.lineHeight==='16px') return false; // TB-02 / MB-04 override G-02 here.
             return !scale.has(`${style.fontSize}/${style.lineHeight}`);
           }).map(element => ({ tag: element.tagName, className: element.className }));
         });
@@ -202,16 +203,16 @@ async function main() {
           await page.goto('http://127.0.0.1:8977/?heroTest=static');
           await page.evaluate(() => scrollTo({ top: 1300, behavior: 'instant' }));
           await page.locator('#filter-trigger').click();
-          await page.locator('#tab-alumnos').click();
-          const clippedFilters = await page.locator('#panel-alumnos label span').evaluateAll(elements => elements.filter(element => {
+          assert.equal(await page.locator('#filter-dialog input[name="alumno"]').count(), 0);
+          const clippedFilters = await page.locator('#panel-categorias label span').evaluateAll(elements => elements.filter(element => {
             const range = document.createRange();
             range.selectNodeContents(element);
             const text = range.getBoundingClientRect();
-            const panel = element.closest('#panel-alumnos').getBoundingClientRect();
+            const panel = element.closest('#panel-categorias').getBoundingClientRect();
             return text.left < panel.left || text.right > panel.right;
           }).map(element => element.textContent));
           assert.deepEqual(clippedFilters, []);
-          measurements.filterNamesReadable = true;
+          measurements.filterCategoriesReadable = true;
         }
         if (width === 1440) {
           await page.goto('http://127.0.0.1:8977/?obra=umbral-bigot&heroTest=static');

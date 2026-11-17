@@ -25,6 +25,9 @@ const server=http.createServer((req,res)=>{
  const centerError=await page.locator(`[data-slug="${slug}"]`).evaluate(e=>{const r=e.getBoundingClientRect();return Math.abs(r.top+r.height/2-innerHeight/2);});
  assert(centerError<2,`Selected artwork centered before opening: ${centerError}`);
  assert.equal(new URL(page.url()).searchParams.get('obra'),slug);
+ assert.equal(await page.locator('#catalog-progress .is-active').getAttribute('data-progress-for'),slug);
+ assert.equal(await page.locator('#student-list a[aria-current="true"]').getAttribute('data-open-work'),slug);
+ assert(await page.locator(`[data-slug="${slug}"]`).evaluate(card=>Number(card.style.getPropertyValue('--work-opacity'))>.99&&Number(card.style.getPropertyValue('--work-scale'))>1.37));
  const namesStable=()=>{
    const list=document.querySelector('.detail-students');
    const rect=list.querySelector('h3').getBoundingClientRect();
@@ -48,7 +51,7 @@ const server=http.createServer((req,res)=>{
  assert.equal(new URL(page.url()).searchParams.get('obra'),latest);
  await page.keyboard.press('Escape');await page.waitForTimeout(550);
  await page.evaluate(()=>scrollTo({top:1300,behavior:'instant'}));await page.waitForTimeout(900);
- const square=await page.locator('.work-card.is-active img').evaluate(e=>{const r=e.getBoundingClientRect();return Math.abs(r.width-r.height)<1;});assert(square);
+ const originalRatio=await page.locator('.work-card.is-active img').evaluate(e=>{const r=e.getBoundingClientRect();return Math.abs(r.width/r.height/(e.naturalWidth/e.naturalHeight)-1)<.003;});assert(originalRatio);
  await page.locator('.work-card.is-active .work-link').click();
  assert.equal(await page.locator('#work-dialog').getAttribute('data-phase'),'composing');
  assert.equal(await page.locator('.detail-neighbor').first().evaluate(e=>getComputedStyle(e).filter),'blur(0px)');
@@ -136,7 +139,7 @@ const server=http.createServer((req,res)=>{
    await page.waitForTimeout(500);
  }
  const mobile=await make({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
- assert(await mobile.locator('.work-card img').first().evaluate(e=>Math.abs(e.clientWidth-e.clientHeight)<1));
+ assert(await mobile.locator('.work-card img').first().evaluate(e=>{const r=e.getBoundingClientRect();return Math.abs(r.width/r.height/(e.naturalWidth/e.naturalHeight)-1)<.003;}));
  await mobile.evaluate(()=>scrollTo({top:650,behavior:'instant'}));await mobile.waitForTimeout(500);
  const staticBefore=await mobile.locator('.work-card img').nth(1).boundingBox();
  await mobile.locator('.work-link').first().click();
@@ -155,7 +158,7 @@ const server=http.createServer((req,res)=>{
  assert(await mobile.evaluate(()=>innerWidth===visualViewport.width));
  assert(await mobile.locator('#media-stage img').isVisible());
  await mobile.screenshot({path:path.join(os.tmpdir(),'artimanas-mobile-detail-v24.png')});
- console.log(JSON.stringify({errors,badResources,checks:'square cards, staged opening and delayed blur, slide from left, compact margins, interruption, history, pop, reduced motion, mobile detail'},null,2));
+ console.log(JSON.stringify({errors,badResources,checks:'original image ratios, staged opening and delayed blur, slide from left, compact margins, interruption, history, pop, reduced motion, mobile detail'},null,2));
  assert.deepEqual(errors,[]);assert.deepEqual(badResources,[]);
  await browser.close();server.close();
 })().catch(e=>{console.error(e);process.exit(1)});

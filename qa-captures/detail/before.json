@@ -1,0 +1,128 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "overflow": false,
+    "panel": {
+      "left": 320,
+      "width": 318,
+      "padding": "24px 20px",
+      "gap": "normal"
+    },
+    "close": {
+      "top": 24,
+      "right": 24,
+      "width": 44
+    },
+    "fullScreen": true,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "height": 900,
+    "overflow": false,
+    "panel": {
+      "left": 0,
+      "width": 307.1875,
+      "padding": "24px 20px",
+      "gap": "normal"
+    },
+    "close": {
+      "top": 24,
+      "right": 24,
+      "width": 44
+    },
+    "fullScreen": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 900,
+    "overflow": false,
+    "panel": {
+      "left": 0,
+      "width": 390,
+      "padding": "16px 16px 30px",
+      "gap": "normal"
+    },
+    "close": {
+      "top": 14,
+      "right": 16,
+      "width": 36
+    },
+    "fullScreen": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 600,
+    "overflow": false,
+    "panel": {
+      "left": 320,
+      "width": 318,
+      "padding": "24px 20px",
+      "gap": "normal"
+    },
+    "close": {
+      "top": 24,
+      "right": 24,
+      "width": 44
+    },
+    "fullScreen": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 1100,
+    "overflow": false,
+    "panel": {
+      "left": 320,
+      "width": 318,
+      "padding": "24px 20px",
+      "gap": "normal"
+    },
+    "close": {
+      "top": 24,
+      "right": 24,
+      "width": 44
+    },
+    "fullScreen": true,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "height": 640,
+    "overflow": false,
+    "panel": {
+      "left": 0,
+      "width": 307.1875,
+      "padding": "24px 20px",
+      "gap": "normal"
+    },
+    "close": {
+      "top": 24,
+      "right": 24,
+      "width": 44
+    },
+    "fullScreen": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "overflow": false,
+    "panel": {
+      "left": 0,
+      "width": 390,
+      "padding": "16px 16px 30px",
+      "gap": "normal"
+    },
+    "close": {
+      "top": 14,
+      "right": 16,
+      "width": 36
+    },
+    "fullScreen": true,
+    "errors": []
+  }
+]

@@ -1,5 +1,5 @@
 import { build } from 'esbuild';
-import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 // Extract only the palette literal from Hero.jsx; do not ship React in the head.
 const paletteSource = (await readFile('Hero.jsx', 'utf8')).match(/export const PALETTES = \[[\s\S]*?\n\];/)?.[0];
 if (!paletteSource) throw new Error('No se encontró PALETTES en Hero.jsx.');
@@ -30,4 +30,16 @@ await mkdir('dist', { recursive: true });
 for (const name of ['index.html', 'css', 'js', 'assets']) {
   await cp(name, `dist/${name}`, { recursive: true });
 }
+// GitHub Pages serves Git blobs with LF; make the production artifact byte-identical.
+async function normalizeText(directory) {
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const file = `${directory}/${entry.name}`;
+    if (entry.isDirectory()) await normalizeText(file);
+    else if (/\.(html|css|js|svg|txt|md)$/i.test(entry.name)) {
+      const content = await readFile(file, 'utf8');
+      if (content.includes('\r\n')) await writeFile(file, content.replace(/\r\n/g, '\n'));
+    }
+  }
+}
+await normalizeText('dist');
 console.log('Netlify: subir la carpeta dist/');

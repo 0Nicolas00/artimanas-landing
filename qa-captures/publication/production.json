@@ -1,0 +1,36 @@
+{
+  "base": "http://127.0.0.1:8983/",
+  "checkedFiles": 55,
+  "hashedFiles": 11,
+  "results": [
+    {
+      "width": 1440,
+      "shader": true,
+      "catalog": true,
+      "filters": true,
+      "detail": true,
+      "scrollRestored": true,
+      "ticket": true
+    },
+    {
+      "width": 768,
+      "shader": true,
+      "catalog": true,
+      "filters": true,
+      "detail": true,
+      "scrollRestored": true,
+      "ticket": true
+    },
+    {
+      "width": 390,
+      "shader": true,
+      "catalog": true,
+      "filters": true,
+      "detail": true,
+      "scrollRestored": true,
+      "ticket": true
+    }
+  ],
+  "errors": [],
+  "bad": []
+}

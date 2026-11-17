@@ -30,14 +30,14 @@ const server=http.createServer((req,res)=>{
    assert.equal(await page.locator('.hero-shade').count(),0);
    assert.equal(await page.locator('.hero').getAttribute('data-pointer-follow'),'false');
    await page.mouse.move(700,180);await page.waitForTimeout(750);
-   assert(await page.locator('#obras').evaluate(e=>Number(e.style.getPropertyValue('--catalog-opacity'))<.5));
+   assert(await page.locator('.work-card img').evaluateAll(images=>images.every(image=>getComputedStyle(image).transform!=='none'&&Number(getComputedStyle(image).opacity)>=.14)));
  }
  await page.mouse.move(700,cueY);await page.waitForTimeout(650);
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-preview-v24.png')});
  // Mouse focus on a name must not latch the hover effect after returning to the hero.
  await page.locator('#student-list a').first().evaluate(e=>e.focus({preventScroll:true}));
  await page.mouse.move(700,180);await page.waitForTimeout(750);
- assert(await page.locator('#obras').evaluate(e=>Number(e.style.getPropertyValue('--catalog-opacity'))<.5));
+ assert(await page.locator('.work-card img').evaluateAll(images=>images.every(image=>getComputedStyle(image).transform!=='none'&&Number(getComputedStyle(image).opacity)>=.14)));
  await page.evaluate(()=>scrollTo({top:1300,behavior:'instant'}));await page.waitForTimeout(900);
  assert(!await page.locator('#obras').evaluate(e=>e.classList.contains('is-preview')));
  assert.equal(await page.locator('#student-list').evaluate(e=>getComputedStyle(e).filter),'none');
@@ -61,7 +61,7 @@ const server=http.createServer((req,res)=>{
  await page.setViewportSize({width:390,height:844});
  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await page.waitForTimeout(1000);
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-hero-mobile-v24.png')});
- console.log(JSON.stringify({errors,badResources,checks:'hero label, preview blur, repeated pointer-only hover, scroll cursor, stale focus, partial name click, stable list'},null,2));
+ console.log(JSON.stringify({errors,badResources,checks:'hero label, desktop slide hierarchy, repeated pointer-only hover, scroll cursor, stale focus, partial name click, stable list'},null,2));
  assert.deepEqual(errors,[]);assert.deepEqual(badResources,[]);
  await browser.close();server.close();
 })().catch(e=>{console.error(e);process.exit(1)});

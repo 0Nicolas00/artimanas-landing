@@ -1,0 +1,10 @@
+[
+  {
+    "fixtures": true,
+    "videoFirst": true,
+    "researchDownload": true,
+    "readLess": true,
+    "resize": true,
+    "mobileBackgroundClose": true
+  }
+]
