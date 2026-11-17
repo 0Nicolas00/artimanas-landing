@@ -3,11 +3,15 @@
 Repositorio: `0Nicolas00/artimanas-landing`.
 
 - Rama para seguir trabajando: `trabajo/2026`.
+- Rama predeterminada y base estable: `main`.
 - Rama de publicación independiente: `gh-pages`.
+- Fuente de GitHub Pages: raíz de `gh-pages` (`/`).
 - Carpeta del sitio temporal en esa rama: `2026/temporal/`.
 - Dirección de la copia: `https://0nicolas00.github.io/artimanas-landing/2026/temporal/`.
 
 Los cambios en `trabajo/2026` no actualizan la copia publicada. La publicación cambia únicamente cuando se actualiza `gh-pages`.
+
+`main` conserva la versión estable del código actual. Los prototipos anteriores se conservan en el historial de Git. La rama `gh-pages` contiene la carpeta `2026/temporal/`, `.nojekyll` y su guía de publicación.
 
 La copia contiene el HTML, CSS, JavaScript compilado y los archivos de `assets/`, incluidas las fotos en `assets/Obras/` y los mapas HDR del shader. Se conservan las rutas relativas para funcionar dentro de la subcarpeta de Pages.
 

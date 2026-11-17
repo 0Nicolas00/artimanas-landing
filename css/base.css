@@ -1,5 +1,5 @@
 
-/* Base compartida. Los valores aproximados desde PDF se documentan en docs/analisis.html. */
+/* Base compartida del sitio. */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bitcount+Prop+Single:wght@400&family=Bitcount+Single:wght@400&display=swap');
 :root {
   color-scheme: dark;
