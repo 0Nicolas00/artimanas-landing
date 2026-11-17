@@ -211,7 +211,7 @@
     const wasOpen=workDialog.open;
     const snapshot=detailTransition.capture(work.el);
     currentWork=work;slideIndex=0;
-    const listScroll=$('.detail-students').scrollTop;
+    const listScroll=wasOpen?$('.detail-students').scrollTop:0;
     activateWork(work);
     $('#detail-title').textContent=work.title;
     $('#detail-description').textContent=work.description;
@@ -229,6 +229,7 @@
     $('#research-pending').hidden=Boolean(research);
     if (research) {$('#research-link').href=research;$('#research-link').setAttribute('download','');}
     showDialog(workDialog);
+    $('.detail-students').scrollTop=listScroll;
     renderSlide();
     if(wasOpen)detailTransition.change(snapshot);else detailTransition.open(snapshot);
     return true;

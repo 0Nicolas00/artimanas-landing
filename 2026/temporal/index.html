@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <script data-hero-bootstrap>(()=>{var a=[{colors:["#14032A","#451489","#9F5EF3"],text:"#ffffff"},{colors:["#3105BD","#EB6944","#DC4390"],text:"#ffffff"},{colors:["#08CCDD","#00B9D0","#00E6D0"],text:"#ffffff"},{colors:["#E7632F","#F65FBD","#E45749"],text:"#ffffff"},{colors:["#EAF158","#E1B5E1","#2F04BC"],text:"#ffffff"}],t=new URLSearchParams(location.search),d=["localhost","127.0.0.1","[::1]"].includes(location.hostname),n=d&&["shader","static"].includes(t.get("heroTest"))?t.get("heroTest"):null,o=Number(t.get("palette")??0);if(n){let e=Number(t.get("heroDpr")??1);window.ArtimanasHeroTest=Object.freeze({mode:n,pixelDensity:[.5,.75,1].includes(e)?e:1,grain:t.get("heroGrain")==="off"?"off":"on"})}var f=n?Number.isInteger(o)&&o>=0&&o<a.length?o:0:Math.floor(Math.random()*a.length),c=Object.freeze([...a[f].colors]);window.ArtimanasHeroPalette=Object.freeze({index:f,colors:c});c.forEach((e,s)=>document.documentElement.style.setProperty(`--hero-color-${s+1}`,e));window.addEventListener("error",e=>{let s=e.target?.matches?.("script[data-hero-shader]"),l=e.filename?.includes("/hero-shader.bundle.js");if(!s&&!l)return;let r=document.querySelector(".hero");!r||r.dataset.shader==="ready"||(r.dataset.shader="fallback",r.dataset.shaderFallback="bundle-error")},!0);})();</script><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Artimañas 2026. Muestra de arte interactivo de Taller de Diseño Multimedial V, Facultad de Artes, Universidad Nacional de La Plata.">
-  <meta name="theme-color" content="#10080f">
+  <meta name="theme-color" content="#110910">
   <link rel="icon" type="image/png" sizes="64x64" href="assets/Favicon-64.png">
   <meta property="og:title" content="Artimañas 2026 · Muestra de arte interactivo">
   <meta property="og:description" content="Explorá las obras de Taller de Diseño Multimedial V, UNLP.">
@@ -12,10 +12,10 @@
   <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Artimañas sobre un fondo violeta y naranja">
   <title>Artimañas 2026 · Muestra de arte interactivo</title>
-  <link rel="stylesheet" href="css/base.css?v=31"><link rel="stylesheet" href="css/catalog.css?v=27"><link rel="stylesheet" href="css/overlays.css?v=27">
+  <link rel="stylesheet" href="css/base.css?v=33"><link rel="stylesheet" href="css/catalog.css?v=29"><link rel="stylesheet" href="css/overlays.css?v=29">
   
-<link rel="stylesheet" href="css/hero-layout.css?v=26">
-<link rel="stylesheet" href="css/student-links.css?v=30">
+<link rel="stylesheet" href="css/hero-layout.css?v=28">
+<link rel="stylesheet" href="css/student-links.css?v=31">
 </head>
 <body data-start-page="inicio">
 <svg class="svg-filters" aria-hidden="true" width="0" height="0"><defs>
@@ -37,7 +37,6 @@
   <div data-view="inicio">
     <section class="hero" id="inicio" aria-labelledby="home-title" data-shader="loading" data-pointer-follow="false">
       <div id="hero-shader" class="hero-shader" aria-hidden="true" inert></div>
-      <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-center"><p class="eyebrow">Muestra de arte interactivo</p>
         <h1 id="home-title"><span class="sr-only">Artimañas 2026</span><img class="logo-desktop" src="assets/logo-artimanas.webp" alt="" width="1600" height="306">
           <span class="logo-stacked" aria-hidden="true"><img src="assets/db2568aab0a1.webp" alt=""><img class="ma" src="assets/a8b88c4443cb.webp" alt=""><img class="nas" src="assets/44ceb132ef2d.webp" alt=""></span>
@@ -456,12 +455,11 @@ Gracias a la Universidad Nacional de La Plata, la Facultad de Artes y el Laborat
 <noscript><p style="padding:20px">Podés recorrer las obras. Para abrir los detalles y usar los filtros, activá JavaScript.</p></noscript>
 <script defer data-hero-shader src="js/hero-shader.bundle.js?v=35"></script>
 <script src="js/core.js?v=26"></script>
-<script src="js/work-transition.js?v=26"></script>
-<script src="js/app.js?v=28"></script>
-<script src="js/cursor.js?v=26"></script>
-<script src="js/logo-intro.js?v=26"></script>
+<script src="js/work-transition.js?v=27"></script>
+<script src="js/app.js?v=29"></script>
+<script src="js/cursor.js?v=27"></script>
 
-<script src="js/catalog-preview.js?v=26"></script>
+<script src="js/catalog-preview.js?v=27"></script>
 
 
 

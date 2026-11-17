@@ -50,7 +50,7 @@
     if(!lastPoint)return;
     document.documentElement.classList.add('has-custom-cursor');
     const card=target?.closest('.work-link,.gallery-item');
-    const preview=Boolean(target?.closest('#obras.is-cover'));
+    const preview=Boolean(target?.closest('#obras.is-cover'))||Boolean(target?.closest('.hero .marquee')&&window.scrollY<=8);
     setExpanded(preview||Boolean(card));
     setLabel(preview?'Bajá para\nver más':card?(card.classList.contains('gallery-item')?'Ampliar':'Ver obra'):'',preview);
     cursor.style.left=`${lastPoint.x}px`;cursor.style.top=`${lastPoint.y}px`;
