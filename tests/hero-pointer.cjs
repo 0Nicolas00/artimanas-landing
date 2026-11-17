@@ -47,7 +47,22 @@ async function ready(page){
   await new Promise(r=>server.listen(0,'127.0.0.1',r));
   const url=`http://127.0.0.1:${server.address().port}/index.html`;
   browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+  const disabled=await browser.newPage({viewport:{width:1280,height:800}});
+  await instrument(disabled);await disabled.goto(url);await ready(disabled);
+  assert.equal(await disabled.locator('.hero').getAttribute('data-pointer-follow'),'false');
+  const fixed=await disabled.evaluate(()=>window.shaderMatrix.slice()),automatic=await disabled.evaluate(()=>window.shaderTime);
+  await disabled.mouse.move(30,110);await disabled.mouse.move(1250,750);
+  await disabled.waitForFunction(time=>window.shaderTime>time+.5,automatic);
+  const still=await disabled.evaluate(()=>window.shaderMatrix);
+  assert(still.every((value,index)=>Math.abs(value-fixed[index])<1e-7),'Default background animates without pointer displacement');
+  await disabled.mouse.wheel(0,250);await disabled.waitForFunction(()=>scrollY>20);
+  await disabled.close();console.log('PASS default: automatic animation, fixed mesh, catalog scroll');
   const page=await browser.newPage({viewport:{width:1280,height:800}}),errors=[];
+  // Exercise the optional tracking mode without changing the shipped default.
+  await page.route('**/index.html',async route=>{
+   const response=await route.fetch();
+   await route.fulfill({response,body:(await response.text()).replace('data-pointer-follow="false"','data-pointer-follow="true"')});
+  });
   page.on('pageerror',e=>errors.push(e.message));await instrument(page);await page.goto(url);await ready(page);
   const base=await page.evaluate(()=>window.shaderMatrix);
   const boxes=await page.locator('.hero h1,.hero .marquee').evaluateAll(elements=>elements.map(e=>e.getBoundingClientRect().toJSON()));

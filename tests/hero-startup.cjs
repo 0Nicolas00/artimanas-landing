@@ -98,10 +98,11 @@ async function instrument(page,index,noWebGL=false){
    await instrument(page,2,failure==='no-webgl');
    await page.setExtraHTTPHeaders({'X-Startup-Mode':failure});
    await page.goto(url,{waitUntil:'domcontentloaded'});
-   await page.waitForFunction(()=>document.querySelector('.hero').dataset.shader==='fallback'&&document.querySelector('.hero').dataset.motion==='running');
-   assert.equal(await page.evaluate(()=>window.legacyContexts),1);
-   assert.equal(await page.locator('#hero-gradient').evaluate(e=>getComputedStyle(e).opacity),'1');
-   await page.close();console.log(`PASS ${failure}: legacy background starts only on failure`);
+   await page.waitForFunction(()=>document.querySelector('.hero').dataset.shader==='fallback');
+   assert.equal(await page.evaluate(()=>window.legacyContexts),0);
+   assert.equal(await page.locator('#hero-gradient').count(),0);
+   assert((await page.locator('.hero').evaluate(e=>getComputedStyle(e).backgroundImage)).startsWith('linear-gradient('));
+   await page.close();console.log(`PASS ${failure}: selected static gradient, no legacy Canvas`);
   }
  }finally{for(const gate of gates.values())gate.resolve?.();await browser?.close();server.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

@@ -36,7 +36,7 @@ const palettes=[['#14032A','#451489','#9F5EF3'],['#3105BD','#EB6944','#DC4390'],
    catch(e){console.error(await hero.evaluate(e=>e.dataset));throw e;}
    assert.equal(await hero.getAttribute('data-shader'),'ready',JSON.stringify(await hero.evaluate(e=>e.dataset)));
    assert.equal(await hero.getAttribute('data-shader-colors'),palettes[index].join(','));
-   assert.equal(await hero.getAttribute('data-motion'),'paused','2D loop stops when WebGL is ready');
+   assert.equal(await page.locator('#hero-gradient').count(),0,'Legacy Canvas is absent');
    const draws=await page.evaluate(()=>window.gpuDraws);
    await page.waitForFunction(n=>window.gpuDraws>n+3,draws);
    assert(await hero.locator('h1 img').evaluateAll(images=>images.filter(e=>e.clientWidth>0).every(e=>e.complete&&e.naturalWidth>0)));
@@ -70,25 +70,27 @@ const palettes=[['#14032A','#451489','#9F5EF3'],['#3105BD','#EB6944','#DC4390'],
    await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='settled');
    assert((await page.locator('#detail-description').textContent()).trim().length>0);
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
-   // Context loss must restore 2D, not leave a blank cover or two running loops.
+   // Context loss reveals the selected static gradient.
    await page.keyboard.press('Escape');
    await page.waitForFunction(()=>!document.querySelector('#work-dialog').open);
    await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
    await page.waitForFunction(()=>document.querySelector('.hero').dataset.shaderMotion==='running');
    await page.locator('#hero-shader canvas').evaluate(e=>e.getContext('webgl2').getExtension('WEBGL_lose_context').loseContext());
    await page.waitForFunction(()=>document.querySelector('.hero').dataset.shader==='fallback');
-   await page.waitForFunction(()=>document.querySelector('.hero').dataset.motion==='running');
-   assert.equal(await page.locator('#hero-gradient').evaluate(e=>getComputedStyle(e).opacity),'1');
+   assert.equal(await page.locator('#hero-gradient').count(),0);
+   assert((await hero.evaluate(e=>getComputedStyle(e).backgroundImage)).startsWith('linear-gradient('));
    await page.close();
-   console.log(`PASS shader palette ${index+1} ${mobile?'mobile':'desktop'}: render, pause 2D, resize, HTML, catalog, context loss`);
+   console.log(`PASS shader palette ${index+1} ${mobile?'mobile':'desktop'}: render, resize, HTML, catalog, static gradient after context loss`);
   }
   const unavailable=await browser.newPage();
   await unavailable.addInitScript(()=>{const get=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return /^webgl/.test(type)?null:get.call(this,type,...args);};});
   await unavailable.goto(`http://127.0.0.1:${server.address().port}/index.html`);
-  await unavailable.waitForFunction(()=>document.querySelector('.hero').dataset.shader==='fallback'&&document.querySelector('.hero').dataset.motion==='running');
+  await unavailable.waitForFunction(()=>document.querySelector('.hero').dataset.shader==='fallback');
   assert.equal(await unavailable.locator('#hero-shader canvas').count(),0);
+  assert.equal(await unavailable.locator('#hero-gradient').count(),0);
+  assert((await unavailable.locator('.hero').evaluate(e=>getComputedStyle(e).backgroundImage)).startsWith('linear-gradient('));
   await unavailable.close();
   assert.deepEqual(errors,[]);assert.deepEqual(badResources,[]);
-  console.log('PASS no WebGL: original animated 2D fallback');
+  console.log('PASS no WebGL: selected static gradient');
  }finally{await browser?.close();server.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

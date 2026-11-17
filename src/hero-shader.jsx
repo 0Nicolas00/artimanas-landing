@@ -6,6 +6,8 @@ import HeroBackground, { PALETTES, SHADER_SETTINGS } from '../Hero.jsx';
 
 const hero = document.querySelector('.hero');
 const host = document.querySelector('#hero-shader');
+// Enable in index.html and reload the page.
+const pointerFollowEnabled = hero?.dataset.pointerFollow === 'true';
 let root;
 let failed = false;
 let ready = false;
@@ -19,7 +21,6 @@ function fallback(reason) {
   hero.dataset.shader = 'fallback';
   hero.dataset.shaderMotion = 'paused';
   hero.dataset.shaderFallback = reason;
-  hero.dispatchEvent(new Event('artimanas:shader-state'));
   queueMicrotask(() => root?.unmount());
 }
 
@@ -29,7 +30,6 @@ function activate() {
   clearTimeout(loadingTimer);
   hero.dataset.shader = 'ready';
   hero.classList.add('shader-ready');
-  hero.dispatchEvent(new Event('artimanas:shader-state'));
 }
 
 class BackgroundBoundary extends Component {
@@ -182,7 +182,10 @@ if (hero && host) {
       root = createRoot(host);
       root.render(
         <BackgroundBoundary>
-          <HeroBackground palette={PALETTES[index]}><RendererLifecycle /><ShaderPointerMotion /></HeroBackground>
+          <HeroBackground palette={PALETTES[index]}>
+            <RendererLifecycle />
+            {pointerFollowEnabled && <ShaderPointerMotion />}
+          </HeroBackground>
         </BackgroundBoundary>
       );
     }

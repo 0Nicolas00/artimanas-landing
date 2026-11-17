@@ -26,13 +26,13 @@ const server=http.createServer((req,res)=>{
  await mobile.goto('http://localhost:8766');await mobile.waitForTimeout(350);
  assert.equal(await mobile.evaluate(()=>window.permissionRequests),0);
  await mobile.locator('.hero h1').tap();await mobile.waitForTimeout(150);
- assert.equal(await mobile.evaluate(()=>window.permissionRequests),1);
+ assert.equal(await mobile.evaluate(()=>window.permissionRequests),0);
  await mobile.evaluate(()=>{const e=new Event('deviceorientation');Object.defineProperties(e,{beta:{value:20},gamma:{value:15}});dispatchEvent(e);});
- assert.equal(await mobile.locator('.hero').getAttribute('data-sensor'),'active');
+ assert.equal(await mobile.locator('.hero').getAttribute('data-sensor'),null);
  const desktop=await browser.newPage({viewport:{width:1440,height:900}});
  await desktop.addInitScript(()=>{window.orientationAccess=0;Object.defineProperty(window,'DeviceOrientationEvent',{configurable:true,get(){window.orientationAccess++;return null;}});});
  await desktop.goto('http://localhost:8766');await desktop.locator('.hero h1').click();assert.equal(await desktop.evaluate(()=>window.orientationAccess),0);
  await desktop.emulateMedia({reducedMotion:'reduce'});await desktop.reload();assert.equal(await desktop.locator('.marquee-track').first().evaluate(e=>getComputedStyle(e).animationName),'marquee');
- console.log('PASS: background wheel, names wheel isolation, gallery width/lightbox/Escape, mobile permission gesture, desktop sensor isolation, reduced-motion marquee.');
+ console.log('PASS: background wheel, names wheel isolation, gallery width/lightbox/Escape, no obsolete sensor requests, reduced-motion marquee.');
  await browser.close();server.close();
 })().catch(e=>{console.error(e);process.exit(1)});

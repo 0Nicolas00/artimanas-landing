@@ -6,7 +6,7 @@ const colors = Object.freeze([...PALETTES[index].colors]);
 window.ArtimanasHeroPalette = Object.freeze({ index, colors });
 colors.forEach((color, i) => document.documentElement.style.setProperty(`--hero-color-${i + 1}`, color));
 
-// A failed bundle download must also wake the standalone 2D fallback.
+// Keep the selected static CSS gradient visible if the bundle fails to load.
 window.addEventListener('error', event => {
   const scriptFailed = event.target?.matches?.('script[data-hero-shader]');
   const startupFailed = event.filename?.includes('/hero-shader.bundle.js');
@@ -15,5 +15,4 @@ window.addEventListener('error', event => {
   if (!hero || hero.dataset.shader === 'ready') return;
   hero.dataset.shader = 'fallback';
   hero.dataset.shaderFallback = 'bundle-error';
-  hero.dispatchEvent(new Event('artimanas:shader-state'));
 }, true);

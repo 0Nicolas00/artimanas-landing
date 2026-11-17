@@ -24,7 +24,7 @@ Para publicar desde un repositorio, `netlify.toml` configura el comando `npm run
 
 `src/hero-bootstrap.js` elige una sola paleta por carga antes del primer pintado. El build extrae `PALETTES` de `Hero.jsx` e inserta un script mínimo en el `<head>` de `index.html`, sin React ni otra descarga. Ese script comparte la elección entre el fondo estático CSS y el shader.
 
-`src/hero-shader.jsx` monta el fondo y espera a que haya geometría, iluminación HDR y cuadros dibujados antes de mostrarlo con un fundido de 300 ms. La paleta no cambia al redimensionar, rotar ni recorrer el sitio. El Canvas 2D de `js/hero-gradient.js` no se inicializa durante la carga normal: arranca únicamente si WebGL no está disponible, falla la carga/inicialización del shader o se pierde el contexto. Si falla la descarga del bundle, el bootstrap también activa ese respaldo. El shader se pausa fuera de pantalla, con la pestaña oculta o al abrir un diálogo.
+`src/hero-shader.jsx` monta el fondo y espera a que haya geometría, iluminación HDR y cuadros dibujados antes de mostrarlo con un fundido de 300 ms. La paleta no cambia al redimensionar, rotar ni recorrer el sitio. ShaderGradient es el único fondo animado. Durante la carga, si WebGL no está disponible, si falla el bundle o si se pierde el contexto, se muestra el degradado estático CSS de la paleta elegida. El seguimiento del cursor queda apagado con `data-pointer-follow="false"` en la sección `.hero` de `index.html`. El shader se pausa fuera de pantalla, con la pestaña oculta o al abrir un diálogo.
 
 Prueba específica del primer fotograma, recarga normal, caché desactivada y fallos: `npm run test:hero-startup`. Se ejecuta contra la carpeta `dist/` generada por el build.
 
@@ -114,7 +114,7 @@ Cambios localizados en `js/app.js`, versión de recursos en `index.html` y prueb
 | Contenido y enlaces de obras | `index.html`, `assets/` |
 | Estética, responsive y composición | `css/base.css`, `css/catalog.css`, `css/hero-layout.css`, `css/overlays.css`, `css/student-links.css` |
 | Navegación, fichas y filtros | `js/app.js`, `js/core.js`, `js/work-transition.js` |
-| Fondo, movimiento y cursor | `js/hero-gradient.js`, `js/mobile-tilt.js`, `js/logo-intro.js`, `js/catalog-preview.js`, `js/marquee.js`, `js/cursor.js` |
+| Fondo, movimiento y cursor | `src/hero-shader.jsx`, `js/logo-intro.js`, `js/catalog-preview.js`, `js/marquee.js`, `js/cursor.js` |
 | Pruebas | `tests/smoke.cjs`, `tests/interactions.cjs`, `tests/transitions.cjs`, `tests/preview.cjs`, `tests/entry.cjs` |
 
 Una división práctica para tres personas: contenido y recursos; estilos y responsive; interacciones y pruebas. Hacer commits por cambio y coordinar las modificaciones a `index.html`.

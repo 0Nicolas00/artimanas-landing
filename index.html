@@ -2,7 +2,7 @@
 <html lang="es-AR">
 <head>
   <meta charset="utf-8">
-  <script data-hero-bootstrap>(()=>{var o=[{colors:["#14032A","#451489","#9F5EF3"],text:"#ffffff"},{colors:["#3105BD","#EB6944","#DC4390"],text:"#ffffff"},{colors:["#08CCDD","#00B9D0","#00E6D0"],text:"#ffffff"},{colors:["#E7632F","#F65FBD","#E45749"],text:"#ffffff"},{colors:["#EAF158","#E1B5E1","#2F04BC"],text:"#ffffff"}],a=Math.floor(Math.random()*o.length),f=Object.freeze([...o[a].colors]);window.ArtimanasHeroPalette=Object.freeze({index:a,colors:f});f.forEach((t,r)=>document.documentElement.style.setProperty(`--hero-color-${r+1}`,t));window.addEventListener("error",t=>{let r=t.target?.matches?.("script[data-hero-shader]"),s=t.filename?.includes("/hero-shader.bundle.js");if(!r&&!s)return;let e=document.querySelector(".hero");!e||e.dataset.shader==="ready"||(e.dataset.shader="fallback",e.dataset.shaderFallback="bundle-error",e.dispatchEvent(new Event("artimanas:shader-state")))},!0);})();</script><meta name="viewport" content="width=device-width,initial-scale=1">
+  <script data-hero-bootstrap>(()=>{var o=[{colors:["#14032A","#451489","#9F5EF3"],text:"#ffffff"},{colors:["#3105BD","#EB6944","#DC4390"],text:"#ffffff"},{colors:["#08CCDD","#00B9D0","#00E6D0"],text:"#ffffff"},{colors:["#E7632F","#F65FBD","#E45749"],text:"#ffffff"},{colors:["#EAF158","#E1B5E1","#2F04BC"],text:"#ffffff"}],f=Math.floor(Math.random()*o.length),a=Object.freeze([...o[f].colors]);window.ArtimanasHeroPalette=Object.freeze({index:f,colors:a});a.forEach((e,r)=>document.documentElement.style.setProperty(`--hero-color-${r+1}`,e));window.addEventListener("error",e=>{let r=e.target?.matches?.("script[data-hero-shader]"),s=e.filename?.includes("/hero-shader.bundle.js");if(!r&&!s)return;let t=document.querySelector(".hero");!t||t.dataset.shader==="ready"||(t.dataset.shader="fallback",t.dataset.shaderFallback="bundle-error")},!0);})();</script><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Artimañas 2026. Muestra de arte interactivo de Taller de Diseño Multimedial V, Facultad de Artes, Universidad Nacional de La Plata.">
   <meta name="theme-color" content="#10080f">
   <meta property="og:title" content="Artimañas 2026 · Muestra de arte interactivo">
@@ -11,7 +11,7 @@
   <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Artimañas sobre un fondo violeta y naranja">
   <title>Artimañas 2026 · Muestra de arte interactivo</title>
-  <link rel="stylesheet" href="css/base.css?v=30"><link rel="stylesheet" href="css/catalog.css?v=27"><link rel="stylesheet" href="css/overlays.css?v=26">
+  <link rel="stylesheet" href="css/base.css?v=31"><link rel="stylesheet" href="css/catalog.css?v=27"><link rel="stylesheet" href="css/overlays.css?v=26">
   
 <link rel="stylesheet" href="css/hero-layout.css?v=26">
 <link rel="stylesheet" href="css/student-links.css?v=28">
@@ -34,8 +34,7 @@
 </header>
 <main id="contenido">
   <div data-view="inicio">
-    <section class="hero" id="inicio" aria-labelledby="home-title" data-shader="loading">
-      <canvas id="hero-gradient" class="hero-gradient" aria-hidden="true"></canvas>
+    <section class="hero" id="inicio" aria-labelledby="home-title" data-shader="loading" data-pointer-follow="false">
       <div id="hero-shader" class="hero-shader" aria-hidden="true" inert></div>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-center"><p class="eyebrow">Muestra de arte interactivo</p>
@@ -454,8 +453,7 @@ Gracias a la Universidad Nacional de La Plata, la Facultad de Artes y el Laborat
 <dialog id="photo-dialog" class="photo-dialog" aria-label="Detalle de imagen"><button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar imagen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button><img id="photo-image" alt=""><p class="photo-caption" id="photo-caption"></p></dialog>
 <div class="custom-cursor" data-revision="layout-v25" id="custom-cursor" aria-hidden="true"><span class="cursor-label"></span><span class="cursor-scroll" aria-hidden="true"><svg viewBox="0 0 24 28"><rect x="7" y="2" width="10" height="16" rx="5"/><path class="cursor-scroll-wheel" d="M12 5v4"/><path d="m9 23 3 3 3-3"/></svg></span></div>
 <noscript><p style="padding:20px">Podés recorrer las obras. Para abrir los detalles y usar los filtros, activá JavaScript.</p></noscript>
-<script src="js/hero-gradient.js?v=30"></script>
-<script defer data-hero-shader src="js/hero-shader.bundle.js?v=32"></script>
+<script defer data-hero-shader src="js/hero-shader.bundle.js?v=34"></script>
 <script src="js/core.js?v=26"></script>
 <script src="js/work-transition.js?v=26"></script>
 <script src="js/app.js?v=28"></script>
@@ -465,7 +463,6 @@ Gracias a la Universidad Nacional de La Plata, la Facultad de Artes y el Laborat
 <script src="js/catalog-preview.js?v=26"></script>
 
 
-<script src="js/mobile-tilt.js?v=26"></script>
 
 
 <script src="js/marquee.js?v=26"></script>
