@@ -29,10 +29,10 @@
         "x": 0,
         "y": 274,
         "width": 1440,
-        "height": 245.765625,
+        "height": 234.03125,
         "layoutTop": 274,
         "layoutWidth": 1440,
-        "layoutHeight": 246
+        "layoutHeight": 234
       },
       "eyebrow": {
         "x": 563.7507934570312,
@@ -45,12 +45,12 @@
       },
       "logo": {
         "x": 216,
-        "y": 327,
+        "y": 274,
         "width": 1008,
-        "height": 192.765625,
-        "layoutTop": 53,
+        "height": 234.03125,
+        "layoutTop": 0,
         "layoutWidth": 1008,
-        "layoutHeight": 193
+        "layoutHeight": 234
       },
       "slices": [
         {

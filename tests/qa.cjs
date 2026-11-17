@@ -184,6 +184,20 @@ async function main() {
         const galleryLink = page.locator(width === 390 ? '#menu-dialog [data-page-link="galeria"]' : '.desktop-nav[data-page-link="galeria"]');
         assert(await galleryLink.isVisible());
         measurements.gallery = true;
+        await page.goto('http://127.0.0.1:8977/?obra=no-existe&heroTest=static');
+        const errorBackground = page.locator('.error-background');
+        await errorBackground.evaluate(image => image.decode());
+        assert.equal(await errorBackground.getAttribute('src'), 'assets/Error404.png');
+        assert.equal(await errorBackground.evaluate(image => image.naturalWidth), 5760);
+        assert(await page.locator('.error-view').isVisible());
+        assert(await page.locator('#error-title').evaluate(element => {
+          const rect = element.getBoundingClientRect();
+          return rect.left >= 0 && rect.right <= innerWidth && rect.top >= 0 && rect.bottom <= innerHeight;
+        }));
+        await page.screenshot({ path: path.join(output, `error-${width}.png`) });
+        await page.locator('.error-view [data-page-link="inicio"]').click();
+        assert(await page.locator('.hero').isVisible());
+        measurements.errorBackground = true;
         if (width <= 768) {
           await page.goto('http://127.0.0.1:8977/?heroTest=static');
           await page.evaluate(() => scrollTo({ top: 1300, behavior: 'instant' }));
