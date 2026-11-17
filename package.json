@@ -1,0 +1,28 @@
+{
+  "name": "artimanas-2026",
+  "private": true,
+  "version": "0.3.0",
+  "description": "Sitio estático de Artimañas 2026 con bundle aislado para el fondo ShaderGradient.",
+  "scripts": {
+    "test": "node tests/smoke.cjs && node tests/interactions.cjs && node tests/transitions.cjs && node tests/preview.cjs && node tests/entry.cjs",
+    "test:hero-palettes": "node tests/hero-palettes.cjs",
+    "build": "node scripts/build-gradient.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test:hero-shader": "node tests/hero-shader.cjs",
+    "test:hero-startup": "node tests/hero-startup.cjs",
+    "test:hero-pointer": "node tests/hero-pointer.cjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "playwright": "1.62.1"
+  },
+  "dependencies": {
+    "@react-three/fiber": "8.17.10",
+    "@shadergradient/react": "2.4.20",
+    "camera-controls": "3.1.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "0.167.1",
+    "three-stdlib": "2.36.1"
+  }
+}

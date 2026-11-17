@@ -1,0 +1,4 @@
+
+/* Los nombres del catálogo abren el detalle lateral y responden también al teclado. */
+.student-list a {width:fit-content;max-width:100%;padding-right:6px;border-radius:5px}
+#student-list a,#detail-student-list a {color:#fff;text-shadow:none;filter:none}
