@@ -10,7 +10,7 @@ const server=http.createServer((req,res)=>{
  await new Promise(r=>server.listen(8766,r));
  const browser=await chromium.launch({...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{}),args:['--disable-dev-shm-usage'],headless:true});
  const errors=[],badResources=[];
- async function make(options){const p=await browser.newPage(options);p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.url().startsWith('http://localhost')&&r.status()>=400)badResources.push(r.url())});await p.goto('http://localhost:8766');await p.waitForTimeout(700);return p;}
+ async function make(options){const p=await browser.newPage(options);p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.url().startsWith('http://localhost')&&r.status()>=400)badResources.push(r.url())});await p.goto('http://localhost:8766');await p.waitForFunction(()=>!document.documentElement.dataset.heroIntro);return p;}
  const page=await make({viewport:{width:1440,height:900}});
  // Artwork access waits for the transition from the full-height cover.
  assert.equal(await page.locator('#student-heading').evaluate(e=>getComputedStyle(e).filter),'none');
@@ -42,11 +42,18 @@ const server=http.createServer((req,res)=>{
    await p.locator('.work-link').nth(index).click();
    await p.waitForFunction(()=>!!document.querySelector('.detail-moving-image')?.getAnimations().length);
    const end=await p.locator('.detail-moving-image').evaluate(e=>{
-     for(const a of document.querySelector('#work-dialog').getAnimations({subtree:true})){a.pause();a.currentTime=879;}
-     const r=e.getBoundingClientRect();return {left:r.left,top:r.top,width:r.width,height:r.height};
+     const {delay,duration}=e.getAnimations()[0].effect.getTiming();
+     const animations=document.querySelector('#work-dialog').getAnimations({subtree:true});
+     for(const a of animations){a.pause();a.currentTime=0;}
+     const start=e.getBoundingClientRect(),startY=start.top+start.height/2;
+     for(const a of animations)a.currentTime=delay+duration-1;
+     const r=e.getBoundingClientRect();
+     return {left:r.left,top:r.top,width:r.width,height:r.height,startY};
    });
+   assert(Math.abs(end.startY-(await p.evaluate(()=>innerHeight/2)))<2,'The photo is centered before the detail opens');
+   assert(Math.abs(end.startY-(end.top+end.height/2))<1,'The photo moves horizontally');
    await p.evaluate(()=>{for(const a of document.querySelector('#work-dialog').getAnimations({subtree:true}))a.play();});
-   await p.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='blurring');
+   await p.waitForFunction(()=>!document.querySelector('.detail-moving-image'));
    const final=await p.locator('#media-stage img').evaluate(e=>{
      const r=e.getBoundingClientRect(),scale=Math.min(r.width/e.naturalWidth,r.height/e.naturalHeight);
      const width=e.naturalWidth*scale,height=e.naturalHeight*scale;
@@ -54,7 +61,7 @@ const server=http.createServer((req,res)=>{
    });
    for(const key of ['left','top','width','height'])assert(Math.abs(end[key]-final[key])<1,`No image jump (${key}): ${JSON.stringify({end,final})}`);
    await p.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='settled');
-   await p.keyboard.press('Escape');await p.waitForTimeout(550);
+   await p.keyboard.press('Escape');await p.waitForFunction(()=>!document.querySelector('#work-dialog').open);
  }
  await checkHandoff(page,0);
  await page.evaluate(()=>scrollTo({top:1650,behavior:'instant'}));await page.waitForTimeout(1000);
@@ -75,7 +82,56 @@ const server=http.createServer((req,res)=>{
  await page.waitForFunction(()=>document.querySelector('#obras').dataset.entering==='true');
  await page.waitForFunction(()=>document.querySelector('#obras').dataset.entering==='false');
  assert(!await page.locator('#works').evaluate(e=>e.inert));
- console.log(JSON.stringify({errors,badResources,checks:'cover click guard, readable heading, wheel/touch/keyboard entry, first card center and margin, early hint dismissal, fast label fade, image handoff on desktop/mobile'},null,2));
+ await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+ await page.getByRole('button',{name:'Ir a la primera obra'}).click();
+ await page.waitForFunction(()=>{
+   const r=document.querySelector('.work-card').getBoundingClientRect();
+   return Math.abs(r.top+r.height/2-innerHeight/2)<2;
+ });
+ const dot=page.locator('#catalog-progress button').nth(10);
+ const slug=await dot.getAttribute('data-progress-for');
+ await dot.click();
+ await page.waitForFunction(id=>{
+   const card=document.querySelector('.work-card.is-active');
+   const r=card.getBoundingClientRect();
+   return card.dataset.slug===id&&Math.abs(r.top+r.height/2-innerHeight/2)<2;
+ },slug);
+ assert.equal(await dot.getAttribute('aria-current'),'true');
+ const name=page.locator(`#student-list a[data-open-work="${slug}"]`);
+ await name.click();
+ await page.evaluate(()=>{
+   dispatchEvent(new WheelEvent('wheel',{deltaY:16,cancelable:true}));
+   dispatchEvent(new Event('resize'));
+ });
+ await page.waitForFunction(id=>document.querySelector('#work-dialog').open&&new URLSearchParams(location.search).get('obra')===id,slug);
+ await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='settled');
+ await page.keyboard.press('Escape');
+ await page.waitForFunction(()=>!document.querySelector('#work-dialog').open);
+ await page.locator('#filter-trigger').click();
+ const category=page.locator('#filter-dialog input[name="categoria"]').first();
+ await category.check();
+ assert(await page.locator('.work-card[hidden]').count());
+ await page.reload();
+ assert.equal(new URL(page.url()).searchParams.has('categoria'),false);
+ assert.equal(await page.locator('.work-card[hidden]').count(),0);
+ async function checkReturnToTop(p,touch){
+   const bottom=await p.evaluate(()=>{
+     scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'});
+     return scrollY;
+   });
+   const control=p.getByRole('button',{name:'Volver arriba'});
+   if(touch)await control.tap();
+   else await control.click();
+   await p.waitForFunction(bottom=>scrollY>0&&scrollY<bottom-1,bottom);
+   await p.evaluate(()=>{
+     dispatchEvent(new Event('resize'));
+     dispatchEvent(new WheelEvent('wheel',{deltaY:9,cancelable:true}));
+   });
+   await p.waitForFunction(()=>scrollY===0&&document.activeElement.id==='home-title');
+ }
+ await checkReturnToTop(page,false);
+ await checkReturnToTop(mobile,true);
+ console.log(JSON.stringify({errors,badResources,checks:'cover entry, image handoff and return to top on desktop/mobile, one-click selection with residual scroll, filters reset on reload'},null,2));
  assert.deepEqual(errors,[]);assert.deepEqual(badResources,[]);
  await browser.close();server.close();
 })().catch(e=>{console.error(e);process.exit(1)});

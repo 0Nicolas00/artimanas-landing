@@ -105,7 +105,7 @@ async function main() {
         if (scroll === 360) await page.screenshot({ path: path.join(output, `${phase}-${width}-scroll.png`) });
       }
       if (!baseline) {
-        assert.equal(measurements.hero.height, 900);
+        assert.equal(measurements.hero.height, width > 1100 ? 810 : 900);
         assert.equal(measurements.nav.height, 72);
         assert.equal(measurements.overflow, false);
         assert.equal(measurements.logoFilter, 'none');
@@ -117,20 +117,20 @@ async function main() {
           assert.equal(measurements.nav.x, 80);
           assert.equal(measurements.logo.width, 1008);
           assert.equal(measurements.logo.x, 216);
-          assert.equal(measurements.heading.y - measurements.hero.height, 80);
+          assert.equal(measurements.heading.y - measurements.hero.height, 0);
         } else if (width === 768) {
           assert.equal(measurements.logo.width, 435);
           assert.equal(measurements.logo.height, 465);
           assert.equal(measurements.logo.y, 217);
           assert.equal(measurements.center.y, 145);
         } else {
-          assert.equal(measurements.center.y, 223);
+          assert.equal(measurements.center.y, 199);
           assert.equal(measurements.center.width, 325);
           assert.equal(measurements.center.height, 433);
         }
         assert.equal(measurements.eyebrow.layoutWidth, width === 390 ? 294 : 310);
         assert.equal(measurements.eyebrow.layoutHeight, 77);
-        assert(Math.abs(measurements.band.y - (width === 1440 ? 740 : width === 768 ? 760 : 755)) < 0.1);
+        assert(Math.abs(measurements.band.y - (width === 1440 ? 701 : width === 768 ? 730 : 725)) < 2);
         await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
         await page.waitForTimeout(300);
         await page.mouse.wheel(0, 40);

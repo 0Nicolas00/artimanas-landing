@@ -1,3 +1,31 @@
+# Artimañas 2026 · QA del 17.11
+
+Al abrir Inicio, el logo pulsa centrado sobre el degradé CSS del hero. Una vez visible, se mantiene al menos dos segundos antes de expandirse. La navegación y la cinta entran escalonadas y el óvalo se dibuja. Las burbujas y el grano se cargan al terminar esa entrada. Con «Reducir movimiento», la entrada usa fundidos. El filtro de obras abre como popover y aplica los cambios en el momento.
+
+En escritorio, una bolita blanca sigue al cursor del sistema y hace pop sobre las obras y el adelanto del listado. Con «Reducir movimiento», la bolita sigue al cursor sin retraso y conserva el pop. La invitación a bajar cubre la cinta y el espacio hasta el listado. Al entrar con el primer scroll, la cinta sube con la portada y la primera obra queda centrada. El grano del fondo deriva suavemente.
+
+Para cargar indicaciones confirmadas de una obra, editá el atributo `data-indications` de su tarjeta en `index.html`. Admite `individual`, `duo`, `sonido` y `sinflash`, separados por comas. Si la obra todavía no tiene archivo de investigación, se muestra la tarjeta «Próximamente». Para habilitar la descarga, completá `data-research` con la ruta.
+
+La categoría «Alienación» conserva el nombre del catálogo hasta que diseño confirme el cambio a «Cuerpo». El Facebook enlaza al perfil institucional publicado por el Departamento de Diseño Multimedial. Los cuatro logos del footer se recuperaron como imágenes con transparencia desde la referencia del tablero. Los SVG de Figma pueden sustituir esos archivos cuando estén disponibles.
+
+`404.html` es la página de error independiente. La guía `PUBLICACION-GITHUB-PAGES.md` detalla dónde copiarla para la publicación bajo `2026/temporal/`.
+
+Los contornos de cristal se trazaron sobre la referencia de marca y quedan anclados a la composición. El borde ondula alrededor de su posición y se deforma suavemente cerca del cursor. Los reflejos son más intensos en los puntos de luz. El grano queda en el fondo, fuera del cristal. Con «Reducir movimiento», la ondulación automática se pausa y la respuesta al cursor se atenúa.
+
+En escritorio, el listado y las fichas comparten el scroll de la página. Al recorrer el catálogo, la columna de nombres avanza junto con la obra activa. Podés usar el aviso de la portada para centrar la primera obra y el indicador de puntos para ir a cada obra con scroll animado. Para abrir el detalle, seleccioná un nombre. En móvil, la descarga queda arriba a la izquierda y el cierre, arriba a la derecha.
+
+Para editar las siluetas, modificá `src/brand-contours.svg` y ejecutá `python3 scripts/build-brand-field.py` con Inkscape, Pillow y SciPy instalados. El mapa regenerado se incluye en ambos renderizadores con `npm run build`. Al abrir `index.html` desde el disco se usa el cristal animado en Canvas 2D. Si el navegador bloquea Canvas, se muestran los mismos contornos como SVG con una respuesta al hover. Para compilar o publicar el sitio sin editar siluetas, usá el mapa incluido.
+
+# Actualización del 17 de noviembre de 2026
+
+Ver `CAMBIOS-2026-11-17.md` para instalación, archivos modificados, optimización, pruebas y limitaciones actuales. La portada ahora usa grano CSS y glass SVG; el shader continúa sin su pase de grano y carga solo `city.hdr`. La altura de escritorio vuelve al 90% del viewport para adelantar el primer nombre.
+
+Se puede usar `npm run dev` y `npm run build:static` sin instalar dependencias, usando el bundle incluido. El build completo del shader sigue requiriendo `npm ci --legacy-peer-deps`.
+
+El texto siguiente conserva el historial de versiones anteriores; las indicaciones de esta actualización tienen prioridad.
+
+---
+
 # Artimañas 2026 — versión del 16 de noviembre de 2026
 
 ## Abrir y publicar
@@ -24,7 +52,7 @@ Para publicar desde un repositorio, `netlify.toml` configura el comando `npm run
 
 La comparación local funciona con Live Server en `localhost`, `127.0.0.1` y `[::1]`. Las dos variantes fijan la misma paleta y conservan la portada y el recorrido al catálogo.
 
-- Shader ajustado: `http://127.0.0.1:5500/index.html?heroTest=shader&palette=0&heroDpr=0.75&heroGrain=off`.
+- Diagnóstico del shader con el grano desactivado: `http://127.0.0.1:5500/index.html?heroTest=shader&palette=0&heroDpr=0.75&heroGrain=off`.
 - Degradado estático: `http://127.0.0.1:5500/index.html?heroTest=static&palette=0`.
 - Shader original para comparar: `http://127.0.0.1:5500/index.html?heroTest=shader&palette=0`.
 

@@ -3,3 +3,6 @@ test-results/
 .DS_Store
 dist/
 .pages-preview/
+
+# Evidencias generadas localmente; conservar las útiles fuera del código.
+qa-captures/

@@ -9,5 +9,12 @@ http.createServer(async (req,res) => {
   const file = path.resolve(root, '.' + (pathname === '/' ? '/index.html' : pathname));
   if (!file.startsWith(root + path.sep)) { res.writeHead(403); return res.end(); }
   try { res.setHeader('Content-Type', types[path.extname(file)] || 'application/octet-stream'); res.end(await readFile(file)); }
-  catch { res.writeHead(404); res.end('Archivo no encontrado'); }
+  catch {
+    if (req.headers.accept?.includes('text/html')) {
+      res.writeHead(404, { 'Content-Type': types['.html'] });
+      return res.end(await readFile(path.join(root,'404.html')));
+    }
+    res.writeHead(404);
+    res.end('Archivo no encontrado');
+  }
 }).listen(port, '127.0.0.1', () => console.log(`Artimañas: http://localhost:${port}`));

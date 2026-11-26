@@ -2,11 +2,11 @@ import { ShaderGradientCanvas, ShaderGradient } from "@shadergradient/react";
 
 // Paletas exactas de la referencia. Solo este archivo define los colores del shader.
 export const PALETTES = [
-  { colors: ["#14032A", "#451489", "#9F5EF3"], text: "#ffffff" }, // violeta oscuro
-  { colors: ["#3105BD", "#EB6944", "#DC4390"], text: "#ffffff" }, // azul / naranja / rosa
-  { colors: ["#08CCDD", "#00B9D0", "#00E6D0"], text: "#ffffff" }, // turquesa
-  { colors: ["#E7632F", "#F65FBD", "#E45749"], text: "#ffffff" }, // naranja / rosa
-  { colors: ["#EAF158", "#E1B5E1", "#2F04BC"], text: "#ffffff" }, // amarillo / lila / azul
+  { colors: ["#14032A", "#451489", "#9F5EF3"], loading: "#14032A", text: "#ffffff" }, // violeta oscuro
+  { colors: ["#3105BD", "#EB6944", "#DC4390"], loading: "#342367", text: "#ffffff" }, // azul / naranja / rosa
+  { colors: ["#08CCDD", "#00B9D0", "#00E6D0"], loading: "#17636A", text: "#ffffff" }, // turquesa
+  { colors: ["#E7632F", "#F65FBD", "#E45749"], loading: "#8C3F30", text: "#ffffff" }, // naranja / rosa
+  { colors: ["#EAF158", "#E1B5E1", "#2F04BC"], loading: "#71602E", text: "#ffffff" }, // amarillo / lila / azul
 ];
 
 // @shadergradient/react 2.4.20 ignores frameRate for the on-canvas render loop.

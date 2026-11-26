@@ -25,6 +25,9 @@ const server=http.createServer((req,res)=>{
  const centerError=await page.locator(`[data-slug="${slug}"]`).evaluate(e=>{const r=e.getBoundingClientRect();return Math.abs(r.top+r.height/2-innerHeight/2);});
  assert(centerError<2,`Selected artwork centered before opening: ${centerError}`);
  assert.equal(new URL(page.url()).searchParams.get('obra'),slug);
+ assert.equal(await page.locator('#catalog-progress .is-active').getAttribute('data-progress-for'),slug);
+ assert.equal(await page.locator('#student-list a[aria-current="true"]').getAttribute('data-open-work'),slug);
+ assert(await page.locator(`[data-slug="${slug}"]`).evaluate(card=>Number(card.style.getPropertyValue('--work-opacity'))>.99&&Number(card.style.getPropertyValue('--work-scale'))>1.37));
  const namesStable=()=>{
    const list=document.querySelector('.detail-students');
    const rect=list.querySelector('h3').getBoundingClientRect();
@@ -34,7 +37,7 @@ const server=http.createServer((req,res)=>{
 
  await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='settled');
  assert(await page.evaluate(namesStable),'Detail list stays in its column after opening');
- await page.keyboard.press('Escape');await page.waitForTimeout(550);
+ await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#work-dialog').open);
  // User interruption cancels the pending opening, not just its scroll frames.
  await page.locator('#student-list a').first().click();
  await page.waitForTimeout(150);await page.mouse.wheel(0,100);
@@ -46,46 +49,42 @@ const server=http.createServer((req,res)=>{
  const latest=await page.locator('#student-list a').nth(5).getAttribute('data-open-work');
  await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='settled');
  assert.equal(new URL(page.url()).searchParams.get('obra'),latest);
- await page.keyboard.press('Escape');await page.waitForTimeout(550);
+ await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#work-dialog').open);
  await page.evaluate(()=>scrollTo({top:1300,behavior:'instant'}));await page.waitForTimeout(900);
- const square=await page.locator('.work-card.is-active img').evaluate(e=>{const r=e.getBoundingClientRect();return Math.abs(r.width-r.height)<1;});assert(square);
+ const originalRatio=await page.locator('.work-card.is-active img').evaluate(e=>{const r=e.getBoundingClientRect();return Math.abs(r.width/r.height/(e.naturalWidth/e.naturalHeight)-1)<.003;});assert(originalRatio);
  await page.locator('.work-card.is-active .work-link').click();
+ await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='composing');
  assert.equal(await page.locator('#work-dialog').getAttribute('data-phase'),'composing');
- assert.equal(await page.locator('.detail-neighbor').first().evaluate(e=>getComputedStyle(e).filter),'blur(0px)');
  assert(await page.locator('.detail-moving-image').count());
- assert(await page.locator('.work-card img.detail-source-hidden').count());
+ assert.equal(await page.locator('.work-card img.detail-source-hidden').count(),1);
+ assert.equal(await page.locator('.detail-neighbor').count(),0);
  assert.equal(await page.locator('.detail-copy').evaluate(e=>e.getAnimations().some(a=>a.effect.getKeyframes()[0].transform==='translateX(-100%)')),true);
  await page.evaluate(()=>{for(const a of document.querySelector('#work-dialog').getAnimations({subtree:true})){a.pause();a.currentTime=350;}});
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-compose.png')});
  await page.evaluate(()=>{for(const a of document.querySelector('#work-dialog').getAnimations({subtree:true}))a.play();});
- await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='blurring');
- const blurFrames=await page.locator('.detail-neighbor').first().evaluate(e=>{
-   const a=e.getAnimations().find(a=>a.effect.getKeyframes().some(k=>k.filter));
-   a.pause();a.currentTime=200;const early=getComputedStyle(e).filter;
-   a.currentTime=600;const late=getComputedStyle(e).filter;a.play();return [early,late];
- });
- const [earlyBlur,lateBlur]=blurFrames.map(v=>Number(v.match(/[\d.]+/)[0]));
- assert(earlyBlur>0&&earlyBlur<lateBlur&&lateBlur<20,`Progressive blur: ${blurFrames}`);
  await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='settled');await page.waitForTimeout(650);
  assert.equal(await page.locator('.detail-moving-image').count(),0);
- assert.equal(await page.locator('#contenido').evaluate(e=>getComputedStyle(e).opacity),'0');
- assert.equal(await page.locator('.detail-neighbor').first().evaluate(e=>getComputedStyle(e).filter),'blur(20px)');
+ assert.equal(await page.locator('.detail-veil').evaluate(e=>getComputedStyle(e).opacity),'1');
  assert.equal(await page.locator('.detail-students').evaluate(e=>getComputedStyle(e).paddingLeft),'6px');
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-settled.png')});
- await page.keyboard.press('Escape');await page.waitForTimeout(550);
+ await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#work-dialog').open);
  assert(!await page.locator('#work-dialog').isVisible());
  assert(!await page.locator('body').evaluate(e=>e.classList.contains('work-detail-open')));
  assert.equal(await page.locator('#contenido').evaluate(e=>getComputedStyle(e).opacity),'1');
  assert.equal(await page.locator('.detail-source-hidden').count(),0);
  // Interrupt opening before any queued continuation can re-open or hide content.
- await page.locator('.work-card.is-active .work-link').click();await page.keyboard.press('Escape');await page.waitForTimeout(950);
+ await page.locator('.work-card.is-active .work-link').click();
+ await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='composing');
+ await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#work-dialog').open);
  assert(!await page.locator('#work-dialog').isVisible());assert.equal(await page.locator('.detail-moving-image').count(),0);
  // Back/forward restores the same state without orphan animation layers.
- await page.locator('.work-card.is-active .work-link').click();await page.goBack();await page.waitForTimeout(950);
+ await page.locator('.work-card.is-active .work-link').click();
+ await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='composing');
+ await page.goBack();await page.waitForFunction(()=>!document.querySelector('#work-dialog').open);
  assert(!await page.locator('#work-dialog').isVisible());assert.equal(await page.locator('#contenido').evaluate(e=>getComputedStyle(e).opacity),'1');
  assert.equal(await page.locator('.detail-source-hidden').count(),0);
  await page.goForward();await page.waitForTimeout(1400);assert(await page.locator('#work-dialog').isVisible());
- await page.keyboard.press('Escape');await page.waitForTimeout(550);
+ await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#work-dialog').open);
  // Pop expands past its final radius then settles; repeated moves do not restart it.
  await page.mouse.move(10,300);await page.locator('.work-card.is-active .work-link').hover();
  const pop=await page.locator('#custom-cursor').evaluate(e=>e.getAnimations().find(a=>a.effect.getKeyframes().some(k=>k.width==='101px'))?.effect.getKeyframes().map(k=>k.width));
@@ -95,6 +94,7 @@ const server=http.createServer((req,res)=>{
  for(const reducedMotion of ['no-preference','reduce']){
    await page.emulateMedia({reducedMotion});
    await page.locator('.work-card.is-active .work-link').click();
+   await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='composing');
    await page.evaluate(()=>{for(const a of document.querySelector('#work-dialog').getAnimations({subtree:true})){a.pause();a.currentTime=180;}});
    const x1=await page.locator('.detail-copy').evaluate(e=>new DOMMatrix(getComputedStyle(e).transform).m41);
    const r1=await page.locator('.detail-moving-image').boundingBox();
@@ -103,10 +103,9 @@ const server=http.createServer((req,res)=>{
    const r2=await page.locator('.detail-moving-image').boundingBox();
    assert(x1 < -100 && x2 > x1 && x2 < -5,`${reducedMotion}: visible intermediate slide ${x1}, ${x2}`);
    assert(Math.abs(r1.x-r2.x)>10 || Math.abs(r1.width-r2.width)>10,'Artwork visibly changes composition');
-   assert.equal(await page.locator('.detail-neighbor').first().evaluate(e=>getComputedStyle(e).filter),'blur(0px)');
    await page.evaluate(()=>{for(const a of document.querySelector('#work-dialog').getAnimations({subtree:true}))a.play();});
    await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='settled');
-   await page.keyboard.press('Escape');await page.waitForTimeout(550);
+   await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#work-dialog').open);
    await page.mouse.move(10,300);await page.waitForTimeout(500);
    await page.locator('.work-card.is-active .work-link').hover();
    const growth=await page.locator('#custom-cursor').evaluate(async e=>{
@@ -136,26 +135,26 @@ const server=http.createServer((req,res)=>{
    await page.waitForTimeout(500);
  }
  const mobile=await make({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
- assert(await mobile.locator('.work-card img').first().evaluate(e=>Math.abs(e.clientWidth-e.clientHeight)<1));
+ assert(await mobile.locator('.work-card img').first().evaluate(e=>{const r=e.getBoundingClientRect();return Math.abs(r.width/r.height/(e.naturalWidth/e.naturalHeight)-1)<.003;}));
  await mobile.evaluate(()=>scrollTo({top:650,behavior:'instant'}));await mobile.waitForTimeout(500);
- const staticBefore=await mobile.locator('.work-card img').nth(1).boundingBox();
+ const neighbor=mobile.locator('.work-card img').nth(1);
+ const documentBounds=element=>{
+   const {x,y,width,height}=element.getBoundingClientRect();
+   return {x,y:y+window.scrollY,width,height};
+ };
+ const staticBefore=await neighbor.evaluate(documentBounds);
  await mobile.locator('.work-link').first().click();
+ await mobile.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='composing');
  assert.equal(await mobile.locator('.detail-neighbor').count(),0,'Mobile never builds a vertical background list');
- const staticAfter=await mobile.locator('.work-card img').nth(1).boundingBox();
+ const staticAfter=await neighbor.evaluate(documentBounds);
  assert.deepEqual(staticAfter,staticBefore,'Unselected mobile photos stay in place');
  assert.equal(await mobile.locator('#contenido').evaluate(e=>getComputedStyle(e).opacity),'1');
- await mobile.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='blurring');
- const mobileBlur=await mobile.locator('.detail-veil').evaluate(e=>{
-   const a=e.getAnimations()[0];a.pause();a.currentTime=400;
-   const filter=getComputedStyle(e).backdropFilter;a.play();return filter;
- });
- const mobileBlurValue=Number(mobileBlur.match(/[\d.]+/)[0]);
- assert(mobileBlurValue>0&&mobileBlurValue<12,`Mobile progressive blur: ${mobileBlur}`);
  await mobile.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='settled');
  assert(await mobile.evaluate(()=>innerWidth===visualViewport.width));
  assert(await mobile.locator('#media-stage img').isVisible());
+ assert.equal(await mobile.locator('.detail-veil').evaluate(e=>getComputedStyle(e).opacity),'1');
  await mobile.screenshot({path:path.join(os.tmpdir(),'artimanas-mobile-detail-v24.png')});
- console.log(JSON.stringify({errors,badResources,checks:'square cards, staged opening and delayed blur, slide from left, compact margins, interruption, history, pop, reduced motion, mobile detail'},null,2));
+ console.log(JSON.stringify({errors,badResources,checks:'original image ratios, single artwork transition on a solid background, slide from left, compact margins, interruption, history, pop, reduced motion, mobile detail'},null,2));
  assert.deepEqual(errors,[]);assert.deepEqual(badResources,[]);
  await browser.close();server.close();
 })().catch(e=>{console.error(e);process.exit(1)});

@@ -12,7 +12,7 @@ const server=http.createServer((req,res)=>{
  const errors=[],badResources=[];
  async function make(options){const p=await browser.newPage(options);p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.url().startsWith('http://localhost')&&r.status()>=400)badResources.push(r.url())});await p.goto('http://localhost:8766');await p.waitForTimeout(700);return p;}
  const page=await make({viewport:{width:1440,height:900}});
- assert.equal(await page.locator('.hero').evaluate(e=>e.clientHeight),900);
+ assert.equal(await page.locator('.hero').evaluate(e=>e.clientHeight),810);
  assert.equal(await page.locator('#filter-trigger').isVisible(),false);
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-desktop.png')});
  await page.evaluate(()=>scrollTo({top:1100,behavior:'instant'}));await page.waitForTimeout(800);
@@ -27,10 +27,10 @@ const server=http.createServer((req,res)=>{
  await page.locator('#work-dialog [data-close-dialog]').click();await page.waitForTimeout(400);
  assert.equal(await page.locator('#work-dialog').isVisible(),false);
  await page.evaluate(()=>scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));await page.waitForTimeout(600);
- assert.equal(await page.locator('#filter-trigger span').textContent(),'Ir arriba');
+ assert.equal(await page.locator('#filter-trigger span').textContent(),'Volver arriba');
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-footer.png')});
  await page.locator('#filter-trigger').click();await page.waitForTimeout(1800);assert(await page.evaluate(()=>scrollY<2));
- await page.locator('[data-open-event]').first().click();assert((await page.locator('#event-dialog a').getAttribute('href')).includes('Calle+62'));
+ await page.locator('[data-open-event]').first().click();assert(new URL(await page.locator('#event-dialog a').getAttribute('href')).searchParams.get('destination').includes('Diagonal 78 Nº 680'));
  await page.locator('#event-dialog [data-close-dialog]').click();await page.waitForTimeout(300);
  // Cursor: point on blank space, large white circle above artwork.
  await page.mouse.move(100,100);assert.equal(await page.locator('.custom-cursor').evaluate(e=>getComputedStyle(e).width),'12px');
@@ -44,15 +44,17 @@ const server=http.createServer((req,res)=>{
  assert(await mobile.evaluate(()=>document.documentElement.scrollWidth===innerWidth));
  await mobile.screenshot({path:path.join(os.tmpdir(),'artimanas-mobile.png')});
  await mobile.evaluate(()=>scrollTo({top:800,behavior:'instant'}));await mobile.waitForTimeout(400);await mobile.locator('#filter-trigger').click();
- await mobile.locator('#tab-alumnos').click();await mobile.locator('input[value="aroza-matias"]').check();
+ assert.equal(await mobile.locator('#filter-dialog input[name="alumno"]').count(),0);
+ await mobile.locator('input[name="categoria"][value="sensorialidad"]').check();
  await mobile.waitForTimeout(450);
  assert(await mobile.evaluate(()=>innerWidth===visualViewport.width&&innerHeight===visualViewport.height));
  assert(await mobile.locator('#filter-dialog').evaluate(e=>e.getBoundingClientRect().bottom<=visualViewport.height+1));
  assert(await mobile.locator('#clear-filters').evaluate(e=>e.getBoundingClientRect().bottom<innerHeight-10));
  await mobile.screenshot({path:path.join(os.tmpdir(),'artimanas-filter.png')});
- assert.equal(await mobile.locator('#apply-filters').textContent(),'Mostrar 1 obra');
- await mobile.locator('#apply-filters').click();await mobile.waitForTimeout(500);
- assert.equal(await mobile.locator('.work-card:visible').count(),1);
+ const filteredCount=await mobile.locator('.work-card[data-category="sensorialidad"]').count();
+ assert.equal(await mobile.locator('#clear-filters').textContent(),'Borrar filtros (1)');
+ await mobile.locator('#filter-dialog [data-close-dialog]').click();
+ assert.equal(await mobile.locator('.work-card:visible').count(),filteredCount);
  // Reset via URL, then test opening the image detail on touch viewport.
  await mobile.goto('http://localhost:8766');await mobile.locator('.work-link').first().click();await mobile.waitForTimeout(1350);
  assert(await mobile.locator('#media-stage img').isVisible());

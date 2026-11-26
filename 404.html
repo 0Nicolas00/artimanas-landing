@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Página no encontrada · Artimañas 2026</title>
+  <base href="/">
+  <script>
+    // Pages serves its project-root 404 for nested URLs without changing the URL.
+    if (location.hostname.endsWith('.github.io')) {
+      const project=location.pathname.split('/').filter(Boolean)[0];
+      if(project) document.querySelector('base').href=project==='artimanas-landing' ?
+        '/artimanas-landing/2026/temporal/' : '/' + project + '/';
+    }
+  </script>
+  <link rel="stylesheet" href="css/base.css?v=qa-141">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav container" aria-label="Navegación principal">
+      <a href="./" aria-label="Artimañas · Inicio">Inicio</a>
+      <a href="./?pagina=galeria">Galería</a>
+      <a href="./?muestra">Muestra 2026</a>
+    </nav>
+  </header>
+  <main class="error-view" aria-labelledby="error-title">
+    <img class="error-background" src="assets/Error404.webp" alt="" aria-hidden="true" decoding="async">
+    <h1 id="error-title">La página no existe o fue eliminada</h1>
+    <a class="pill" href="./">Volver al Inicio</a>
+  </main>
+</body>
+</html>

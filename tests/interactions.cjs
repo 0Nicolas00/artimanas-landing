@@ -14,7 +14,7 @@ const server=http.createServer((req,res)=>{
  const page=await make({viewport:{width:1440,height:900}});
  await page.evaluate(()=>scrollTo({top:1000,behavior:'instant'}));await page.waitForTimeout(600);
  await page.locator('.student-sidebar h2').hover();const before=await page.evaluate(()=>scrollY);await page.mouse.wheel(0,200);await page.waitForTimeout(300);assert(await page.evaluate(()=>scrollY)>before+100);
- await page.locator('#student-list a').nth(4).hover();const namesBefore=await page.evaluate(()=>scrollY);await page.mouse.wheel(0,120);await page.waitForTimeout(300);assert.equal(await page.evaluate(()=>scrollY),namesBefore);
+ await page.locator('#student-list a').nth(4).hover();const namesBefore=await page.evaluate(()=>scrollY);await page.mouse.wheel(0,120);await page.waitForTimeout(300);assert(await page.evaluate(()=>scrollY)>namesBefore);
  await page.locator('[data-page-link="galeria"]').first().click();await page.waitForTimeout(400);
  assert(await page.getByText('Próximamente, fotos de la muestra',{exact:true}).isVisible());
  assert.equal(await page.locator('.gallery-item').count(),0);

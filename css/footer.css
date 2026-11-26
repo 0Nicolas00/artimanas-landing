@@ -1,0 +1,71 @@
+.site-footer {
+  position:relative;
+  isolation:isolate;
+  overflow:clip;
+  min-height:1118px;
+  background:linear-gradient(to top,#311c30,var(--surface-0) 73%);
+}
+.footer-decor {position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+.footer-decor::before {content:'';position:absolute;inset:8% 5% 8%;background:radial-gradient(ellipse at 50% 43%,#995cab38,transparent 58%)}
+.footer-glass {position:absolute;opacity:.55}
+.glass-left {width:min(32vw,460px);top:16%;left:-13%;rotate:48deg}
+.glass-small {width:min(13vw,186px);top:4%;left:32%;rotate:-14deg;opacity:.72}
+.glass-right {width:min(36vw,520px);top:10%;right:-8%;rotate:-16deg}
+.footer-sparkle {position:absolute;color:#fff;font-size:clamp(26px,4.2vw,60px);line-height:1;opacity:.85;text-shadow:0 0 16px #e3c0fa}
+.footer-sparkle:nth-of-type(1) {left:13%;top:29%;rotate:-20deg}
+.footer-sparkle:nth-of-type(2) {left:20%;top:18%;font-size:32px}
+.footer-sparkle:nth-of-type(3) {left:27%;top:49%;font-size:30px}
+.footer-sparkle:nth-of-type(4) {left:42%;top:8%;font-size:36px}
+.footer-sparkle:nth-of-type(5) {right:22%;top:9%;rotate:14deg}
+.footer-sparkle:nth-of-type(6) {right:12%;top:28%;font-size:34px}
+.footer-sparkle:nth-of-type(7) {right:32%;top:69%;font-size:36px;rotate:-15deg}
+.footer-sparkle:nth-of-type(8) {left:7%;top:81%;font-size:26px}
+.footer-sparkle:nth-of-type(9) {right:7%;top:84%;font-size:30px}
+.footer-art {display:flex;flex-direction:column;align-items:center;padding:220px 16px 0}
+.footer-logo {width:min(901px,100%)}
+.footer-art .eyebrow {display:grid;place-items:center;width:272px;height:76px;margin:8px 0 0;padding:0;border:1.5px solid}
+.footer-content {width:min(calc(100% - 256px),1184px);padding-block:80px 120px}
+.footer-info {display:grid;grid-template-columns:minmax(0,640px) auto;justify-content:space-between;gap:48px;color:var(--text-muted);font:var(--body-lg);padding-bottom:64px;border-bottom:1px solid var(--border)}
+.footer-info h2 {font:var(--heading-h4);color:var(--text-base);margin:0 0 8px}
+.footer-info p {margin:0}
+.footer-credits {display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:16px}
+.footer-socials {display:flex;align-items:center;gap:12px}
+.footer-socials a {width:44px;height:44px;display:grid;place-items:center}
+.footer-socials a:hover {color:var(--text-base)}
+.footer-socials svg {width:32px;height:32px}
+.institutions {padding-top:64px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.institutions img {width:min(var(--logo-width),28%);height:auto}
+.institutions img:nth-child(1) {--logo-width:180px}
+.institutions img:nth-child(2) {--logo-width:190px}
+.institutions img:nth-child(3) {--logo-width:140px}
+.institutions img:nth-child(4) {--logo-width:76px}
+@media(max-width:1100px) {
+  .site-footer {min-height:1054px}
+  .footer-content {width:calc(100% - 64px)}
+  .footer-art {padding-top:196px}
+  .footer-logo {width:min(632px,100%)}
+  .institutions img:nth-child(1) {--logo-width:136px}
+  .institutions img:nth-child(2) {--logo-width:172px}
+  .institutions img:nth-child(3) {--logo-width:114px}
+  .institutions img:nth-child(4) {--logo-width:64px}
+}
+@media(max-width:599px) {
+  .site-footer {min-height:1308px}
+  .footer-art {padding-top:136px}
+  .footer-art .eyebrow {width:224px;height:64px}
+  .footer-content {width:calc(100% - 32px);padding-block:80px 150px}
+  .footer-info {display:flex;flex-direction:column;gap:24px;padding-bottom:32px;text-align:center}
+  .footer-info h2 {font:var(--body-lg)}
+  .footer-credits {align-items:center;text-align:center}
+  .institutions {display:grid;grid-template-columns:auto auto;justify-content:center;justify-items:center;column-gap:24px;row-gap:32px;padding-top:32px}
+  .institutions img {width:var(--logo-width);max-width:100%}
+  .institutions img:nth-child(-n+2) {grid-column:1/-1}
+  .glass-left {width:62vw;left:-30%;top:9%}
+  .glass-small {width:14vw;left:53%;top:4%}
+  .glass-right {width:83vw;right:-45%;top:18%}
+  .footer-sparkle:nth-of-type(n+7) {display:none}
+  .footer-sparkle:nth-of-type(-n+6) {font-size:26px}
+}
+@media(min-width:1101px) and (min-height:501px) {
+  .footer-art {min-height:568px}
+}

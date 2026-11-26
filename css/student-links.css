@@ -18,6 +18,5 @@
  color:var(--text-base);text-shadow:0 0 4px rgba(200,155,255,.8),0 0 10px rgba(175,95,255,.65),0 0 20px rgba(145,55,245,.4);
 }
 @media(min-width:1101px) {
- .catalog-layout {width:calc(100% - 160px);grid-template-columns:302px minmax(0,1fr) minmax(200px,22%)}
- .student-sidebar {width:314px;margin-left:-6px;padding-inline:6px}
+ .student-sidebar {width:calc(100% + 12px);margin-left:-6px;padding-inline:6px}
 }

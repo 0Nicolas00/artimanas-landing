@@ -24,3 +24,5 @@ npm run dev
 ```
 
 La carpeta `.pages-preview/` es una copia local para comprobar la publicación bajo `/artimanas-landing/2026/temporal/`; está excluida de Git.
+
+Para el 404 de GitHub Pages, copiá `dist/404.html` también a la **raíz de `gh-pages`** al publicar. GitHub Pages toma la página de error de la raíz, incluso para rutas inexistentes dentro de `2026/temporal/`. El HTML resuelve los recursos y la salida a Inicio contra la carpeta publicada de Artimañas. En Netlify o con `npm run dev` se usa el 404 de la raíz del sitio.

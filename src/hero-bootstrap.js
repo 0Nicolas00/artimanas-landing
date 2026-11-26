@@ -16,9 +16,11 @@ if (mode) {
 const index = mode
   ? (Number.isInteger(requestedPalette) && requestedPalette >= 0 && requestedPalette < PALETTES.length ? requestedPalette : 0)
   : Math.floor(Math.random() * PALETTES.length);
-const colors = Object.freeze([...PALETTES[index].colors]);
-window.ArtimanasHeroPalette = Object.freeze({ index, colors });
+const { colors: paletteColors, loading } = PALETTES[index];
+const colors = Object.freeze([...paletteColors]);
+window.ArtimanasHeroPalette = Object.freeze({ index, colors, loading });
 colors.forEach((color, i) => document.documentElement.style.setProperty(`--hero-color-${i + 1}`, color));
+document.documentElement.style.setProperty('--hero-loading-color', loading);
 
 // Keep the selected static CSS gradient visible if the bundle fails to load.
 window.addEventListener('error', event => {

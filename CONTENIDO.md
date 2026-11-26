@@ -50,6 +50,8 @@ La fuente no incluye enlaces de videos ni de investigaciones. No se agregaron en
 
 Las fichas están en `index.html`, dentro de cada `<article class="work-card">`. El título, autor y descripción se leen de su HTML; `data-category`, `data-youtube`, `data-research` y `data-images` completan los datos. Las fotos viven en `assets/`. Cuando una obra tiene varias fotos, `data-images` usa rutas relativas separadas por comas.
 
+El `<img>` de la ficha define su portada. Si falta una foto de portada, el catálogo toma la primera de `data-images`. El detalle conserva el orden de esa lista e incluye la portada. `data-youtube` acepta el identificador o la URL del video y agrega su miniatura al inicio del carrusel.
+
 Se conservaron los identificadores `data-slug` y `data-alumno` de las obras existentes para no romper sus enlaces. Por eso algunos identificadores internos mantienen títulos antiguos; el texto visible es el actualizado.
 
 Si se agrega o elimina una obra, actualizar también `#student-list` y las opciones de `#panel-alumnos`. Los contadores por categoría y la lista del detalle se calculan automáticamente desde las fichas.

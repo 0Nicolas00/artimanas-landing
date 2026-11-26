@@ -2,6 +2,7 @@ import React, { Component, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useFrame, useStore, useThree } from '@react-three/fiber';
 import { Vector3 } from 'three';
+import ProceduralGlass from './hero-glass.jsx';
 import HeroBackground, { PALETTES, SHADER_SETTINGS } from '../Hero.jsx';
 
 const hero = document.querySelector('.hero');
@@ -18,6 +19,10 @@ let root;
 let failed = false;
 let ready = false;
 let loadingTimer;
+
+function entranceUsesBackup() {
+  return ['canvas', 'vector'].includes(hero.dataset.glassOwner);
+}
 
 function fallback(reason) {
   if (failed) return;
@@ -120,7 +125,7 @@ function RendererLifecycle() {
   const store = useStore();
   const renderedFrames = useRef(0);
   useFrame(() => {
-    if (ready || failed || !scene.environment) return;
+    if (ready || failed || entranceUsesBackup() || !scene.environment || hero.dataset.glass !== 'brand-contours') return;
     let mesh = false;
     scene.traverse(object => { if (object.isMesh && object.visible) mesh = true; });
     if (!mesh || gl.info.render.calls === 0) return;
@@ -134,6 +139,7 @@ function RendererLifecycle() {
   useEffect(() => {
     let visible = hero.getBoundingClientRect().bottom > 0;
     const sync = () => {
+      if (entranceUsesBackup()) return fallback('entrance-renderer');
       const running = visible && !document.hidden && !document.body.classList.contains('modal-open');
       const frameloop = running ? 'always' : 'never';
       if (store.getState().frameloop !== frameloop) {
@@ -151,6 +157,7 @@ function RendererLifecycle() {
     observer.observe(hero);
     const mutations = new MutationObserver(sync);
     mutations.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    mutations.observe(hero, { attributes: true, attributeFilter: ['data-glass-owner'] });
     const lost = event => { event.preventDefault(); fallback('context-lost'); };
     gl.domElement.addEventListener('webglcontextlost', lost);
     document.addEventListener('visibilitychange', sync);
@@ -165,7 +172,7 @@ function RendererLifecycle() {
   return null;
 }
 
-if (hero && host && !staticBackground) {
+if (hero && host && !staticBackground && !entranceUsesBackup()) {
   // The inline head bootstrap owns the only random choice for this page load.
   const index = window.ArtimanasHeroPalette?.index ?? 0;
   hero.dataset.shaderPalette = String(index);
@@ -188,8 +195,9 @@ if (hero && host && !staticBackground) {
       root = createRoot(host);
       root.render(
         <BackgroundBoundary>
-          <HeroBackground palette={PALETTES[index]} pixelDensity={comparison?.pixelDensity} grain={comparison?.grain}>
+          <HeroBackground palette={PALETTES[index]} pixelDensity={comparison?.pixelDensity}>
             <RendererLifecycle />
+            <ProceduralGlass grain={comparison?.grain !== 'off'} onError={fallback} />
             {pointerFollowEnabled && <ShaderPointerMotion />}
           </HeroBackground>
         </BackgroundBoundary>

@@ -12,7 +12,7 @@ const server=http.createServer((req,res)=>{
  const errors=[],badResources=[];
  async function make(options){const p=await browser.newPage(options);p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.url().startsWith('http://localhost')&&r.status()>=400)badResources.push(r.url())});await p.goto('http://localhost:8766');await p.waitForTimeout(700);return p;}
  const page=await make({viewport:{width:1440,height:900}});
- await page.waitForTimeout(600);
+ await page.waitForFunction(()=>!document.documentElement.dataset.heroIntro);
  const hero=await page.locator('.hero').boundingBox();
  const eyebrow=await page.locator('.hero .eyebrow').boundingBox();
  const logo=await page.locator('.hero .logo-desktop').boundingBox();
@@ -30,16 +30,24 @@ const server=http.createServer((req,res)=>{
    assert.equal(await page.locator('.hero-shade').count(),0);
    assert.equal(await page.locator('.hero').getAttribute('data-pointer-follow'),'false');
    await page.mouse.move(700,180);await page.waitForTimeout(750);
-   assert(await page.locator('#obras').evaluate(e=>Number(e.style.getPropertyValue('--catalog-opacity'))<.5));
+   assert(await page.locator('.work-card img').evaluateAll(images=>images.every(image=>getComputedStyle(image).transform!=='none'&&Number(getComputedStyle(image).opacity)>=.14)));
  }
+ const gapPoint=await page.locator('.hero').evaluate(hero=>{
+   const bounds=hero.getBoundingClientRect();
+   return {x:bounds.width-20,y:bounds.bottom-2};
+ });
+ await page.mouse.move(gapPoint.x,gapPoint.y);
+ await page.waitForFunction(()=>document.querySelector('.cursor-label').textContent.startsWith('Bajá'));
  await page.mouse.move(700,cueY);await page.waitForTimeout(650);
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-preview-v24.png')});
  // Mouse focus on a name must not latch the hover effect after returning to the hero.
  await page.locator('#student-list a').first().evaluate(e=>e.focus({preventScroll:true}));
  await page.mouse.move(700,180);await page.waitForTimeout(750);
- assert(await page.locator('#obras').evaluate(e=>Number(e.style.getPropertyValue('--catalog-opacity'))<.5));
+ assert(await page.locator('.work-card img').evaluateAll(images=>images.every(image=>getComputedStyle(image).transform!=='none'&&Number(getComputedStyle(image).opacity)>=.14)));
  await page.evaluate(()=>scrollTo({top:1300,behavior:'instant'}));await page.waitForTimeout(900);
  assert(!await page.locator('#obras').evaluate(e=>e.classList.contains('is-preview')));
+ assert.equal(await page.locator('.hero .marquee').evaluate(e=>getComputedStyle(e).visibility),'visible');
+ assert(!await page.locator('.cursor-label').evaluate(e=>e.textContent.startsWith('Bajá')));
  assert.equal(await page.locator('#student-list').evaluate(e=>getComputedStyle(e).filter),'none');
  // A partially visible name is focused without moving the page or the list.
  const name=page.locator('#student-list a').nth(5);
@@ -54,14 +62,22 @@ const server=http.createServer((req,res)=>{
  assert.equal(new URL(page.url()).searchParams.get('obra'),await name.getAttribute('data-open-work'));
  await page.waitForFunction(()=>document.querySelector('#work-dialog').dataset.phase==='settled');
  await page.keyboard.press('Escape');await page.waitForTimeout(550);
- // Main scrolling changes the highlighted work, but never drags the name list.
+ // Either column drives the same page scroll and keeps the active name in view.
  const listScroll=await page.locator('.student-sidebar').evaluate(e=>e.scrollTop);
+ const activeBefore=await page.locator('.work-card.is-active').getAttribute('data-slug');
  await page.evaluate(()=>scrollBy({top:1000,behavior:'instant'}));await page.waitForTimeout(950);
- assert.equal(await page.locator('.student-sidebar').evaluate(e=>e.scrollTop),listScroll);
+ assert(await page.locator('.student-sidebar').evaluate(e=>e.scrollTop)>listScroll);
+ assert.notEqual(await page.locator('.work-card.is-active').getAttribute('data-slug'),activeBefore);
+ const activeName=page.locator('#student-list a[aria-current="true"]');
+ const activeSlug=await activeName.getAttribute('data-student-for');
+ await activeName.hover();
+ await page.mouse.wheel(0,650);
+ await page.waitForFunction(slug=>document.querySelector('.work-card.is-active').dataset.slug!==slug,activeSlug);
  await page.setViewportSize({width:390,height:844});
  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await page.waitForTimeout(1000);
+ assert.equal(await page.locator('.hero .marquee').evaluate(e=>getComputedStyle(e).visibility),'visible');
  await page.screenshot({path:path.join(os.tmpdir(),'artimanas-hero-mobile-v24.png')});
- console.log(JSON.stringify({errors,badResources,checks:'hero label, preview blur, repeated pointer-only hover, scroll cursor, stale focus, partial name click, stable list'},null,2));
+ console.log(JSON.stringify({errors,badResources,checks:'hero label, desktop slide hierarchy, repeated pointer-only hover, scroll cursor, stale focus, partial name click, linked columns'},null,2));
  assert.deepEqual(errors,[]);assert.deepEqual(badResources,[]);
  await browser.close();server.close();
 })().catch(e=>{console.error(e);process.exit(1)});
