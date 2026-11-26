@@ -2,7 +2,7 @@
 <html lang="es-AR">
 <head>
   <meta charset="utf-8">
-  <script data-hero-bootstrap>(()=>{var a=[{colors:["#14032A","#451489","#9F5EF3"],text:"#ffffff"},{colors:["#3105BD","#EB6944","#DC4390"],text:"#ffffff"},{colors:["#08CCDD","#00B9D0","#00E6D0"],text:"#ffffff"},{colors:["#E7632F","#F65FBD","#E45749"],text:"#ffffff"},{colors:["#EAF158","#E1B5E1","#2F04BC"],text:"#ffffff"}],t=new URLSearchParams(location.search),d=["localhost","127.0.0.1","[::1]"].includes(location.hostname),n=d&&["shader","static"].includes(t.get("heroTest"))?t.get("heroTest"):null,o=Number(t.get("palette")??0);if(n){let e=Number(t.get("heroDpr")??1);window.ArtimanasHeroTest=Object.freeze({mode:n,pixelDensity:[.5,.75,1].includes(e)?e:1,grain:t.get("heroGrain")==="off"?"off":"on"})}var f=n?Number.isInteger(o)&&o>=0&&o<a.length?o:0:Math.floor(Math.random()*a.length),c=Object.freeze([...a[f].colors]);window.ArtimanasHeroPalette=Object.freeze({index:f,colors:c});c.forEach((e,s)=>document.documentElement.style.setProperty(`--hero-color-${s+1}`,e));window.addEventListener("error",e=>{let s=e.target?.matches?.("script[data-hero-shader]"),l=e.filename?.includes("/hero-shader.bundle.js");if(!s&&!l)return;let r=document.querySelector(".hero");!r||r.dataset.shader==="ready"||(r.dataset.shader="fallback",r.dataset.shaderFallback="bundle-error")},!0);})();</script><meta name="viewport" content="width=device-width,initial-scale=1">
+  <script data-hero-bootstrap>(()=>{var s=[{colors:["#14032A","#451489","#9F5EF3"],loading:"#14032A",text:"#ffffff"},{colors:["#3105BD","#EB6944","#DC4390"],loading:"#342367",text:"#ffffff"},{colors:["#08CCDD","#00B9D0","#00E6D0"],loading:"#17636A",text:"#ffffff"},{colors:["#E7632F","#F65FBD","#E45749"],loading:"#8C3F30",text:"#ffffff"},{colors:["#EAF158","#E1B5E1","#2F04BC"],loading:"#71602E",text:"#ffffff"}],t=new URLSearchParams(location.search),i=["localhost","127.0.0.1","[::1]"].includes(location.hostname),n=i&&["shader","static"].includes(t.get("heroTest"))?t.get("heroTest"):null,r=Number(t.get("palette")??0);if(n){let e=Number(t.get("heroDpr")??1);window.ArtimanasHeroTest=Object.freeze({mode:n,pixelDensity:[.5,.75,1].includes(e)?e:1,grain:t.get("heroGrain")==="off"?"off":"on"})}var l=n?Number.isInteger(r)&&r>=0&&r<s.length?r:0:Math.floor(Math.random()*s.length),{colors:h,loading:c}=s[l],f=Object.freeze([...h]);window.ArtimanasHeroPalette=Object.freeze({index:l,colors:f,loading:c});f.forEach((e,a)=>document.documentElement.style.setProperty(`--hero-color-${a+1}`,e));document.documentElement.style.setProperty("--hero-loading-color",c);window.addEventListener("error",e=>{let a=e.target?.matches?.("script[data-hero-shader]"),d=e.filename?.includes("/hero-shader.bundle.js");if(!a&&!d)return;let o=document.querySelector(".hero");!o||o.dataset.shader==="ready"||(o.dataset.shader="fallback",o.dataset.shaderFallback="bundle-error")},!0);})();</script><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Artimañas 2026. Muestra de arte interactivo de Taller de Diseño Multimedial V, Facultad de Artes, Universidad Nacional de La Plata.">
   <meta name="theme-color" content="#110910">
   <link rel="icon" type="image/png" sizes="64x64" href="assets/Favicon-64.png">
@@ -12,17 +12,28 @@
   <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Artimañas sobre un fondo violeta y naranja">
   <title>Artimañas 2026 · Muestra de arte interactivo</title>
-  <link rel="stylesheet" href="css/base.css?v=34"><link rel="stylesheet" href="css/catalog.css?v=32"><link rel="stylesheet" href="css/overlays.css?v=33">
+  <link rel="stylesheet" href="css/base.css?v=qa-173"><link rel="stylesheet" href="css/catalog.css?v=qa-149"><link rel="stylesheet" href="css/overlays.css?v=qa-181">
   
-<link rel="stylesheet" href="css/hero-layout.css?v=30">
+<link rel="stylesheet" href="css/hero-layout.css?v=qa-141">
 <link rel="stylesheet" href="css/student-links.css?v=32">
+  <link rel="stylesheet" href="css/hero-effects.css?v=qa-177">
+  <link rel="stylesheet" href="css/footer.css?v=qa-141">
+  <script>
+    (() => {
+      const params = new URLSearchParams(location.search);
+      const root = document.documentElement;
+      root.dataset.grainLoading = '';
+      if (!['', '#inicio', '#contenido'].includes(location.hash) || !['inicio', 'countdown'].includes(params.get('pagina') || 'inicio') ||
+          ['obra', 'foto', 'muestra', 'heroTest'].some(key => params.has(key))) return;
+      root.dataset.heroIntro = 'preparing';
+      // Keep the page usable if the intro script fails to load.
+      setTimeout(() => {
+        if (root.dataset.heroIntro === 'preparing') delete root.dataset.heroIntro;
+      }, 4000);
+    })();
+  </script>
 </head>
 <body data-start-page="inicio">
-<svg class="svg-filters" aria-hidden="true" width="0" height="0"><defs>
-  <filter id="institution-alpha" color-interpolation-filters="sRGB">
-    <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  .25512 .85824 .08664 0 -.12"/>
-  </filter>
-</defs></svg>
 <a href="#contenido" class="skip-link">Saltar al contenido</a>
 <header class="site-header" id="site-header">
   <nav class="site-nav container" aria-label="Navegación principal">
@@ -36,13 +47,34 @@
 <main id="contenido">
   <div data-view="inicio">
     <section class="hero" id="inicio" aria-labelledby="home-title" data-shader="loading" data-pointer-follow="false">
+      <div class="hero-solid" aria-hidden="true"></div>
       <div id="hero-shader" class="hero-shader" aria-hidden="true" inert></div>
-      <div class="hero-center"><p class="eyebrow">Muestra de arte interactivo</p>
-        <h1 id="home-title"><span class="sr-only">Artimañas 2026</span><img class="logo-desktop" src="assets/Frame%2038.png" alt="Muestra de arte interactivo" width="4264" height="990">
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="glass-static" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 684" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="glass-placeholder-fill" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#e8dfff" stop-opacity=".17"/>
+      <stop offset=".48" stop-color="#11091a" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#f2ebff" stop-opacity=".12"/>
+    </linearGradient>
+    <linearGradient id="glass-placeholder-edge" x2=".82" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#fff" stop-opacity=".84"/>
+      <stop offset=".3" stop-color="#eee1ff" stop-opacity=".23"/>
+      <stop offset=".58" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#ede6ff" stop-opacity=".17"/>
+    </linearGradient>
+    <path id="glass-esquina-superior-izquierda" pathLength="1" d="M98-85H268     C247-45 244 12 212 36C173 64 90 69 26 101     C-30 127-72 162-110 191L-110 154     C-65 104-24 62 7 28C43-11 69-45 98-85Z"/><path id="glass-arriba-al-centro" pathLength="1" d="M432-85H672     C633-17 620 49 590 78C561 106 521 112 486 91     C444 66 451 0 432-85Z"/><path id="glass-esquina-superior-derecha" pathLength="1" d="M939-85H1184     C1155-32 1119-21 1075-4C1047 9 1035 33 1048 63     C1062 90 1118 109 1190 122C1095 112 1034 128 978 116     C931 107 902 81 906 44C910 11 923-37 939-85Z"/><path id="glass-onda-izquierda" pathLength="1" d="M-102 378     C-48 390-3 445 43 430C96 414 111 365 126 310     C142 247 156 198 192 170C217 150 248 150 271 164     C295 179 289 215 276 243C261 274 240 298 228 327     C206 379 211 416 245 438C284 463 337 443 375 413     C412 384 430 339 430 293C431 254 411 224 377 203     C341 181 298 165 274 135C252 113 252 92 274 72     C307 41 350 49 386 77C429 110 448 170 452 221     C459 299 439 367 408 426C382 476 324 530 265 554     C225 573 177 575 149 551C126 532 135 494 150 459     C171 410 202 377 217 327C227 295 232 271 210 265     C185 257 159 301 136 342C106 401 78 457 32 500     C-14 543-57 565-102 575Z"/><path id="glass-onda-derecha" pathLength="1" d="M1230 171     C1151 150 1041 157 981 172C909 192 822 230 762 273     C716 306 693 345 708 380C725 418 791 432 846 418     C901 404 934 373 927 327C918 275 910 245 938 211     C966 177 1016 172 1054 189C1117 218 1150 268 1132 321     C1119 363 1080 386 1035 405C988 426 954 446 961 478     C966 517 1009 540 1061 536C1127 531 1181 503 1223 452     C1255 411 1260 230 1230 171Z"/>
+  </defs>
+  <g stroke-linejoin="round"><g class="glass-static-piece"><use class="glass-vector-body" href="#glass-esquina-superior-izquierda" fill="url(#glass-placeholder-fill)" stroke="none"/><g class="glass-vector-rim" fill="none" stroke="url(#glass-placeholder-edge)" stroke-linecap="round"><use href="#glass-esquina-superior-izquierda" stroke-width="8" opacity=".32"/><use href="#glass-esquina-superior-izquierda" stroke-width="2.2"/></g></g><g class="glass-static-piece"><use class="glass-vector-body" href="#glass-arriba-al-centro" fill="url(#glass-placeholder-fill)" stroke="none"/><g class="glass-vector-rim" fill="none" stroke="url(#glass-placeholder-edge)" stroke-linecap="round"><use href="#glass-arriba-al-centro" stroke-width="8" opacity=".32"/><use href="#glass-arriba-al-centro" stroke-width="2.2"/></g></g><g class="glass-static-piece"><use class="glass-vector-body" href="#glass-esquina-superior-derecha" fill="url(#glass-placeholder-fill)" stroke="none"/><g class="glass-vector-rim" fill="none" stroke="url(#glass-placeholder-edge)" stroke-linecap="round"><use href="#glass-esquina-superior-derecha" stroke-width="8" opacity=".32"/><use href="#glass-esquina-superior-derecha" stroke-width="2.2"/></g></g><g class="glass-static-piece"><use class="glass-vector-body" href="#glass-onda-izquierda" fill="url(#glass-placeholder-fill)" stroke="none"/><g class="glass-vector-rim" fill="none" stroke="url(#glass-placeholder-edge)" stroke-linecap="round"><use href="#glass-onda-izquierda" stroke-width="8" opacity=".32"/><use href="#glass-onda-izquierda" stroke-width="2.2"/></g></g><g class="glass-static-piece"><use class="glass-vector-body" href="#glass-onda-derecha" fill="url(#glass-placeholder-fill)" stroke="none"/><g class="glass-vector-rim" fill="none" stroke="url(#glass-placeholder-edge)" stroke-linecap="round"><use href="#glass-onda-derecha" stroke-width="8" opacity=".32"/><use href="#glass-onda-derecha" stroke-width="2.2"/></g></g></g>
+</svg></div>
+      <canvas class="glass-fallback" aria-hidden="true" hidden></canvas>
+      <div class="hero-center"><p class="eyebrow"><svg viewBox="0 0 310 77" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="155" cy="38.5" rx="153.5" ry="37" pathLength="1" vector-effect="non-scaling-stroke"/></svg><span>Muestra de arte interactivo</span></p>
+        <h1 id="home-title" data-intro-logo><span class="sr-only">Artimañas 2026</span><img class="logo-desktop" src="assets/logo-artimanas.webp" alt="" width="1600" height="306" fetchpriority="high">
           <span class="logo-stacked" aria-hidden="true"><img src="assets/db2568aab0a1.webp" alt=""><img class="ma" src="assets/a8b88c4443cb.webp" alt=""><img class="nas" src="assets/44ceb132ef2d.webp" alt=""></span>
         </h1>
       </div><div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="marquee-group"><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span></div><div class="marquee-group"><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span></div></div></div>
     </section>
+    <button id="cover-entry" class="cover-entry" type="button" hidden><span class="sr-only">Ir a la primera obra</span></button>
     <section id="obras" class="catalog" aria-label="Obras de la muestra">
       <div class="catalog-layout container">
         <aside class="student-sidebar"><h2 id="student-heading">Obras por alumno</h2><ul class="student-list" id="student-list"><li><a href="#card-microbioespecularis-adam" data-open-work="microbioespecularis-adam" data-student-for="microbioespecularis-adam">Adam, Florencia Araceli</a></li>
@@ -78,9 +110,9 @@
 <li><a href="#card-transicion-triolo" data-open-work="transicion-triolo" data-student-for="transicion-triolo">Triolo, Valentina</a></li>
 <li><a href="#card-habitat-inmersivo-ubaldi" data-open-work="habitat-inmersivo-ubaldi" data-student-for="habitat-inmersivo-ubaldi">Ubaldi, Guadalupe</a></li></ul><p class="catalog-note">Contenido de ejemplo del diseño</p></aside>
         <div class="works" id="works"><!-- Obra 1: Adam, Florencia Araceli. -->
-<article class="work-card" data-image-pending="true" id="card-microbioespecularis-adam" data-slug="microbioespecularis-adam" data-alumno="adam-florencia-araceli" data-category="alienacion" data-youtube="" data-research="">
+<article class="work-card" id="card-microbioespecularis-adam" data-slug="microbioespecularis-adam" data-indications="individual,sonido" data-alumno="adam-florencia-araceli" data-category="alienacion" data-youtube="zLfnHA8HWyE" data-research="" data-images="assets/Obras/Florencia Adam.webp,assets/Obras/Florencia Adam 1.webp">
   <a class="work-link" href="?obra=microbioespecularis-adam" data-open-work="microbioespecularis-adam" aria-label="Ver obra: Frecuencia Interna · Adam, Florencia Araceli">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="1333" loading="lazy" decoding="async">
+    <img src="assets/Obras/Florencia Adam.webp" alt="Obra Frecuencia Interna · Adam, Florencia Araceli" width="613" height="919" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Frecuencia Interna</h3><p class="work-author">Adam, Florencia Araceli</p></div><span class="work-category">Alienación</span></div>
   </a>
   <p class="work-description" hidden>Esta instalación multimedia interactiva propone una aproximación a la experiencia de la ansiedad por sobrepensamiento, explorando cómo los pensamientos persistentes pueden interferir en la percepción y dificultar la recuperación del control.
@@ -88,7 +120,7 @@
 A través de una cabina de dimensiones reducidas, la obra articula sonido, espacio e interacción para construir una experiencia individual. Una melodía continua convive con interferencias sonoras que se acumulan progresivamente, mientras que la disposición de los controles involucra físicamente al interactuante. La repetición, la saturación y la pérdida progresiva de control constituyen los ejes de una experiencia que busca materializar las dinámicas del sobrepensamiento mediante recursos sensoriales e interactivos.</p>
 </article>
 <!-- Obra 2: Andrés, Guadalupe. -->
-<article class="work-card" id="card-t-i-t-o-andres" data-slug="t-i-t-o-andres" data-alumno="andres-guadalupe" data-category="sensorialidad" data-youtube="" data-research="" data-images="assets/Obras/andres-guadalupe-1.webp,assets/Obras/andres-guadalupe-2.webp">
+<article class="work-card" id="card-t-i-t-o-andres" data-slug="t-i-t-o-andres" data-alumno="andres-guadalupe" data-category="sensorialidad" data-youtube="6aJgUpBWD4o" data-research="" data-images="assets/Obras/andres-guadalupe-1.webp,assets/Obras/andres-guadalupe-2.webp">
   <a class="work-link" href="?obra=t-i-t-o-andres" data-open-work="t-i-t-o-andres" aria-label="Ver obra: Háptrikas · Andrés, Guadalupe">
     <img src="assets/Obras/andres-guadalupe-1.webp" alt="Obra Háptrikas · Andrés, Guadalupe" width="2400" height="1353" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Háptrikas</h3><p class="work-author">Andrés, Guadalupe</p></div><span class="work-category">Sensorialidad</span></div>
@@ -96,15 +128,15 @@ A través de una cabina de dimensiones reducidas, la obra articula sonido, espac
   <p class="work-description" hidden>Háptrikas es una exploración de nuevos modos de interactuar, de materialidades y texturas que permitan potenciar la comunicación háptica. Busca, por medio de una nueva materialidad, la electrónica y el tacto, crear un nuevo tipo de lenguaje sensorial. En esta exploración, las tecnologías buscan apelar a lo primitivo y sensorial volviéndose un nuevo modo de tecnología, que no condice ni con lo moderno ni con lo antiguo, sino que es un híbrido que vive de ese limbo. Así como es indefinible aquello que “habita” la obra, o que quizás sea la obra en sí, es ese limbo, esa hibridación, lo que hace que la obra viva. Propone un nuevo contacto con las tecnologías, con las texturas del entorno que nos rodea, y descubrir nuevas aristas de la posibilidad comunicativa del tacto.</p>
 </article>
 <!-- Obra 3: Aroza, Matias. -->
-<article class="work-card" data-image-pending="true" id="card-charca-tecnica-aroza" data-slug="charca-tecnica-aroza" data-alumno="aroza-matias" data-category="alienacion" data-youtube="" data-research="">
+<article class="work-card" id="card-charca-tecnica-aroza" data-slug="charca-tecnica-aroza" data-alumno="aroza-matias" data-category="alienacion" data-youtube="Y8XcLcklD7g" data-research="" data-images="assets/Obras/Media - TEX - Matias Aroza-1.webp,assets/Obras/Media - TEX - Matias Aroza.2.webp">
   <a class="work-link" href="?obra=charca-tecnica-aroza" data-open-work="charca-tecnica-aroza" aria-label="Ver obra: Media-TEX · Aroza, Matias">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="767" loading="lazy" decoding="async">
+    <img src="assets/Obras/Media - TEX - Matias Aroza-1.webp" alt="Obra Media-TEX · Aroza, Matias" width="1792" height="2390" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Media-TEX</h3><p class="work-author">Aroza, Matias</p></div><span class="work-category">Alienación</span></div>
   </a>
   <p class="work-description" hidden>Media-TEX, la máquina que transforma al tatuaje en una experiencia del futuro. Este producto de diseño convierte la espera en un algo instantáneo: un sensor láser detecta tu brazo, mide su altura y regula la presión del marcador. Luego realiza el dibujo de manera eficaz, sistemática y autónoma. Vas a poder ver cómo las luces indican cada estado del proceso para que puedas tener una experiencia tranquila, en confianza y respetuosa. Este dispositivo interactivo propone explorar el cuerpo como soporte, la tecnología como mediadora de confianza y la manera en que atravesamos nuestras experiencias personales.</p>
 </article>
 <!-- Obra 4: Besnati Saldise, Victoria. -->
-<article class="work-card" id="card-resonancia-besnati" data-slug="resonancia-besnati" data-alumno="besnati-saldise-victoria" data-category="entorno" data-youtube="" data-research="">
+<article class="work-card" id="card-resonancia-besnati" data-slug="resonancia-besnati" data-alumno="besnati-saldise-victoria" data-category="entorno" data-youtube="V3fPm2_4wbY" data-research="">
   <a class="work-link" href="?obra=resonancia-besnati" data-open-work="resonancia-besnati" aria-label="Ver obra: Mimetikami · Besnati Saldise, Victoria">
     <img src="assets/Obras/besnati-saldise-victoria-1.webp" alt="Obra Mimetikami · Besnati Saldise, Victoria" width="1920" height="2400" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Mimetikami</h3><p class="work-author">Besnati Saldise, Victoria</p></div><span class="work-category">Entorno</span></div>
@@ -113,9 +145,9 @@ A través de una cabina de dimensiones reducidas, la obra articula sonido, espac
 Lo que Mimetikami guarda aparece solo cuando el cuerpo se anima a buscarlo. </p>
 </article>
 <!-- Obra 5: Bigot, Juan Martín. -->
-<article class="work-card" data-image-pending="true" id="card-umbral-bigot" data-slug="umbral-bigot" data-alumno="bigot-juan-martin" data-category="entorno" data-youtube="" data-research="">
+<article class="work-card" id="card-umbral-bigot" data-slug="umbral-bigot" data-alumno="bigot-juan-martin" data-category="entorno" data-youtube="udHlB4Pr6iw" data-research="">
   <a class="work-link" href="?obra=umbral-bigot" data-open-work="umbral-bigot" aria-label="Ver obra: Pladi · Bigot, Juan Martín">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="595" height="841" loading="lazy" decoding="async">
+    <img src="assets/Obras/Obra - Juan Martín Bigot.webp" alt="Obra Pladi · Bigot, Juan Martín" width="576" height="1024" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Pladi</h3><p class="work-author">Bigot, Juan Martín</p></div><span class="work-category">Entorno</span></div>
   </a>
   <p class="work-description" hidden>Pladi surge a partir de una problemática cotidiana: la información necesaria para viajar en transporte público por La Plata se encuentra repartida entre distintas plataformas, aplicaciones y sitios web. Esto puede dificultar la planificación de los viajes y generar incertidumbre al momento de trasladarse.
@@ -125,25 +157,25 @@ Desde el diseño multimedia, la obra propone explorar una nueva forma de transit
 Para la exposición, Pladi se materializa en una pantalla táctil incorporada a una parada de micro, acercando la propuesta al espacio cotidiano donde comienza cada viaje.</p>
 </article>
 <!-- Obra 6: Di Bella, Martina. -->
-<article class="work-card" data-image-pending="true" id="card-territorio-sensible-di" data-slug="territorio-sensible-di" data-alumno="di-bella-martina" data-category="identidad" data-youtube="" data-research="">
+<article class="work-card" id="card-territorio-sensible-di" data-slug="territorio-sensible-di" data-alumno="di-bella-martina" data-category="identidad" data-youtube="skyJQ2tUU6w" data-research="">
   <a class="work-link" href="?obra=territorio-sensible-di" data-open-work="territorio-sensible-di" aria-label="Ver obra: Historias que se visten · Di Bella, Martina">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="767" loading="lazy" decoding="async">
+    <img src="assets/Obras/Martina Di Bella.webp" alt="Obra Historias que se visten · Di Bella, Martina" width="2400" height="1800" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Historias que se visten</h3><p class="work-author">Di Bella, Martina</p></div><span class="work-category">Identidad</span></div>
   </a>
   <p class="work-description" hidden>La obra explora la relación entre vestimenta, memoria e identidad a través de las historias de mujeres inmigrantes. Mediante una instalación interactiva que reúne prendas, fotografías, bordados y relatos, propone descubrir cómo los objetos cotidianos pueden conservar huellas de quienes los habitaron y de los lugares que dejaron atrás. La ropa se convierte en un territorio donde conviven experiencias, afectos y herencias, pero también en una forma de mantener vivas las historias y hacerlas presentes en nuevos contextos. A través de la exploración de estos fragmentos, la obra invita a reflexionar sobre cómo construimos nuestra identidad a partir de aquello que llevamos con nosotras y de las historias que nos atraviesan.</p>
 </article>
 <!-- Obra 7: Errecarte, Juan Ignacio. -->
-<article class="work-card" data-image-pending="true" id="card-fragmentos-de-luz-y-sombra-errecarte" data-slug="fragmentos-de-luz-y-sombra-errecarte" data-alumno="errecarte-juan-ignacio" data-category="alienacion" data-youtube="" data-research="">
+<article class="work-card" id="card-fragmentos-de-luz-y-sombra-errecarte" data-slug="fragmentos-de-luz-y-sombra-errecarte" data-alumno="errecarte-juan-ignacio" data-category="alienacion" data-youtube="NqLMrOuaGy4" data-research="">
   <a class="work-link" href="?obra=fragmentos-de-luz-y-sombra-errecarte" data-open-work="fragmentos-de-luz-y-sombra-errecarte" aria-label="Ver obra: Detras de la Interfaz · Errecarte, Juan Ignacio">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="563" loading="lazy" decoding="async">
+    <img src="assets/Obras/Obra - Juan Ignacio Errecarte - editada1.webp" alt="Obra Detras de la Interfaz · Errecarte, Juan Ignacio" width="386" height="690" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Detras de la Interfaz</h3><p class="work-author">Errecarte, Juan Ignacio</p></div><span class="work-category">Alienación</span></div>
   </a>
   <p class="work-description" hidden>La descripción de esta obra estará disponible próximamente.</p>
 </article>
 <!-- Obra 8: Ferrer, Evelyn. -->
-<article class="work-card" id="card-deriva-ferrer" data-slug="deriva-ferrer" data-alumno="ferrer-evelyn" data-category="alienacion" data-youtube="" data-research="" data-images="assets/Obras/Obra - Evelyn Ferrer.JPG">
+<article class="work-card" id="card-deriva-ferrer" data-slug="deriva-ferrer" data-alumno="ferrer-evelyn" data-category="alienacion" data-youtube="6Rweuin8zOU" data-research="" data-images="assets/Obras/Obra - Evelyn Ferrer.webp">
   <a class="work-link" href="?obra=deriva-ferrer" data-open-work="deriva-ferrer" aria-label="Ver obra: Prometeo contemporáneo · Ferrer, Evelyn">
-    <img src="assets/Obras/Obra - Evelyn Ferrer.JPG" alt="Prometeo contemporáneo · Ferrer, Evelyn" width="5472" height="3648" loading="lazy" decoding="async">
+    <img src="assets/Obras/Obra - Evelyn Ferrer.webp" alt="Prometeo contemporáneo · Ferrer, Evelyn" width="5472" height="3648" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Prometeo contemporáneo</h3><p class="work-author">Ferrer, Evelyn</p></div><span class="work-category">Alienación</span></div>
   </a>
   <p class="work-description" hidden>Trabajamos y socializamos a través de interfaces; incluso descansamos frente a ellas. Bajo la promesa de productividad y conexión, esos mismos dispositivos alimentan un cansancio silencioso que se acumula en nosotros hasta desdibujar por completo la frontera entre la jornada laboral y el tiempo libre. Byung-Chul Han lo piensa desde el mito de Prometeo: una condena que se repite sin final.
@@ -151,18 +183,18 @@ Para la exposición, Pladi se materializa en una pantalla táctil incorporada a 
 Aquí la repetición recae sobre un teclado, la interfaz que nos conecta con el trabajo. Cada impacto vuelve sobre el mismo lugar y la desgasta ciclo a ciclo. En este sentido, lo que permite seguir produciendo es también lo que se agota.</p>
 </article>
 <!-- Obra 9: Galdeano, Sofia. -->
-<article class="work-card" data-image-pending="true" id="card-pulso-invisible-galdeano" data-slug="pulso-invisible-galdeano" data-alumno="galdeano-sofia" data-category="sinergia" data-youtube="" data-research="">
+<article class="work-card" id="card-pulso-invisible-galdeano" data-slug="pulso-invisible-galdeano" data-indications="sonido" data-alumno="galdeano-sofia" data-category="sinergia" data-youtube="7cJyJ2pDfgQ" data-research="" data-images="assets/Obras/VerticesDelAparecer1_GaldeanoSofia.webp,assets/Obras/VerticesDelAparecer2_GaldeanoSofia.webp">
   <a class="work-link" href="?obra=pulso-invisible-galdeano" data-open-work="pulso-invisible-galdeano" aria-label="Ver obra: Vértices del aparecer · Galdeano, Sofia">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="563" loading="lazy" decoding="async">
+    <img src="assets/Obras/VerticesDelAparecer1_GaldeanoSofia.webp" alt="Obra Vértices del aparecer · Galdeano, Sofia" width="1318" height="878" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Vértices del aparecer</h3><p class="work-author">Galdeano, Sofia</p></div><span class="work-category">Sinergia</span></div>
   </a>
   <p class="work-description" hidden>En un contexto dónde las imágenes y la información circulan cada vez mas rápido, Vértices del aparecer propone una experiencia estética que invita a detenerse para percibir y relacionarse con los demás de otra manera.
 Así la experiencia estética se materializa a través de una instalación interactiva que integra imagen, sonido y participación colectiva, poniendo en el centro de la experiencia la presencia de cada persona y su relación con las demás. De esta forma la obra pone en juego la atención, el tiempo y la comunicación entre quienes participan, experimentado las posibilidades de una percepción compartida frente a la inmediatez y la individualización del contexto digital contemporáneo. </p>
 </article>
 <!-- Obra 10: Galindez, Catalina. -->
-<article class="work-card" data-image-pending="true" id="card-ecosistema-fragil-galindez" data-slug="ecosistema-fragil-galindez" data-alumno="galindez-catalina" data-category="entorno" data-youtube="" data-research="">
+<article class="work-card" id="card-ecosistema-fragil-galindez" data-slug="ecosistema-fragil-galindez" data-alumno="galindez-catalina" data-category="entorno" data-youtube="8vKFit4dOFI" data-research="" data-images="assets/Obras/Eól _ Catalina Galindez 1.webp,assets/Obras/Eól _ Catalina Galindez 2.webp">
   <a class="work-link" href="?obra=ecosistema-fragil-galindez" data-open-work="ecosistema-fragil-galindez" aria-label="Ver obra: Eól · Galindez, Catalina">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="560" loading="lazy" decoding="async">
+    <img src="assets/Obras/Eól _ Catalina Galindez 1.webp" alt="Obra Eól · Galindez, Catalina" width="1080" height="1440" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Eól</h3><p class="work-author">Galindez, Catalina</p></div><span class="work-category">Entorno</span></div>
   </a>
   <p class="work-description" hidden>En un mundo sumido en la oscuridad, aquellos que debían protegerlo ya no recuerdan su deber. Solo quedan hogares abandonados, ruinas cargadas de historia y secretos, y algo que acecha en las tinieblas.
@@ -170,9 +202,9 @@ En esta obra, tu propia mano es quien guía la luz, y tu luz quien guía el cami
 ¿Es posible encontrar la meta sin nadie que te ayude en el camino? ¿Podrás recordarle al mundo de lo que perdió antes de que el mundo se olvide de sí mismo?</p>
 </article>
 <!-- Obra 11: Gamón, Martina. -->
-<article class="work-card" data-image-pending="true" id="card-nodo-gamon" data-slug="nodo-gamon" data-alumno="gamon-martina" data-category="identidad" data-youtube="" data-research="">
+<article class="work-card" id="card-nodo-gamon" data-slug="nodo-gamon" data-alumno="gamon-martina" data-category="identidad" data-youtube="-bDsQ483YI4" data-research="" data-images="assets/Obras/Martina Gamon.webp,assets/Obras/Martina Gamon 2.webp">
   <a class="work-link" href="?obra=nodo-gamon" data-open-work="nodo-gamon" aria-label="Ver obra: Sugerido · Gamón, Martina">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="563" loading="lazy" decoding="async">
+    <img src="assets/Obras/Martina Gamon.webp" alt="Obra Sugerido · Gamón, Martina" width="1800" height="2400" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Sugerido</h3><p class="work-author">Gamón, Martina</p></div><span class="work-category">Identidad</span></div>
   </a>
   <p class="work-description" hidden>¿Alguna vez te preguntaste qué hay detrás de lo que Instagram te muestra?
@@ -184,7 +216,7 @@ Una obra donde las voces se acumulan, se mezclan y se transforman, hasta que sus
 Así como el algoritmo aprende de nuestras elecciones y nos muestra más de lo que nos interesa, ¿hasta qué punto elegimos lo que consumimos? ¿Cuánto de lo que creemos propio está influido por lo que las plataformas nos muestran?</p>
 </article>
 <!-- Obra 12: Giambruni, Adelina. -->
-<article class="work-card" id="card-cartografia-del-cuerpo-giambruni" data-slug="cartografia-del-cuerpo-giambruni" data-alumno="giambruni-adelina" data-category="identidad" data-youtube="" data-research="" data-images="assets/Obras/giambruni-adelina-1.webp,assets/Obras/giambruni-adelina-2.webp">
+<article class="work-card" id="card-cartografia-del-cuerpo-giambruni" data-slug="cartografia-del-cuerpo-giambruni" data-alumno="giambruni-adelina" data-category="identidad" data-youtube="NxwndEdB6xQ" data-research="" data-images="assets/Obras/giambruni-adelina-1.webp,assets/Obras/giambruni-adelina-2.webp">
   <a class="work-link" href="?obra=cartografia-del-cuerpo-giambruni" data-open-work="cartografia-del-cuerpo-giambruni" aria-label="Ver obra: Maleable · Giambruni, Adelina">
     <img src="assets/Obras/giambruni-adelina-1.webp" alt="Obra Maleable · Giambruni, Adelina" width="1352" height="2400" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Maleable</h3><p class="work-author">Giambruni, Adelina</p></div><span class="work-category">Identidad</span></div>
@@ -194,15 +226,15 @@ Así como el algoritmo aprende de nuestras elecciones y nos muestra más de lo q
 La obra nace de una inquietud que la atraviesa y que surge de mi práctica docente: la enseñanza del pensamiento computacional en infancias bonaerenses de cinco y seis años, en diálogo con la etapa preoperatoria descrita por Jean Piaget. Pensada para para ser intervenida por las/os docentes dentro del ámbito educativo, invitando a explorar la relación entre el Pensamiento Computacional y el desarrollo cognitivo de las infancias. </p>
 </article>
 <!-- Obra 13: Gimenez, Julia. -->
-<article class="work-card" data-image-pending="true" id="card-raiz-flotante-gimenez" data-slug="raiz-flotante-gimenez" data-alumno="gimenez-julia" data-category="sinergia" data-youtube="" data-research="">
+<article class="work-card" id="card-raiz-flotante-gimenez" data-slug="raiz-flotante-gimenez" data-alumno="gimenez-julia" data-category="sinergia" data-youtube="arJl3VzvLQo" data-research="" data-images="assets/Obras/Julia Gimenez.webp,assets/Obras/Julia Gimenez1.webp">
   <a class="work-link" href="?obra=raiz-flotante-gimenez" data-open-work="raiz-flotante-gimenez" aria-label="Ver obra: Almaxia · Gimenez, Julia">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="563" loading="lazy" decoding="async">
+    <img src="assets/Obras/Julia Gimenez.webp" alt="Obra Almaxia · Gimenez, Julia" width="1800" height="2400" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Almaxia</h3><p class="work-author">Gimenez, Julia</p></div><span class="work-category">Sinergia</span></div>
   </a>
   <p class="work-description" hidden>Esta obra es una instalación interactiva que explora la creación colectiva a través de la participación de varias personas. Mediante el seguimiento de las manos, cada participante interviene en una composición visual compartida, aportando diferentes elementos que modifican lo que sucede en pantalla. La obra propone una dinámica en la que nadie crea de manera aislada, sino que cada acción se relaciona con las de los demás, dando lugar a un resultado común. A través de la interacción, se busca explorar cómo las decisiones individuales pueden combinarse para construir algo entre todos, generando una experiencia colaborativa en la que el proceso, el encuentro y la participación son parte fundamental de la creación.</p>
 </article>
 <!-- Obra 14: Grassi, Maria. -->
-<article class="work-card" id="card-interferencia-grassi" data-slug="interferencia-grassi" data-alumno="grassi-maria" data-category="sensorialidad" data-youtube="" data-research="" data-images="assets/Obras/grassi-maria-1.webp,assets/Obras/grassi-maria-2.webp">
+<article class="work-card" id="card-interferencia-grassi" data-slug="interferencia-grassi" data-alumno="grassi-maria" data-category="sensorialidad" data-youtube="bs92jb00y3M" data-research="" data-images="assets/Obras/grassi-maria-1.webp,assets/Obras/grassi-maria-2.webp">
   <a class="work-link" href="?obra=interferencia-grassi" data-open-work="interferencia-grassi" aria-label="Ver obra: Triedro material: Sonoro · Grassi, Maria">
     <img src="assets/Obras/grassi-maria-1.webp" alt="Obra Triedro material: Sonoro · Grassi, Maria" width="1200" height="1600" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Triedro material: Sonoro</h3><p class="work-author">Grassi, Maria</p></div><span class="work-category">Sensorialidad</span></div>
@@ -212,9 +244,9 @@ Triedro material: Sonoro propone un espacio de interacción y experimentación c
 </p>
 </article>
 <!-- Obra 15: Griguoli, Nicolás. -->
-<article class="work-card" data-image-pending="true" id="card-materia-viva-griguoli" data-slug="materia-viva-griguoli" data-alumno="griguoli-nicolas" data-category="identidad" data-youtube="" data-research="">
+<article class="work-card" id="card-materia-viva-griguoli" data-slug="materia-viva-griguoli" data-indications="sonido" data-alumno="griguoli-nicolas" data-category="identidad" data-youtube="AtpgezF48wM" data-research="" data-images="assets/Obras/Obra_Nicolas_Griguoli_2.webp,assets/Obras/Obra_Nicolas_Griguoli_3.webp,assets/Obras/Obra_Nicolas_Griguoli_4.webp">
   <a class="work-link" href="?obra=materia-viva-griguoli" data-open-work="materia-viva-griguoli" aria-label="Ver obra: Sinestesia · Griguoli, Nicolás">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="960" height="540" loading="lazy" decoding="async">
+    <img src="assets/Obras/Obra_Nicolas_Griguoli_2.webp" alt="Obra Sinestesia · Griguoli, Nicolás" width="1080" height="1080" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Sinestesia</h3><p class="work-author">Griguoli, Nicolás</p></div><span class="work-category">Identidad</span></div>
   </a>
   <p class="work-description" hidden>La instalación propone vivir y conectar la música electrónica con todo el cuerpo. Al acercarte a las esculturas, el espacio empieza a despertar: las proyecciones reaccionan a tu presencia y cambian según cómo te movés.
@@ -222,7 +254,7 @@ Triedro material: Sonoro propone un espacio de interacción y experimentación c
 No hay reglas ni pasos que seguir; la idea es simplemente conectar a través del baile y dejarse llevar. A medida que entra el ritmo, las figuras cobran vida y se llenan de luz, color y sonido, armando un clima inmersivo donde vos sos quien transforma la obra. Es una invitación abierta a jugar, sentir la música y ver cómo tu propia energía le da forma al espacio.</p>
 </article>
 <!-- Obra 16: Ignoffo, Lara Belén. -->
-<article class="work-card" id="card-el-jardin-interior-ignoffo" data-slug="el-jardin-interior-ignoffo" data-alumno="ignoffo-lara-belen" data-category="identidad" data-youtube="" data-research="">
+<article class="work-card" id="card-el-jardin-interior-ignoffo" data-slug="el-jardin-interior-ignoffo" data-alumno="ignoffo-lara-belen" data-category="identidad" data-youtube="9vLKjEBJ9HQ" data-research="">
   <a class="work-link" href="?obra=el-jardin-interior-ignoffo" data-open-work="el-jardin-interior-ignoffo" aria-label="Ver obra: Fragmentos · Ignoffo, Lara Belén">
     <img src="assets/Obras/ignoffo-lara-belen-1.webp" alt="Obra Fragmentos · Ignoffo, Lara Belén" width="2400" height="1600" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Fragmentos</h3><p class="work-author">Ignoffo, Lara Belén</p></div><span class="work-category">Identidad</span></div>
@@ -232,16 +264,16 @@ No hay reglas ni pasos que seguir; la idea es simplemente conectar a través del
 Sobre telas suspendidas se proyecta en tiempo real la captura del sujeto participante, quien puede intervenir la imagen al manipular piezas sobre una mesa. El gesto corporal y consciente restituye el cuerpo frente a la inmaterialidad de lo virtual y a la subjetividad alterdirigida.</p>
 </article>
 <!-- Obra 17: Iriarte, Jeremías Daniel. -->
-<article class="work-card" data-image-pending="true" id="card-codigo-abierto-iriarte" data-slug="codigo-abierto-iriarte" data-alumno="iriarte-jeremias-daniel" data-category="entorno" data-youtube="" data-research="">
+<article class="work-card" id="card-codigo-abierto-iriarte" data-slug="codigo-abierto-iriarte" data-alumno="iriarte-jeremias-daniel" data-category="entorno" data-youtube="1hL5eaoNqpM" data-research="" data-images="assets/Obras/Jerimias Iriarte.webp,assets/Obras/Jeremias Iriarte.jpeg">
   <a class="work-link" href="?obra=codigo-abierto-iriarte" data-open-work="codigo-abierto-iriarte" aria-label="Ver obra: Rosty Zone · Iriarte, Jeremías Daniel">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="667" loading="lazy" decoding="async">
+    <img src="assets/Obras/Jerimias Iriarte.webp" alt="Obra Rosty Zone · Iriarte, Jeremías Daniel" width="1800" height="2400" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Rosty Zone</h3><p class="work-author">Iriarte, Jeremías Daniel</p></div><span class="work-category">Entorno</span></div>
   </a>
   <p class="work-description" hidden>El Estado de Flujo opera como el equivalente contemporáneo del Aura en los Sistemas Estético-Lúdicos (comúnmente denominados "jueguitos"), donde la belleza reside en la estructura de reglas.   
 La propuesta se materializa en una instalación asimétrica dividida en dos estaciones: la Estación Jugador, donde interactuantes cooperan en Rosty Zone usando joysticks y TV retro, y la Estación Control, una cabina técnica donde un interactuante actúa como "algoritmo humano" modulando la dificultad con hardware no convencional.</p>
 </article>
 <!-- Obra 18: Isasmendi, Rodrigo. -->
-<article class="work-card" id="card-sustrato-isasmendi" data-slug="sustrato-isasmendi" data-alumno="isasmendi-rodrigo" data-category="alienacion" data-youtube="" data-research="" data-images="assets/Obras/Obra_RodrigoIsasmendi1.jpg">
+<article class="work-card" id="card-sustrato-isasmendi" data-slug="sustrato-isasmendi" data-alumno="isasmendi-rodrigo" data-category="alienacion" data-youtube="FuwufOL51BM" data-research="" data-images="assets/Obras/Obra_RodrigoIsasmendi1.jpg">
   <a class="work-link" href="?obra=sustrato-isasmendi" data-open-work="sustrato-isasmendi" aria-label="Ver obra: Experimental Cognitive Override Technology (E.C.O.T.) · Isasmendi, Rodrigo">
     <img src="assets/Obras/Obra_RodrigoIsasmendi1.jpg" alt="Experimental Cognitive Override Technology (E.C.O.T.) · Isasmendi, Rodrigo" width="896" height="1200" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Experimental Cognitive Override Technology (E.C.O.T.)</h3><p class="work-author">Isasmendi, Rodrigo</p></div><span class="work-category">Alienación</span></div>
@@ -253,25 +285,25 @@ Todo parece estar cada vez más al alcance de la mano, a la vez que lentamente e
 Hábitos y costumbres a los que somos frágiles toman la forma de elecciones y se disfrazan disuadiendo al deseo.</p>
 </article>
 <!-- Obra 19: La Pioggia, Franco. -->
-<article class="work-card" data-image-pending="true" id="card-memoria-liquida-la" data-slug="memoria-liquida-la" data-alumno="la-pioggia-franco" data-category="sinergia" data-youtube="" data-research="">
+<article class="work-card" id="card-memoria-liquida-la" data-slug="memoria-liquida-la" data-alumno="la-pioggia-franco" data-category="sinergia" data-youtube="S0adqxUbASY" data-research="">
   <a class="work-link" href="?obra=memoria-liquida-la" data-open-work="memoria-liquida-la" aria-label="Ver obra: Collapso · La Pioggia, Franco">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="563" loading="lazy" decoding="async">
+    <img src="assets/Obras/Franco La Piogga.webp" alt="Obra Collapso · La Pioggia, Franco" width="2400" height="1350" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Collapso</h3><p class="work-author">La Pioggia, Franco</p></div><span class="work-category">Sinergia</span></div>
   </a>
   <p class="work-description" hidden>La obra es una instalación interactiva de luz que invita a explorar cómo nuestras acciones pueden influir en la experiencia de otras personas. Está compuesta por 16 baldosas de piso que, mediante sensores de presión y aros LED, responden a los movimientos y las presencias, generando distintos comportamientos lumínicos. La instalación propone un espacio de exploración compartida, donde la observación, la experimentación y la interacción con otros forman parte de la experiencia. A través de diferentes estados lumínicos, la obra transforma un gesto cotidiano como caminar en una oportunidad para descubrir nuevas relaciones entre el cuerpo, el espacio y los demás.</p>
 </article>
 <!-- Obra 20: Lajoinie, María Delfina. -->
-<article class="work-card" data-image-pending="true" id="card-red-lajoinie" data-slug="red-lajoinie" data-alumno="lajoinie-maria-delfina" data-category="identidad" data-youtube="" data-research="">
+<article class="work-card" id="card-red-lajoinie" data-slug="red-lajoinie" data-alumno="lajoinie-maria-delfina" data-category="identidad" data-youtube="lqV6PPIbaMs" data-research="" data-images="assets/Obras/La mirada que me define - Lajoinie Maria Delfina.webp,assets/Obras/La mirada que me define - Lajoinie Maria Delfina 1.webp,assets/Obras/La mirada que me define - Lajoinie Maria Delfina 2.webp">
   <a class="work-link" href="?obra=red-lajoinie" data-open-work="red-lajoinie" aria-label="Ver obra: La mirada que me define · Lajoinie, María Delfina">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="767" loading="lazy" decoding="async">
+    <img src="assets/Obras/La mirada que me define - Lajoinie Maria Delfina.webp" alt="Obra La mirada que me define · Lajoinie, María Delfina" width="1429" height="953" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>La mirada que me define</h3><p class="work-author">Lajoinie, María Delfina</p></div><span class="work-category">Identidad</span></div>
   </a>
   <p class="work-description" hidden>La mirada que me define es una instalación interactiva que explora la relación entre identidad, percepción y estereotipos. Un trono rodeado por una estructura de formas orgánicas se convierte en el punto de encuentro entre el cuerpo y una mirada que observa. A través de proyecciones, luces y sonidos, decenas de ojos reaccionan ante quien se sienta, construyendo una experiencia donde sentirse observado se vuelve parte de la obra. La instalación propone reflexionar sobre cómo las miradas externas pueden influir en la forma en que percibimos y clasificamos a los demás, y cómo esas mismas categorías pueden terminar formando parte de nuestra propia identidad.</p>
 </article>
 <!-- Obra 21: Magallanes Diaz, Lara Jazmín. -->
-<article class="work-card" id="card-horizonte-expandido-magallanes" data-slug="horizonte-expandido-magallanes" data-alumno="magallanes-diaz-lara-jazmin" data-category="entorno" data-youtube="" data-research="" data-images="assets/Obras/LaraMagallanesDiaz.jpg,assets/Obras/LaraMagallanesDiaz1.jpg,assets/Obras/LaraMagallanesDiaz2.png">
+<article class="work-card" id="card-horizonte-expandido-magallanes" data-slug="horizonte-expandido-magallanes" data-alumno="magallanes-diaz-lara-jazmin" data-category="entorno" data-youtube="Pc3ur1NypSg" data-research="" data-images="assets/Obras/LaraMagallanesDiaz.webp,assets/Obras/LaraMagallanesDiaz1.webp,assets/Obras/LaraMagallanesDiaz2.webp">
   <a class="work-link" href="?obra=horizonte-expandido-magallanes" data-open-work="horizonte-expandido-magallanes" aria-label="Ver obra: Tocando Fondo · Magallanes Diaz, Lara Jazmín">
-    <img src="assets/Obras/LaraMagallanesDiaz.jpg" alt="Tocando Fondo · Magallanes Diaz, Lara Jazmín" width="2166" height="3186" loading="lazy" decoding="async">
+    <img src="assets/Obras/LaraMagallanesDiaz.webp" alt="Tocando Fondo · Magallanes Diaz, Lara Jazmín" width="2166" height="3186" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Tocando Fondo</h3><p class="work-author">Magallanes Diaz, Lara Jazmín</p></div><span class="work-category">Entorno</span></div>
   </a>
   <p class="work-description" hidden>Durante nuestra vida, los seres humanos sufrimos repetidos fracasos y frustraciones al querer lograr un objetivo, dependiendo de distintos factores, como la suerte o las oportunidades que se presentan. Cada uno es consciente de que el progreso generalmente no es lineal, sino que presenta altibajos y retrocesos.
@@ -279,9 +311,9 @@ Hábitos y costumbres a los que somos frágiles toman la forma de elecciones y s
 Tocando Fondo se trata de una obra interactiva que mezcla la instalación con el videojuego e involucra el cuerpo, la movilidad y habilidad, por lo que la experiencia de cada jugador es única, al igual que su forma de lidiar con la frustración de los retrocesos y dificultades. La búsqueda estética propone pensar más allá del fin o del objetivo, ya que el recorrido puede ser mucho más memorable que el destino.</p>
 </article>
 <!-- Obra 22: Mansilla Torres, Nicolas. -->
-<article class="work-card" data-image-pending="true" id="card-organismo-artificial-mansilla" data-slug="organismo-artificial-mansilla" data-alumno="mansilla-torres-nicolas" data-category="entorno" data-youtube="" data-research="">
+<article class="work-card" id="card-organismo-artificial-mansilla" data-slug="organismo-artificial-mansilla" data-indications="sonido" data-alumno="mansilla-torres-nicolas" data-category="entorno" data-youtube="oTCtMRded0E" data-research="" data-images="assets/Obras/Obra - Nicolas Mansilla Torres.webp,assets/Obras/sincronia obra.jpg">
   <a class="work-link" href="?obra=organismo-artificial-mansilla" data-open-work="organismo-artificial-mansilla" aria-label="Ver obra: Sincronia · Mansilla Torres, Nicolas">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="563" loading="lazy" decoding="async">
+    <img src="assets/Obras/Obra - Nicolas Mansilla Torres.webp" alt="Obra Sincronia · Mansilla Torres, Nicolas" width="841" height="1870" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Sincronia</h3><p class="work-author">Mansilla Torres, Nicolas</p></div><span class="work-category">Entorno</span></div>
   </a>
   <p class="work-description" hidden>¿Es posible jugar sin recurrir a estímulos visuales?
@@ -293,52 +325,52 @@ Materializada en un arcade físico, la obra propone una experiencia de juego en 
 La propuesta desplaza la mirada como principal guía de la experiencia y sitúa la escucha en el centro, invitando a explorar otras formas de percepción e interacción.</p>
 </article>
 <!-- Obra 23: Migone, Maria Candela. -->
-<article class="work-card" data-image-pending="true" id="card-tejido-urbano-migone" data-slug="tejido-urbano-migone" data-alumno="migone-maria-candela" data-category="identidad" data-youtube="" data-research="">
+<article class="work-card" id="card-tejido-urbano-migone" data-slug="tejido-urbano-migone" data-alumno="migone-maria-candela" data-category="identidad" data-youtube="2zx1D-yxuIA" data-research="">
   <a class="work-link" href="?obra=tejido-urbano-migone" data-open-work="tejido-urbano-migone" aria-label="Ver obra: Melod.ia · Migone, Maria Candela">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="564" loading="lazy" decoding="async">
+    <img src="assets/Obras/Candela Migone.jpeg" alt="Obra Melod.ia · Migone, Maria Candela" width="1536" height="903" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Melod.ia</h3><p class="work-author">Migone, Maria Candela</p></div><span class="work-category">Identidad</span></div>
   </a>
   <p class="work-description" hidden>¿Qué sucede con la creatividad cuando creamos junto a una inteligencia artificial? Esta obra nace de la exploración de cómo las decisiones de las personas y las respuestas de una IA participan de un mismo proceso creativo. Un intercambio donde la voz es el punto de partida y cada respuesta puede modificar lo que hacemos después. La composición toma forma entre lo que proponemos, lo que esperamos y aquello que nos sorprende.
 Si crear también implica escuchar, interpretar y elegir, ¿cómo se construye una creación compartida con una inteligencia artificial? ¿Cuánto del resultado depende de nuestras decisiones y cuánto surge de un intercambio que no podemos anticipar por completo?</p>
 </article>
 <!-- Obra 24: Orbaiceta, Catalina. -->
-<article class="work-card" data-image-pending="true" id="card-simbiosis-orbaiceta" data-slug="simbiosis-orbaiceta" data-alumno="orbaiceta-catalina" data-category="identidad" data-youtube="" data-research="">
+<article class="work-card" id="card-simbiosis-orbaiceta" data-slug="simbiosis-orbaiceta" data-alumno="orbaiceta-catalina" data-category="identidad" data-youtube="Sj1W88I5gbk" data-research="">
   <a class="work-link" href="?obra=simbiosis-orbaiceta" data-open-work="simbiosis-orbaiceta" aria-label="Ver obra: Hasta agotar stock · Orbaiceta, Catalina">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="767" loading="lazy" decoding="async">
+    <img src="assets/Obras/Obra - Catalina Orbaiceta- 2.webp" alt="Obra Hasta agotar stock · Orbaiceta, Catalina" width="2400" height="1600" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Hasta agotar stock</h3><p class="work-author">Orbaiceta, Catalina</p></div><span class="work-category">Identidad</span></div>
   </a>
   <p class="work-description" hidden>La obra propone una reflexión sobre la construcción de la imagen del influencer y la transformación de la vida privada en un producto de consumo. A través de una pared cubierta de post-its, se presenta una superficie que oculta aquello que existe detrás de la imagen pública. El público es invitado a retirar los papeles, descubriendo progresivamente una nueva imagen y los mensajes que permanecían ocultos. Esta acción participativa busca poner en tensión la apariencia de espontaneidad y autenticidad de las redes sociales con su carácter escenificado y comercial. La obra invita a cuestionar qué mostramos, qué ocultamos y cómo la mirada del otro participa en la construcción de aquello que consumimos.</p>
 </article>
 <!-- Obra 25: Panelli, Dolores. -->
-<article class="work-card" data-image-pending="true" id="card-capa-profunda-panelli" data-slug="capa-profunda-panelli" data-alumno="panelli-dolores" data-category="alienacion" data-youtube="" data-research="">
+<article class="work-card" id="card-capa-profunda-panelli" data-slug="capa-profunda-panelli" data-alumno="panelli-dolores" data-category="alienacion" data-youtube="fJaMB3invsQ" data-research="">
   <a class="work-link" href="?obra=capa-profunda-panelli" data-open-work="capa-profunda-panelli" aria-label="Ver obra: AIRE · Panelli, Dolores">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="667" loading="lazy" decoding="async">
+    <img src="assets/Obras/Obra - Dolores Panelli.webp" alt="Obra AIRE · Panelli, Dolores" width="1350" height="2400" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>AIRE</h3><p class="work-author">Panelli, Dolores</p></div><span class="work-category">Alienación</span></div>
   </a>
   <p class="work-description" hidden>Tu mente puede hacer más de lo que imaginás. A través de la concentración, esta experiencia te invita a descubrir tu capacidad de influir sobre lo que sucede y a poner a prueba tu propia voluntad. Lo que al principio parece estar bajo tu control empieza a desafiarte, mientras distintos estímulos compiten por tu atención. La obra traslada al espacio físico algunos de los mecanismos que operan silenciosamente en las interfaces digitales: la recompensa, la interrupción y la búsqueda constante de nuevos estímulos. Una experiencia que pone en juego nuestra capacidad de concentrarnos y cuestiona cómo el diseño puede influir en aquello a lo que prestamos atención.</p>
 </article>
 <!-- Obra 26: Riol Fernández, Juan Cruz. -->
-<article class="work-card" data-image-pending="true" id="card-latencia-riol" data-slug="latencia-riol" data-alumno="riol-fernandez-juan-cruz" data-category="identidad" data-youtube="" data-research="">
+<article class="work-card" id="card-latencia-riol" data-slug="latencia-riol" data-alumno="riol-fernandez-juan-cruz" data-category="identidad" data-youtube="V_NflBd-3d4" data-research="">
   <a class="work-link" href="?obra=latencia-riol" data-open-work="latencia-riol" aria-label="Ver obra: Twinema Paradincaa · Riol Fernández, Juan Cruz">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="1333" loading="lazy" decoding="async">
+    <img src="assets/Obras/Obra - Juan Cruz Riol Fernandez (3).webp" alt="Obra Twinema Paradincaa · Riol Fernández, Juan Cruz" width="1600" height="900" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Twinema Paradincaa</h3><p class="work-author">Riol Fernández, Juan Cruz</p></div><span class="work-category">Identidad</span></div>
   </a>
   <p class="work-description" hidden>Una instalación interactiva que invita a explorar el cine argentino desde una experiencia física y audiovisual. La obra recrea la apariencia de un proyector cinematográfico analógico, acompañado por seis rollos que representan los géneros humor, misterio, drama, terror, romance y documental.  Al combinar dos rollos, se establece una nueva relación entre géneros y cambia el contenido proyectado. Una interfaz inicial inspirada en Twitter introduce el universo digital que atraviesa la investigación. La propuesta vincula cine, participación y resignificación, convirtiendo la selección de contenidos en una experiencia donde cada decisión abre una posibilidad diferente.
 </p>
 </article>
 <!-- Obra 27: Rojas Rabassio, Juliana. -->
-<article class="work-card" data-image-pending="true" id="card-espectro-variable-rojas" data-slug="espectro-variable-rojas" data-alumno="rojas-rabassio-juliana" data-category="sensorialidad" data-youtube="" data-research="">
+<article class="work-card" id="card-espectro-variable-rojas" data-slug="espectro-variable-rojas" data-indications="sonido" data-alumno="rojas-rabassio-juliana" data-category="sensorialidad" data-youtube="-mqKiYvBFaw" data-research="">
   <a class="work-link" href="?obra=espectro-variable-rojas" data-open-work="espectro-variable-rojas" aria-label="Ver obra: tesis.wav · Rojas Rabassio, Juliana">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="563" loading="lazy" decoding="async">
+    <img src="assets/Obras/obra_Juliana_Rojas_Expandida.webp" alt="Obra tesis.wav · Rojas Rabassio, Juliana" width="1819" height="2400" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>tesis.wav</h3><p class="work-author">Rojas Rabassio, Juliana</p></div><span class="work-category">Sensorialidad</span></div>
   </a>
   <p class="work-description" hidden>De los creadores de "audioversionfinalfinal.wav" y "ultimoaudio2.wav", presento "tesis.wav", una instalación sonora inmersiva que te detiene un momento para pensar ¿En dónde estoy? ¿Qué suena alrededor? Y sólo podés guiarte con el sonido! Frente a la normalización de la contaminación sonora y la elusión del ambiente sonoro, sea por la misma contaminación o aislamiento por tecnología, "tesis.wav" te invita a escuchar, ubicarte en un lugar y transformarlo con tu cuerpo.
 Esta es una época de escucha reducida, donde ignoramos los ambientes naturales alrededor, y nos acostumbramos a los ambientes artificiales de las tecnologías y las redes. Por eso, debemos diferenciar entre oír pasivamente, y escuchar activamente prestando atención. Esta instalación nos despoja del uso del sentido visual para orientarnos y nos obliga a escuchar activamente nuestro alrededor para entender dónde estamos y en qué transformamos la obra mientras exploramos el espacio sonoro propuesto. </p>
 </article>
 <!-- Obra 28: Rossetti, Matías. -->
-<article class="work-card" data-image-pending="true" id="card-modulo-sensorial-rossetti" data-slug="modulo-sensorial-rossetti" data-alumno="rossetti-matias" data-category="sinergia" data-youtube="" data-research="">
+<article class="work-card" id="card-modulo-sensorial-rossetti" data-slug="modulo-sensorial-rossetti" data-indications="duo,sonido" data-alumno="rossetti-matias" data-category="sinergia" data-youtube="1oGKswyX8Og" data-research="">
   <a class="work-link" href="?obra=modulo-sensorial-rossetti" data-open-work="modulo-sensorial-rossetti" aria-label="Ver obra: Super Slime Factory · Rossetti, Matías">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="767" loading="lazy" decoding="async">
+    <img src="assets/Obras/Super Slime Factory - Matias Rossetti.webp" alt="Obra Super Slime Factory · Rossetti, Matías" width="1024" height="1536" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Super Slime Factory</h3><p class="work-author">Rossetti, Matías</p></div><span class="work-category">Sinergia</span></div>
   </a>
   <p class="work-description" hidden>Super Slime Factory es una instalación interactiva corporal y cooperativa para dos personas, desarrollada como parte de una tesis de Diseño Multimedial de la UNLP. Los participantes controlan robots dentro de una fábrica de slime y resuelven desafíos mediante movimientos coordinados.
@@ -348,7 +380,7 @@ La obra se materializa mediante una cámara que captura los movimientos corporal
 La propuesta explora la interacción corporal, la copresencia y la interdependencia, investigando cómo las mecánicas cooperativas favorecen la comunicación y la construcción de experiencias compartidas.</p>
 </article>
 <!-- Obra 29: Sago, Suyay. -->
-<article class="work-card" id="card-onda-sago" data-slug="onda-sago" data-alumno="sago-suyay" data-category="sensorialidad" data-youtube="" data-research="" data-images="assets/Obras/Obra - Suyay Sago-3.jpg,assets/Obras/Obra - Suyay Sago-5.jpg,assets/Obras/Obra - Suyay Sago-6.jpg">
+<article class="work-card" id="card-onda-sago" data-slug="onda-sago" data-indications="sonido" data-alumno="sago-suyay" data-category="sensorialidad" data-youtube="PvTfravsaf0" data-research="" data-images="assets/Obras/Obra - Suyay Sago-3.jpg,assets/Obras/Obra - Suyay Sago-5.jpg,assets/Obras/Obra - Suyay Sago-6.jpg,assets/Obras/Obra - Suyay Sago-11.webp">
   <a class="work-link" href="?obra=onda-sago" data-open-work="onda-sago" aria-label="Ver obra: Galaxia · Sago, Suyay">
     <img src="assets/Obras/Obra - Suyay Sago-3.jpg" alt="Galaxia · Sago, Suyay" width="2560" height="1922" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Galaxia</h3><p class="work-author">Sago, Suyay</p></div><span class="work-category">Sensorialidad</span></div>
@@ -359,9 +391,9 @@ Una instalación multimedial interactiva que invita a construir una galaxia a tr
 #Galaxia #luz #universo #sonido #accesibilidad #diseñoUniversal</p>
 </article>
 <!-- Obra 30: Segundo, Tatiana. -->
-<article class="work-card" data-image-pending="true" id="card-punto-de-fuga-segundo" data-slug="punto-de-fuga-segundo" data-alumno="segundo-tatiana" data-category="sensorialidad" data-youtube="" data-research="">
+<article class="work-card" id="card-punto-de-fuga-segundo" data-slug="punto-de-fuga-segundo" data-alumno="segundo-tatiana" data-category="sensorialidad" data-youtube="3-zPo9_2hJU" data-research="" data-images="assets/Obras/Obra_TatianaSegundo_1.webp,assets/Obras/Obra_TatianaSegundo_3.webp,assets/Obras/Obra_TatianaSegundo_4.webp">
   <a class="work-link" href="?obra=punto-de-fuga-segundo" data-open-work="punto-de-fuga-segundo" aria-label="Ver obra: engrai²S · Segundo, Tatiana">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="563" loading="lazy" decoding="async">
+    <img src="assets/Obras/Obra_TatianaSegundo_1.webp" alt="Obra engrai²S · Segundo, Tatiana" width="1800" height="2400" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>engrai²S</h3><p class="work-author">Segundo, Tatiana</p></div><span class="work-category">Sensorialidad</span></div>
   </a>
   <p class="work-description" hidden>Materiales: Biobasados y metal.
@@ -370,16 +402,16 @@ Aquí germina una sinergia fruto del diseño, investigación y desarrollo transd
 Gracias a la Universidad Nacional de La Plata, la Facultad de Artes y el Laboratorio de Investigaciones de Metalurgia Física (LIMF) de la Facultad de Ingeniería por brindar espacio a esta sinergia.</p>
 </article>
 <!-- Obra 31: Triolo, Valentina. -->
-<article class="work-card" data-image-pending="true" id="card-transicion-triolo" data-slug="transicion-triolo" data-alumno="triolo-valentina" data-category="alienacion" data-youtube="" data-research="">
+<article class="work-card" id="card-transicion-triolo" data-slug="transicion-triolo" data-alumno="triolo-valentina" data-category="alienacion" data-youtube="Hpf37RlkPS8" data-research="">
   <a class="work-link" href="?obra=transicion-triolo" data-open-work="transicion-triolo" aria-label="Ver obra: Seraph.exe · Triolo, Valentina">
-    <img src="assets/imagen-pendiente.svg" alt="Imagen pendiente" width="1000" height="563" loading="lazy" decoding="async">
+    <img src="assets/Obras/Obra - Valentina Triolo - 1.webp" alt="Obra Seraph.exe · Triolo, Valentina" width="1340" height="2400" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Seraph.exe</h3><p class="work-author">Triolo, Valentina</p></div><span class="work-category">Alienación</span></div>
   </a>
   <p class="work-description" hidden>SERAPH.EXE explora la relación entre tecnología, fe y sacralización en la contemporaneidad. A través de una instalación que combina estructuras orgánicas, cables, pantallas y dispositivos electrónicos, emerge una entidad angelical que actúa como mediadora entre lo humano y un sistema inaccesible. La obra indaga en cómo las tecnologías que creamos pueden adquirir una autoridad que trasciende su función original, convirtiéndose en objetos de fascinación, confianza y culto. En este vínculo, la máquina deja de ser una herramienta neutral para ocupar un lugar próximo a lo divino.
 ¿Qué sucede cuando los seres humanos atribuyen un poder superior a sus propias creaciones? ¿Quién termina venerando a quién?</p>
 </article>
 <!-- Obra 32: Ubaldi, Guadalupe. -->
-<article class="work-card" id="card-habitat-inmersivo-ubaldi" data-slug="habitat-inmersivo-ubaldi" data-alumno="ubaldi-guadalupe" data-category="sensorialidad" data-youtube="" data-research="">
+<article class="work-card" id="card-habitat-inmersivo-ubaldi" data-slug="habitat-inmersivo-ubaldi" data-alumno="ubaldi-guadalupe" data-category="sensorialidad" data-youtube="3B2cWwX4J1M" data-research="">
   <a class="work-link" href="?obra=habitat-inmersivo-ubaldi" data-open-work="habitat-inmersivo-ubaldi" aria-label="Ver obra: Nimbo · Ubaldi, Guadalupe">
     <img src="assets/Obras/ubaldi-guadalupe-1.webp" alt="Obra Nimbo · Ubaldi, Guadalupe" width="1600" height="2400" loading="lazy" decoding="async">
     <div class="work-meta"><div><h3>Nimbo</h3><p class="work-author">Ubaldi, Guadalupe</p></div><span class="work-category">Sensorialidad</span></div>
@@ -388,8 +420,8 @@ Gracias a la Universidad Nacional de La Plata, la Facultad de Artes y el Laborat
 </article></div>
         <div class="empty-state" id="empty-state" hidden><h2>Ninguna obra coincide con estos filtros</h2><button class="pill" data-clear-all>Borrar filtros</button></div>
       </div>
-      <div class="catalog-progress" id="catalog-progress" aria-hidden="true"></div>
-      <button class="pill filter-trigger" id="filter-trigger" aria-haspopup="dialog" aria-controls="filter-dialog" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 1v6M8 9v6M16 17v6"/></svg><span>Filtrar</span></button>
+      <nav class="catalog-progress" id="catalog-progress" aria-label="Recorrer las obras" inert></nav>
+      <button class="pill filter-trigger" id="filter-trigger" aria-haspopup="dialog" aria-controls="filter-dialog" aria-expanded="false" hidden><span>Filtrar</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 1v6M8 9v6M16 17v6"/></svg></button>
       <p class="sr-only" aria-live="polite" id="results-status"></p>
     </section>
   </div>
@@ -401,23 +433,61 @@ Gracias a la Universidad Nacional de La Plata, la Facultad de Artes y el Laborat
       </div>
     </section>
   </div>
-  <section data-view="404" class="error-view" hidden aria-labelledby="error-title"><img class="error-background" src="assets/Error404.png" alt="" aria-hidden="true"><h1 id="error-title">La página no existe o<br>fue eliminada</h1><a class="pill" href="?pagina=inicio" data-page-link="inicio">Volver al Inicio</a></section>
-  <section data-view="countdown" class="countdown-view" hidden aria-labelledby="countdown-title"><h1 id="countdown-title" class="sr-only">Artimañas 2026 · Cuenta regresiva</h1><img class="countdown-logo" src="assets/logo-artimanas.webp" alt="Artimañas"><p>Muestra de arte interactivo</p>
+  <section data-view="404" class="error-view" hidden aria-labelledby="error-title"><img class="error-background" loading="lazy" decoding="async" src="assets/Error404.webp" alt="" aria-hidden="true"><h1 id="error-title">La página no existe o fue eliminada</h1><a class="pill" href="?pagina=inicio" data-page-link="inicio">Volver al Inicio</a></section>
+  <section data-view="countdown" class="countdown-view" hidden aria-labelledby="countdown-title"><h1 id="countdown-title" class="sr-only">Artimañas 2026 · Cuenta regresiva</h1><img class="countdown-logo" data-intro-logo width="1600" height="306" src="assets/logo-artimanas.webp" alt="Artimañas"><p>Muestra de arte interactivo</p>
     <div class="countdown-grid" role="timer" aria-label="Tiempo restante para el 28 de noviembre de 2026 a las 19 horas de Argentina">
       <div class="countdown-cell"><strong id="count-days">00</strong><span>días</span></div><div class="countdown-cell"><strong id="count-hours">00</strong><span>horas</span></div><div class="countdown-cell"><strong id="count-minutes">00</strong><span>minutos</span></div><div class="countdown-cell"><strong id="count-seconds">00</strong><span>segundos</span></div>
-    </div><button class="pill" data-open-event>Detalles del festival</button><div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="marquee-group"><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span></div><div class="marquee-group"><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span></div></div></div>
+    </div>
+    <div class="countdown-actions">
+      <button type="button" class="pill" data-open-event>Detalles del festival</button>
+      <!-- Acceso provisorio para la revisión de tesis. -->
+      <a class="pill outline" href="?pagina=inicio&amp;revision=tesis">Ver la página</a>
+    </div><div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="marquee-group"><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span></div><div class="marquee-group"><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span><span>Taller de Diseño Multimedial V <i>*</i> Universidad Nacional de La Plata <i>*</i> 2026 <i>*</i></span></div></div></div>
   </section>
 </main>
 <footer class="site-footer" id="site-footer">
-  <div class="footer-art" aria-hidden="true"><img class="footer-orb" src="assets/footer-orb.webp" alt="" loading="lazy"><span class="star a">✦</span><span class="star b">✦</span><span class="star c">✧</span><img class="footer-logo" src="assets/logo-artimanas.webp" alt="" loading="lazy"><span class="eyebrow">2026</span></div>
-  <div class="container"><div class="footer-info"><div><strong>Muestra de trabajos finales de Taller de Diseño Multimedial V</strong><p>Desde 2011 se realiza el festival “Artimañas” en donde el conjunto del alumnado de Taller de Diseño Multimedial presenta sus trabajos finales de carrera. Es una muestra para la Licenciatura en Diseño Multimedial.</p></div><div class="footer-credits"><a href="#inicio" data-back-top>Volver arriba ↑</a><p>Hecho con <span aria-label="amor">💜</span> por alumnes</p><p>© 2026 Artimañas</p></div></div><div class="institutions"><img src="assets/logo-unlp.webp" width="446" height="190" alt="Universidad Nacional de La Plata" loading="lazy"><img src="assets/logo-facultad-artes.webp" width="670" height="160" alt="Facultad de Artes" loading="lazy"><img src="assets/logo-multimedia.webp" width="560" height="160" alt="Diseño Multimedial" loading="lazy"></div></div>
+  <div class="footer-decor" aria-hidden="true">
+    <img class="footer-glass glass-left" src="assets/footer-glass-left.webp" alt="" loading="lazy">
+    <img class="footer-glass glass-small" src="assets/footer-glass-small.webp" alt="" loading="lazy">
+    <img class="footer-glass glass-right" src="assets/footer-glass-right.webp" alt="" loading="lazy">
+    <span class="footer-sparkle">✦</span><span class="footer-sparkle">✧</span><span class="footer-sparkle">✦</span>
+    <span class="footer-sparkle">✧</span><span class="footer-sparkle">✦</span><span class="footer-sparkle">✧</span>
+    <span class="footer-sparkle">✦</span><span class="footer-sparkle">✧</span><span class="footer-sparkle">✦</span>
+  </div>
+  <div class="footer-art" aria-hidden="true">
+    <img class="footer-logo" src="assets/logo-artimanas.webp" alt="" loading="lazy">
+    <span class="eyebrow">2026</span>
+  </div>
+  <div class="container footer-content">
+    <div class="footer-info">
+      <div class="footer-text">
+        <h2>Muestra de trabajos finales de Taller de Diseño Multimedial V</h2>
+        <p>Desde 2011 se realiza el festival “Artimañas” en donde el conjunto del alumnado de Taller de Diseño Multimedial presenta sus trabajos finales de carrera. Es una muestra para la Licenciatura en Diseño Multimedial.</p>
+      </div>
+      <div class="footer-credits">
+        <nav class="footer-socials" aria-label="Redes sociales">
+          <a href="https://www.instagram.com/festivalartimanas/" aria-label="Instagram del Festival Artimañas"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCTV7OwJqawDl1CdES-r459w" aria-label="YouTube de Taller de Diseño Multimedial 5"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/pages/Dise%C3%B1o-Multimedial-UNLP/110327879033268" aria-label="Facebook de Diseño Multimedial UNLP"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M13 21v-9h3l.5-3H13V7.5c0-1 .5-1.5 1.5-1.5h2V3.3C13.8 2.7 10 3 10 7.5V9H7v3h3v9Z" fill="currentColor" stroke="none"/></svg></a>
+        </nav>
+        <p>Hecho con <span aria-label="amor">💜</span> por alumnes</p>
+        <p>© 2026 Artimañas</p>
+      </div>
+    </div>
+    <div class="institutions">
+      <img src="assets/footer-logo-unlp.webp" alt="Universidad Nacional de La Plata" loading="lazy">
+      <img src="assets/footer-logo-facultad.webp" alt="Facultad de Artes" loading="lazy">
+      <img src="assets/footer-logo-20-anios.webp" alt="20 años de Diseño Multimedial" loading="lazy">
+      <img src="assets/footer-logo-t5-tpf.webp" alt="Taller de Diseño Multimedial 5 · Taller de Producción Final" loading="lazy">
+    </div>
+  </div>
 </footer>
 <dialog id="menu-dialog" class="menu-dialog" aria-label="Menú principal"><div class="menu-top"><span>Artimañas</span><button data-close-dialog aria-label="Cerrar menú">Cerrar ×</button></div><nav class="menu-links" aria-label="Navegación móvil"><a href="?pagina=inicio" data-page-link="inicio">Inicio <small>01</small></a><a href="?pagina=galeria" data-page-link="galeria">Galería <small>02</small></a><a href="?muestra" data-open-event>Muestra 2026 <small>03</small></a></nav></dialog>
-<dialog id="filter-dialog" class="filter-dialog" aria-labelledby="filter-title"><button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar filtros"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button><h2 id="filter-title">Filtrar obras</h2><div id="panel-categorias" class="filter-options" role="group" aria-label="Categorías"><label class="filter-option"><input type="checkbox" name="categoria" value="alienacion"><span>Alienación</span><small data-category-count="alienacion"></small></label>
-<label class="filter-option"><input type="checkbox" name="categoria" value="entorno"><span>Entorno</span><small data-category-count="entorno"></small></label>
-<label class="filter-option"><input type="checkbox" name="categoria" value="identidad"><span>Identidad</span><small data-category-count="identidad"></small></label>
-<label class="filter-option"><input type="checkbox" name="categoria" value="sensorialidad"><span>Sensorialidad</span><small data-category-count="sensorialidad"></small></label>
-<label class="filter-option"><input type="checkbox" name="categoria" value="sinergia"><span>Sinergia</span><small data-category-count="sinergia"></small></label></div><div class="filter-actions"><button class="pill apply-filters" id="apply-filters">Mostrar obras</button><button class="clear-filters" id="clear-filters">Borrar filtros</button></div></dialog>
+<dialog id="filter-dialog" class="filter-dialog" aria-labelledby="filter-title"><button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar filtros"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button><h2 id="filter-title">Filtrar obras</h2><button class="filter-all" id="filter-all" type="button" aria-pressed="true">Todas</button><div id="panel-categorias" class="filter-options" role="group" aria-label="Categorías"><label class="filter-option"><input type="checkbox" name="categoria" value="alienacion"><span>Alienación (<b data-category-count="alienacion"></b>)</span></label>
+<label class="filter-option"><input type="checkbox" name="categoria" value="entorno"><span>Entorno (<b data-category-count="entorno"></b>)</span></label>
+<label class="filter-option"><input type="checkbox" name="categoria" value="identidad"><span>Identidad (<b data-category-count="identidad"></b>)</span></label>
+<label class="filter-option"><input type="checkbox" name="categoria" value="sensorialidad"><span>Sensorialidad (<b data-category-count="sensorialidad"></b>)</span></label>
+<label class="filter-option"><input type="checkbox" name="categoria" value="sinergia"><span>Sinergia (<b data-category-count="sinergia"></b>)</span></label></div><div class="filter-actions"><button class="clear-filters" id="clear-filters">Borrar filtros</button></div></dialog>
 <dialog id="work-dialog" class="work-dialog" aria-labelledby="detail-title">
   <button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar detalle de obra"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
   <div class="work-detail">
@@ -428,12 +498,11 @@ Gracias a la Universidad Nacional de La Plata, la Facultad de Artes y el Laborat
         <div class="detail-description" id="detail-description"></div>
         <button class="description-toggle" id="description-toggle" type="button" aria-expanded="false" aria-controls="detail-description" hidden><span>Leer más</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
       </div>
-      <dl class="detail-data"><div><dt>Alumno</dt><dd id="detail-author"></dd></div><div><dt>Categoría</dt><dd id="detail-category"></dd></div></dl>
+      <dl class="detail-data"><div><dt>Alumno</dt><dd id="detail-author"></dd></div><div><dt>Categoría</dt><dd id="detail-category"></dd></div><div id="detail-indications-row" hidden><dt>Indicaciones</dt><dd><ul id="detail-indications"></ul></dd></div></dl>
       <a class="research-link" id="research-link" hidden>Descargar investigación<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg></a>
-      <button class="research-link" id="research-pending" type="button" disabled aria-disabled="true" title="Investigación próximamente">Descargar investigación<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg></button>
+      <div class="research-link" id="research-pending" aria-disabled="true"><span>Descargar investigación</span><span class="research-status">Próximamente</span></div>
     </section>
     <section class="media-panel" aria-label="Imágenes y video de la obra">
-      <img class="media-backdrop" id="media-backdrop" alt="" aria-hidden="true">
       <span class="media-counter" id="media-counter" aria-live="polite"></span>
       <div class="media-stage" id="media-stage"></div>
       <a class="icon-button media-download" id="media-download" download aria-label="Descargar imagen" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg></a>
@@ -446,7 +515,7 @@ Gracias a la Universidad Nacional de La Plata, la Facultad de Artes y el Laborat
 <dialog id="event-dialog" class="event-dialog" aria-labelledby="event-title">
   <button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar detalles del festival"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
   <div class="ticket-frame"><div class="ticket ticket-export">
-    <picture aria-hidden="true"><source media="(max-width:1100px)" srcset="assets/TicketMobile.png"><img src="assets/Ticket.png" alt="" decoding="async"></picture>
+    <picture aria-hidden="true"><source media="(max-width:1100px)" srcset="assets/TicketMobile.webp"><img src="assets/Ticket.webp" alt="" loading="lazy" decoding="async"></picture>
     <div class="ticket-copy sr-only"><h2 id="event-title">Artimañas</h2><p>Muestra de trabajos finales de Taller de Diseño Multimedial V</p><address><strong>28 de Noviembre * 19:00 hrs<br>Sede Fonseca de la Facultad de Artes</strong><br>Diagonal 78 Nº 680 esquina 62<br>La Plata, Buenos Aires, Argentina</address><p>EDICIÓN 2026</p></div>
   </div></div>
   <a class="pill event-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Sede+Fonseca%2C+Diagonal+78+N%C2%BA+680%2C+La+Plata%2C+Argentina" target="_blank" rel="noopener noreferrer">Ver cómo llegar</a>
@@ -454,16 +523,67 @@ Gracias a la Universidad Nacional de La Plata, la Facultad de Artes y el Laborat
 <dialog id="photo-dialog" class="photo-dialog" aria-label="Detalle de imagen"><button class="icon-button dialog-close" data-close-dialog aria-label="Cerrar imagen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button><img id="photo-image" alt=""><p class="photo-caption" id="photo-caption"></p></dialog>
 <div class="custom-cursor" data-revision="layout-v25" id="custom-cursor" aria-hidden="true"><span class="cursor-label"></span><span class="cursor-scroll" aria-hidden="true"><svg viewBox="0 0 24 28"><rect x="7" y="2" width="10" height="16" rx="5"/><path class="cursor-scroll-wheel" d="M12 5v4"/><path d="m9 23 3 3 3-3"/></svg></span></div>
 <noscript><p style="padding:20px">Podés recorrer las obras. Para abrir los detalles y usar los filtros, activá JavaScript.</p></noscript>
-<script defer data-hero-shader src="js/hero-shader.bundle.js?v=35"></script>
 <script src="js/core.js?v=26"></script>
-<script src="js/work-transition.js?v=27"></script>
-<script src="js/app.js?v=34"></script>
-<script src="js/cursor.js?v=27"></script>
+<script src="js/work-transition.js?v=qa-178"></script>
+<script src="js/app.js?v=qa-181"></script>
+<script src="js/cursor.js?v=qa-164"></script>
 
-<script src="js/catalog-preview.js?v=28"></script>
+<script src="js/catalog-preview.js?v=qa-149"></script>
 
 
 
 
 <script src="js/marquee.js?v=26"></script>
+<script src="js/logo-intro.js?v=qa-176"></script>
+<script>
+  (() => {
+    const root = document.documentElement;
+    const hero = document.querySelector('.hero');
+    const localFile = location.protocol === 'file:';
+    const observer = new MutationObserver(startEntrance);
+    let shaderStarted = false;
+    const grain = new Image();
+    grain.src = 'assets/hero-grain.png';
+    grain.decode().then(() => delete root.dataset.grainLoading, () => delete root.dataset.grainLoading);
+
+    function load(name) {
+      const script = document.createElement('script');
+      script.src = `js/${name}.bundle.js?v=glass-brand-15`;
+      if (name === 'hero-shader') script.setAttribute('data-hero-shader', '');
+      document.body.append(script);
+    }
+
+    function prepareShader() {
+      if (localFile || shaderStarted || hero.dataset.glassOwner) return;
+      shaderStarted = true;
+      load('hero-shader');
+    }
+
+    function startEntrance() {
+      const phase = root.dataset.heroIntro;
+      if (['preparing', 'loading'].includes(phase)) return;
+      observer.disconnect();
+      if (phase === 'entering') {
+        // Keep the selected first frame visible through the full visit.
+        const owner = hero.classList.contains('shader-ready') ? 'webgl'
+          : hero.dataset.glassCanvas === 'ready' ? 'canvas' : 'vector';
+        hero.dataset.glassOwner = owner;
+        if (owner !== 'webgl' && hero.dataset.shader === 'loading') hero.dataset.shader = 'fallback';
+      }
+      prepareShader();
+    }
+
+    if (localFile) {
+      hero.dataset.shader = 'fallback';
+      hero.dataset.shaderFallback = 'local-file';
+    }
+
+    // Start the lighter renderer early; give WebGL a chance after the page load.
+    load('glass-fallback');
+    if (document.readyState === 'complete') prepareShader();
+    else window.addEventListener('load', prepareShader, { once: true });
+    observer.observe(root, { attributes: true, attributeFilter: ['data-hero-intro'] });
+    startEntrance();
+  })();
+</script>
 </body></html>

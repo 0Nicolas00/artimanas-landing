@@ -1,0 +1,183 @@
+.hero-solid {
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:var(--hero-loading-color,#14032A);
+  opacity:0;transition:opacity 1.35s ease-in-out;
+}
+:is([data-hero-intro="preparing"],[data-hero-intro="loading"]) .hero-solid {
+  opacity:1;transition:none;
+}
+.hero-grain {
+ --grain-variation:.30;
+ --grain-period:4.4s;
+ position:absolute;inset:0;z-index:0;pointer-events:none;
+ width:100%;height:100%;
+ background:url('../assets/hero-grain.png') repeat 0 0 / 248px 248px;
+ opacity:.29;mix-blend-mode:hard-light;
+ mask-image:linear-gradient(#000 72%,transparent);
+ transition:opacity 1.25s ease-in-out;
+}
+.hero-grain::after {
+  content:'';position:absolute;inset:0;
+  background:inherit;background-position:73px -49px;
+  animation:hero-grain-variation var(--grain-period) ease-in-out infinite;
+}
+@keyframes hero-grain-variation {
+  0%,100% {opacity:0}
+  50% {opacity:var(--grain-variation)}
+}
+.hero[data-cinta-motion="paused"] .hero-grain::after {animation-play-state:paused}
+@media(prefers-reduced-motion:reduce) {
+  .hero-grain {--grain-variation:.12;--grain-period:6.6s}
+}
+.hero.shader-ready .hero-grain {display:none}
+.hero .hero-center,.hero .marquee {z-index:2}
+/* El 10% inferior adelanta el listado antes de entrar al catálogo. */
+@media(min-width:1101px) and (min-height:501px) {
+ .hero {height:90svh;height:90dvh;min-height:0}
+ #obras .student-sidebar h2 {margin-bottom:4px}
+}
+@media(min-width:1101px) {
+ #obras {--preview-blur:0px;--preview-opacity:1}
+ #obras .student-list li {filter:blur(var(--preview-blur));opacity:var(--preview-opacity);transition:filter .35s ease,opacity .35s ease}
+ #obras .student-list li.is-preview-first {filter:blur(calc(var(--preview-blur) * .58));opacity:calc(.7 + var(--preview-opacity) * .3)}
+ #obras.is-preview .student-list a[aria-current='true'] {text-shadow:none}
+ #obras:not(.is-cover) .student-list li:focus-within {filter:none;opacity:1}
+}
+@media(max-width:1100px) {
+ .hero-grain {opacity:.27}
+}
+@media(prefers-reduced-motion:reduce) {
+ #obras .student-list li {transition:none}
+}
+
+@media(min-width:1101px){.hero .logo-desktop{width:min(72vw,1450px)}.hero-center{top:28%}}
+
+/* Entrada H-15 sobre el mismo fondo de cristal de la portada. */
+.hero .eyebrow {position:relative;visibility:visible;border:0}
+.hero .eyebrow svg {position:absolute;inset:0;width:100%;height:100%;stroke-width:1.5;overflow:visible}
+.hero .eyebrow span {position:relative}
+@media(min-width:1101px) and (min-height:501px) {
+  .hero {--band-height:72px;--band-top:calc(100% - var(--band-height) - 104vw * sin(1.3deg) - 3px)}
+  .hero .logo-desktop {width:min(1008px,72vw)}
+  .hero-center {top:29.8%}
+}
+@media(max-width:1100px) and (min-height:501px) {
+  .hero {--band-top:calc(100% - 170px)}
+}
+@media(max-width:599px) and (min-height:501px) {
+  .hero {--band-top:calc(100% - 175px)}
+  .hero-center {top:calc((100% - 422px)/2 - 40px)}
+  .hero h1 {top:85px}
+}
+html {scrollbar-gutter:stable}
+html[data-hero-intro] {overflow-y:hidden}
+[data-hero-intro="preparing"] [data-intro-logo] {opacity:0}
+[data-hero-intro="loading"] [data-intro-logo] {
+  translate:0 var(--intro-shift,0px);scale:var(--intro-logo-scale,.42);
+  animation:hero-logo-appear .6s ease-in-out both,hero-logo-pulse 2.6s ease-in-out infinite;
+}
+@keyframes hero-logo-appear {from {opacity:0}to {opacity:1}}
+@keyframes hero-logo-fade {from {opacity:0}}
+@keyframes hero-logo-pulse {50% {scale:.406}}
+:is([data-hero-intro="preparing"],[data-hero-intro="loading"]) :is(.hero .eyebrow,.marquee,.site-header,#obras,#site-footer,.countdown-view > p,.countdown-grid,.countdown-actions) {
+  visibility:hidden;
+}
+[data-grain-loading] .hero-grain,
+:is([data-hero-intro="preparing"],[data-hero-intro="loading"]) .hero-grain {
+  opacity:0;
+}
+:is([data-hero-intro="preparing"],[data-hero-intro="loading"]) .hero-grain::after {animation:none}
+.glass-static {
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  container-type:size;
+}
+.glass-static > svg {
+  position:absolute;left:50%;top:0;translate:-50% 0;
+  width:100%;width:max(100%,108cqh);height:100%;stroke-width:initial;
+}
+.glass-static-piece {
+  --glass-pulse-scale:1.04;
+  --glass-pulse-duration:5.2s;
+  --glass-pulse-angle:.48deg;
+  pointer-events:visiblePainted;
+  transform-box:fill-box;transform-origin:center;
+  transition:scale .45s ease-out,filter .45s ease-out;
+  animation:glass-vector-pulse var(--glass-pulse-duration) ease-in-out infinite;
+}
+.glass-static-piece:nth-child(2n) {--glass-pulse-angle:-.48deg}
+.glass-static-piece:hover {scale:1.022 1.012;filter:brightness(1.31)}
+@keyframes glass-vector-pulse {
+  0%,100% {transform:scale(1) rotate(0deg)}
+  50% {transform:scale(var(--glass-pulse-scale)) rotate(var(--glass-pulse-angle))}
+}
+[data-hero-intro="entering"] .glass-static-piece,
+.hero[data-glass-drawing] .glass-static-piece {
+  pointer-events:none;
+  animation:none;
+}
+[data-hero-intro="entering"] .glass-vector-body {opacity:0}
+[data-hero-intro="entering"] .glass-vector-rim {stroke-dasharray:0 1;opacity:0}
+@media(prefers-reduced-motion:reduce) {
+  .glass-static-piece {--glass-pulse-scale:1.02;--glass-pulse-duration:6.85s}
+  .glass-static-piece:hover {scale:1.012 1.007}
+}
+:is([data-hero-intro="preparing"],[data-hero-intro="loading"]) :is(.glass-static,.glass-fallback,.hero-shader),
+.hero:is(.shader-ready,[data-shader="static"],[data-glass-canvas="ready"]) .glass-static,
+.hero:is(.shader-ready,[data-shader="static"],[data-glass-owner="vector"]) .glass-fallback {
+  visibility:hidden;
+}
+:is([data-hero-intro="preparing"],[data-hero-intro="loading"]) .glass-static-piece,
+.hero:is(.shader-ready,[data-shader="static"],[data-glass-canvas="ready"]) .glass-static-piece {animation-play-state:paused;pointer-events:none}
+:is([data-hero-intro="preparing"],[data-hero-intro="loading"]) .hero :is(.marquee-track,.marquee-group) {
+  animation-play-state:paused;
+}
+[data-hero-intro="entering"] {
+  --intro-ease:ease-in-out;
+}
+[data-hero-intro="entering"] [data-intro-logo] {animation:hero-logo-enter var(--intro-logo-duration,1.35s) var(--intro-ease) both}
+@keyframes hero-logo-enter {
+  from {translate:0 var(--intro-shift,0px);scale:var(--intro-start-scale,.42)}
+  to {translate:0 0;scale:1}
+}
+[data-hero-intro="entering"] :is(.site-header,.marquee) {
+  animation:hero-element-enter 1s var(--intro-ease) var(--intro-delay) both;
+}
+[data-hero-intro="entering"] .site-header {--intro-travel:-20px;--intro-delay:.24s}
+[data-hero-intro="entering"] .marquee {--intro-travel:24px;--intro-delay:.38s}
+@keyframes hero-element-enter {
+  from {opacity:0;translate:0 var(--intro-travel)}
+  to {opacity:1;translate:0 0}
+}
+[data-hero-label-entering] .hero .eyebrow ellipse {stroke-dasharray:1 1;animation:hero-label-stroke 1s ease-in-out 1.57s both}
+@keyframes hero-label-stroke {from {stroke-dashoffset:1}to {stroke-dashoffset:0}}
+[data-hero-label-entering] .hero .eyebrow span {animation:hero-logo-fade .76s ease-in-out 1.76s both}
+[data-hero-intro="entering"] :is(#obras,.countdown-actions) {animation:hero-catalog-enter .85s ease-in-out .84s both}
+@keyframes hero-catalog-enter {from {opacity:0}to {opacity:1}}
+@media(max-height:500px) {
+  .hero-center {top:clamp(54px,17dvh,80px)}
+  .hero .eyebrow {width:min(262px,calc(100vw - 32px));height:clamp(36px,10dvh,50px);font:var(--body-md)}
+  .hero .logo-desktop {max-height:clamp(58px,25dvh,120px)}
+}
+@media(prefers-reduced-motion:reduce) {
+  [data-hero-intro] {--intro-logo-scale:.7;--intro-logo-duration:1s}
+  [data-hero-intro="loading"] [data-intro-logo] {animation:hero-logo-appear .6s ease-in-out both}
+  [data-hero-intro="entering"] :is(.site-header,.marquee) {--intro-travel:0px}
+}
+
+/* La cuenta regresiva reutiliza la escena de la portada detrás de sus controles. */
+.countdown-view > .hero {position:absolute;inset:0;height:100%;min-height:0;z-index:-1}
+.countdown-view > .hero > :is(.hero-center,.marquee) {display:none}
+
+.countdown-logo {height:auto}
+[data-hero-intro="entering"] .countdown-view > p {
+  animation:hero-logo-appear 1s ease-in-out .32s both;
+}
+
+/* Fundir cada superficie de vidrio con el hero que tiene detrás. */
+.countdown-cell {
+  transition:opacity 1.85s ease-in-out .16s;
+}
+:is([data-hero-intro="preparing"],[data-hero-intro="loading"]) .countdown-cell {
+  opacity:0;
+  transition:none;
+}
